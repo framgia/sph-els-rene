@@ -1,6 +1,6 @@
-import "./index.css";
+import React from "react";
 
-function App() {
+function Index() {
   return (
     <div className="d-flex justify-content-md-center align-items-center vh-100r">
       <div className="p-5 mt-5">
@@ -17,7 +17,7 @@ function App() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
               dolorum qui, aperiam commodi corporis minima pariatur nulla
               reprehenderit laborum recusandae quasi placeat omnis quae dolores,
-              mollitia adipisci. Minima, porro officia.
+              mollitia adipisci. Minima, porro officia.sd
             </p>
 
             <div className="d-flex justify-content-center mt-5">
@@ -35,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default Index;
