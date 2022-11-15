@@ -9,6 +9,11 @@ class Lesson extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+    ];
+
     public function user_words()
     {
         return $this->hasMany(User_word::class);
