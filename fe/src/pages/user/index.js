@@ -1,7 +1,13 @@
 import React from "react";
 
 function index() {
-  return <div> user's dashboard</div>;
+  const token = localStorage.getItem("user_token") ?? "";
+  const user_email = localStorage.getItem("user_email") ?? "";
+  const user_name = localStorage.getItem("user_name") ?? "";
+
+  return (
+    <div> user's dashboard | {token !== "" ? user_email : "Email . . ."}</div>
+  );
 }
 
 export default index;
