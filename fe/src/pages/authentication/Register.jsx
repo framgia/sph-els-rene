@@ -42,6 +42,7 @@ function Register() {
             res.data.user.first_name + " " + res.data.user.last_name
           );
           localStorage.setItem("user_email", res.data.user.email);
+          localStorage.setItem("user_role", "user");
           console.log(res.data);
           return navigate("/");
         } else {
@@ -158,7 +159,9 @@ function Register() {
                   onChange={handleInput}
                   value={data.password_confirmation}
                 />
-                <button type="submit">Register</button>
+                <button type="submit" className="btn btn-primary mx-4">
+                  Register
+                </button>
               </form>
             </div>
           </div>

@@ -34,6 +34,7 @@ class AuthController extends Controller
         $response = [
             'status' => 200,
             'user' => $user,
+            'verified_email' => $user->email_verified_at,
             'token' => $token,
             'Message' => 'Registered Succesfully',
         ];
@@ -62,10 +63,21 @@ class AuthController extends Controller
                 return response([
                     'status' => 200,
                     'user' => $user,
+                    'role' => $user->role,
+                    'verified_email' => $user->email_verified_at,
                     'token' => $token,
                     'Message' => 'Login Succesfully',
                 ], 200);
             }
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => "Logged Out Successfully",
+        ]);
     }
 }
