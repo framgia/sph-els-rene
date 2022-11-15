@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function index() {
   const token = localStorage.getItem("user_token") ?? "";

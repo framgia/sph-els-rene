@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate, Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(data);
 
     const postData = {
       first_name: data.first_name,
@@ -36,7 +35,7 @@ function Register() {
 
     axios.get("/sanctum/csrf-cookie").then((res) => {
       axios.post(`/api/register`, postData).then((res) => {
-        if (res.data) {
+        if (res.data.status === 200) {
           localStorage.setItem("user_token", res.data.token);
           localStorage.setItem(
             "user_name",
