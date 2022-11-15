@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function Index() {
+function Guest() {
   return (
     <>
       <div class="custom-shape-divider-top-1668157559">
@@ -17,7 +17,6 @@ function Index() {
           ></path>
         </svg>
       </div>
-
       <div className="d-flex justify-content-md-center align-items-center vh-100r mt-5">
         <div className="p-5 mt-5">
           <div className="d-flex justify-content-center">
@@ -37,14 +36,11 @@ function Index() {
               </p>
 
               <div className="d-flex justify-content-center mt-5">
-                <button type="button" class="btn btn-primary mx-4">
+                <NavLink to="/login" className="btn btn-primary mx-4">
                   Sign In
-                </button>
-
-                <NavLink to="/register">
-                  <button type="button" class="btn btn-primary mx-4">
-                    Create New Account
-                  </button>
+                </NavLink>
+                <NavLink to="/register" className="btn btn-primary mx-4">
+                  Create New Account
                 </NavLink>
               </div>
             </div>
@@ -55,4 +51,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Guest;
