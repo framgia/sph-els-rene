@@ -31,15 +31,13 @@ class AuthController extends Controller
 
         $token = $user->createToken('permission')->plainTextToken;
 
-        $response = [
+        return response([
             'status' => 200,
             'user' => $user,
             'verified_email' => $user->email_verified_at,
             'token' => $token,
             'Message' => 'Registered Succesfully',
-        ];
-
-        return response($response, 201);
+        ], 201);
     }
 
     public function login(Request $request)
@@ -78,6 +76,6 @@ class AuthController extends Controller
         return response()->json([
             'status' => 200,
             'message' => "Logged Out Successfully",
-        ]);
+        ], 200);
     }
 }
