@@ -31,14 +31,13 @@ class AuthController extends Controller
 
         $token = $user->createToken('permission')->plainTextToken;
 
-        $response = [
+        return response([
             'status' => 200,
             'user' => $user,
+            'verified_email' => $user->email_verified_at,
             'token' => $token,
             'Message' => 'Registered Succesfully',
-        ];
-
-        return response($response, 201);
+        ], 201);
     }
 
     public function login(Request $request)
@@ -62,10 +61,21 @@ class AuthController extends Controller
                 return response([
                     'status' => 200,
                     'user' => $user,
+                    'role' => $user->role,
+                    'verified_email' => $user->email_verified_at,
                     'token' => $token,
                     'Message' => 'Login Succesfully',
                 ], 200);
             }
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => "Logged Out Successfully",
+        ], 200);
     }
 }
