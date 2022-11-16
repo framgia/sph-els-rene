@@ -16,7 +16,12 @@ class LessonController extends Controller
      */
     public function index()
     {
-        //
+        $lessons = Lesson::all();
+
+        return response([
+            'status' => 200,
+            'lessons' => $lessons
+        ], 200);
     }
 
     /**
@@ -32,10 +37,10 @@ class LessonController extends Controller
         $lesson = Lesson::create($validated);
 
         return response([
-            'status' => 200,
+            'status' => 201,
             'lesson' => $lesson,
             'message' => 'Lesson Created Successfully',
-        ], 200);
+        ], 201);
     }
 
     /**
