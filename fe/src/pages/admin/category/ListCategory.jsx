@@ -22,44 +22,36 @@ export default function ListCategory() {
 
   return (
     <Fragment>
-      {categories && (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col">Action</th>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {categories.map((cat) => (
+            <tr key={cat.id}>
+              <th scope="row">{cat.id}</th>
+              <td>{cat.title}</td>
+              <td>{cat.description}</td>
+              <td>
+                <button type="button" className="btn btn-outline-primary mx-1">
+                  Add word
+                </button>
+                <button type="button" className="btn btn-outline-warning mx-1">
+                  Edit
+                </button>
+                <button type="button" className="btn btn-outline-danger mx-1">
+                  Delete
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {categories.map((cat) => (
-              <tr key={cat.id}>
-                <th scope="row">{cat.id}</th>
-                <td>{cat.title}</td>
-                <td>{cat.description}</td>
-                <td>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary mx-1"
-                  >
-                    Add word
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-warning mx-1"
-                  >
-                    Edit
-                  </button>
-                  <button type="button" className="btn btn-outline-danger mx-1">
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+          ))}
+        </tbody>
+      </table>
     </Fragment>
   );
 }
