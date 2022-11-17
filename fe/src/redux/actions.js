@@ -11,3 +11,15 @@ export const getAllAction = (myURL) => async (dispatch) => {
       console.log(err);
     });
 };
+
+export const addAction = (data, myURL) => async (dispatch, getState) => {
+  await axios
+    .post(myURL, data)
+    .then((res) => {
+      dispatch({ type: types.CREATE_CATEGORIES, res });
+      dispatch(getAllAction("/api/lessons"));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

@@ -1,8 +1,16 @@
 import * as types from "./actionTypes";
-const categoriesReducers = (state = [], action) => {
+const initialState = {
+  categories: [],
+  category: [],
+  loading: true,
+};
+
+const categoriesReducers = (state = initialState, action) => {
   switch (action.type) {
     case types.GET_CATEGORIES:
-      return [...state, action.res.data.lessons];
+    case types.CREATE_CATEGORIES:
+      return { ...state, categories: action.res.data.lessons, loading: false };
+
     default:
       return state;
   }
