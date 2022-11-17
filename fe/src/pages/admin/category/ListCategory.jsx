@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllAction } from "../../../redux/actions";
 
@@ -12,9 +12,17 @@ export default function ListCategory() {
     dispatch(getAllAction("api/lessons"));
   }, []);
 
+  if (!categories) {
+    return (
+      <div className="card d-flex justify-content-center">
+        <h1 className="mx-auto">No Categories Available</h1>
+      </div>
+    );
+  }
+
   return (
-    <>
-      {categories ? (
+    <Fragment>
+      {categories && (
         <table className="table table-striped">
           <thead>
             <tr>
@@ -51,11 +59,7 @@ export default function ListCategory() {
             ))}
           </tbody>
         </table>
-      ) : (
-        <div className="card d-flex justify-content-center">
-          <h1 className="mx-auto">No Categories Available</h1>
-        </div>
       )}
-    </>
+    </Fragment>
   );
 }

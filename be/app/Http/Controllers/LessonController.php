@@ -21,7 +21,7 @@ class LessonController extends Controller
         return response([
             'status' => 200,
             'lessons' => $lessons
-        ], 200);
+        ]);
     }
 
     /**
@@ -40,7 +40,7 @@ class LessonController extends Controller
             'status' => 201,
             'lesson' => $lesson,
             'message' => 'Lesson Created Successfully',
-        ], 201);
+        ]);
     }
 
     /**

@@ -1,13 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Header from "../Header";
 
 import ListCategory from "./category/ListCategory";
 
 function index() {
   return (
-    <>
-      {/* <div className="mb-4">ADMIN PAGE INDEX | Create Layout for header</div>
-       */}
+    <Fragment>
       <Header />
       <div className="container">
         <div className="border mb-3 d-flex justify-content-end">
@@ -20,7 +18,7 @@ function index() {
           <ListCategory />
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 
