@@ -51,7 +51,11 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        //
+        $lesson = Lesson::find($id);
+        return response([
+            'status' => 200,
+            'lesson' => $lesson,
+        ]);
     }
 
     /**
@@ -61,9 +65,20 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreLessonRequest $request, $id)
     {
-        //
+        $request->validated();
+
+        $lesson = Lesson::find($id);
+        $lesson->title = $request->title;
+        $lesson->description = $request->description;
+        $lesson->save();
+
+        return response([
+            'status' => 200,
+            'lesson' => $lesson,
+            'message' => 'Lesson Updated Successfully',
+        ]);
     }
 
     /**
