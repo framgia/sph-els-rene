@@ -27,5 +27,5 @@ Route::post('login', [AuthController::class, 'login']);
 // Protected Routed
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::resource('lesson', LessonController::class);
+    Route::resource('lessons', LessonController::class);
 });
