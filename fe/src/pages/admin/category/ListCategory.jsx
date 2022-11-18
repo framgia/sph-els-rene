@@ -9,8 +9,6 @@ export default function ListCategory() {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
 
-  // console.log(categories);
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     dispatch(getAllAction("api/lessons"));
