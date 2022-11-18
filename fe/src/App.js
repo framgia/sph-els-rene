@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./pages/authentication/Register";
 import Login from "./pages/authentication/Login";
 import "./api/AuthSetup";
+import { Fragment } from "react";
 
 function App() {
   return (
-    <>
+    <Fragment>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -15,7 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
-    </>
+    </Fragment>
   );
 }
 

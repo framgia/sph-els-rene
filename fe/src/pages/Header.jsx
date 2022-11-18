@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <>
+    <Fragment>
       <nav className="navbar navbar-expand-lg navbar-light bg-light border mb-3">
         <div className="container-fluid offset-1">
           <Link className="navbar-brand" to="/">
@@ -38,7 +38,7 @@ function Header() {
           </div>
         </div>
       </nav>
-    </>
+    </Fragment>
   );
 }
 
