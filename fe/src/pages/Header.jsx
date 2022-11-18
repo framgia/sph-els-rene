@@ -6,7 +6,7 @@ function Header() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light border mb-3">
         <div className="container-fluid offset-1">
-          <Link className="navbar-brand" to={"/"}>
+          <Link className="navbar-brand" to="/">
             E Learning System
           </Link>
           <button
