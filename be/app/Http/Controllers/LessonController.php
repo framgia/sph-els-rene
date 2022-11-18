@@ -36,6 +36,7 @@ class LessonController extends Controller
         $lesson = Lesson::create($validated);
 
         return response([
+            'status' => 201,
             'lesson' => $lesson,
             'message' => 'Lesson Created Successfully',
         ]);
@@ -72,6 +73,7 @@ class LessonController extends Controller
         $lesson->save();
 
         return response([
+            'status' => 201,
             'lesson' => $lesson,
             'message' => 'Lesson Updated Successfully',
         ]);
