@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ function Login() {
   };
 
   return (
-    <>
+    <Fragment>
       <div className="container-lg">
         <div className="custom-shape-divider-top-1668157559">
           <svg
@@ -108,7 +108,7 @@ function Login() {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../Header";
-import CreateCategoryModal from "./category/CreateCategoryModal";
+import CreateCategoy from "./category/CreateCategory";
 import ListCategory from "./category/ListCategory";
 
 function index() {
@@ -9,7 +9,7 @@ function index() {
       <Header />
       <div className="container">
         <div className="border mb-3 d-flex justify-content-end">
-          <CreateCategoryModal />
+          <CreateCategoy />
         </div>
 
         <div className="border mb-5">

@@ -32,7 +32,6 @@ class AuthController extends Controller
         $token = $user->createToken('permission')->plainTextToken;
 
         return response([
-            'status' => 200,
             'user' => $user,
             'verified_email' => $user->email_verified_at,
             'token' => $token,
@@ -53,19 +52,17 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->first();
             if (!$user || Hash::check(bcrypt($request->password), $user->password)) {
                 return response()->json([
-                    'status' => 401,
                     'message' => 'Invalid Credentials',
                 ]);
             } else {
                 $token = $user->createToken('permission')->plainTextToken;
                 return response([
-                    'status' => 200,
                     'user' => $user,
                     'role' => $user->role,
                     'verified_email' => $user->email_verified_at,
                     'token' => $token,
                     'Message' => 'Login Succesfully',
-                ], 200);
+                ]);
             }
         }
     }
@@ -74,8 +71,7 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
         return response()->json([
-            'status' => 200,
             'message' => "Logged Out Successfully",
-        ], 200);
+        ]);
     }
 }

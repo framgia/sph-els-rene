@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
 function Guest() {
   return (
-    <>
+    <Fragment>
       <div class="custom-shape-divider-top-1668157559">
         <svg
           data-name="Layer 1"
@@ -47,7 +47,7 @@ function Guest() {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 
