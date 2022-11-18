@@ -36,7 +36,7 @@ class AuthController extends Controller
             'verified_email' => $user->email_verified_at,
             'token' => $token,
             'Message' => 'Registered Succesfully',
-        ]);
+        ], 201);
     }
 
     public function login(Request $request)
