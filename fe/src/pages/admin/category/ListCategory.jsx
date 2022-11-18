@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllAction } from "../../../redux/actions";
+import EditCategory from "./EditCategory";
 
 export default function ListCategory() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
+
+  // console.log(categories);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -13,7 +17,7 @@ export default function ListCategory() {
   }, []);
 
   return (
-    <>
+    <Fragment>
       {categories ? (
         <table className="table table-striped">
           <thead>
@@ -25,24 +29,19 @@ export default function ListCategory() {
             </tr>
           </thead>
           <tbody>
-            {categories.map((cat) => (
+            {categories?.map((cat) => (
               <tr key={cat.id}>
                 <th scope="row">{cat.id}</th>
                 <td>{cat.title}</td>
                 <td>{cat.description}</td>
-                <td>
+                <td className="d-flex">
                   <button
                     type="button"
                     className="btn btn-outline-primary mx-1"
                   >
                     Add word
                   </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-warning mx-1"
-                  >
-                    Edit
-                  </button>
+                  <EditCategory id={cat.id} />
                   <button type="button" className="btn btn-outline-danger mx-1">
                     Delete
                   </button>
@@ -56,6 +55,6 @@ export default function ListCategory() {
           <h1 className="mx-auto">No Categories Available</h1>
         </div>
       )}
-    </>
+    </Fragment>
   );
 }

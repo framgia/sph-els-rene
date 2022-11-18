@@ -1,17 +1,27 @@
-import React, { Fragment } from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addAction } from "../../../redux/actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getOneAction, updateAction } from "../../../redux/actions";
 
-function CreateCategory() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+function EditCategory(props) {
   const [data, setData] = useState({
     title: "",
     description: "",
   });
+
+  const { category } = useSelector((state) => state.categories);
+
+  const dispatch = useDispatch();
+
+  const handleGetCategory = (e) => {
+    dispatch(getOneAction(`api/lessons/${props.id}`));
+  };
+
+  //set data in inputbox
+  useEffect(() => {
+    if (category !== {}) {
+      setData({ ...category });
+    }
+  }, [category]);
 
   const handleInput = (e) => {
     e.persist();
@@ -20,45 +30,37 @@ function CreateCategory() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const postData = {
-      title: data.title,
-      description: data.description,
-    };
-
-    dispatch(addAction(postData, "api/lessons"));
-
-    setData({
-      title: "",
-      description: "",
-    });
+    //since I pass the whole object in my setData state, I can just pass the state
+    const postData = data;
+    dispatch(updateAction(postData, `api/lessons/${props.id}`));
   };
 
   return (
-    <Fragment>
+    <>
       <form onSubmit={handleSubmit}>
         <div className="">
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-outline-warning"
             data-bs-toggle="modal"
-            data-bs-target="#createCategoryModal"
+            data-bs-target="#EditCategoryModal"
+            onClick={handleGetCategory}
           >
-            Create Category
+            Edit
           </button>
 
           <div
             className="modal fade"
-            id="createCategoryModal"
+            id="EditCategoryModal"
             tabIndex="-1"
-            aria-labelledby="createCategoryModalLabel"
+            aria-labelledby="EditCategoryModalLabel"
             aria-hidden="true"
           >
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="createCategoryModalLabel">
-                    Add New Category
+                  <h5 className="modal-title" id="EditCategoryModalLabel">
+                    Edit Category
                   </h5>
                   <button
                     type="button"
@@ -80,7 +82,7 @@ function CreateCategory() {
                       name="title"
                       data-name="title"
                       onChange={handleInput}
-                      value={data.title}
+                      value={data.title || ""}
                     />
                     <div id="titleHelp" className="form-text">
                       Please enter lesson name
@@ -99,7 +101,7 @@ function CreateCategory() {
                       name="description"
                       data-name="description"
                       onChange={handleInput}
-                      value={data.description}
+                      value={data.description || ""}
                     />
                     <div id="descriptionHelp" className="form-text">
                       Description will help user to choose the right lesson
@@ -119,7 +121,7 @@ function CreateCategory() {
                     className="btn btn-primary"
                     data-bs-dismiss="modal"
                   >
-                    Create
+                    Update
                   </button>
                 </div>
               </div>
@@ -127,8 +129,8 @@ function CreateCategory() {
           </div>
         </div>
       </form>
-    </Fragment>
+    </>
   );
 }
 
-export default CreateCategory;
+export default EditCategory;
