@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('word_id')->constrained('words');
             $table->string('word');
+            $table->boolean('remark');
             $table->timestamps();
         });
     }

@@ -9,6 +9,12 @@ class Word extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'lesson_id',
+        'title',
+        'hint',
+    ];
+
     public function choices()
     {
         return $this->hasMany(Word_choice::class);
