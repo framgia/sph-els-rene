@@ -1,7 +1,7 @@
 import reduxThunk from "redux-thunk";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import logger from "redux-logger";
-import rootReducer from "./rootReducer";
+import rootReducer from "./reducers/rootReducer";
 
 const DEV_MODE = "development";
 const middlewares = [reduxThunk];

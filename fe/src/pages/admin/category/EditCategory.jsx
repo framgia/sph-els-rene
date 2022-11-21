@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneAction, updateAction } from "../../../redux/actions";
+import { getOneAction, updateAction } from "../../../redux/actions/actions";
+import * as actionType from "../../../redux/actions/actionTypes";
 
 function EditCategory(props) {
   const [data, setData] = useState({
@@ -13,7 +14,7 @@ function EditCategory(props) {
   const dispatch = useDispatch();
 
   const handleGetCategory = (e) => {
-    dispatch(getOneAction(`api/lessons/${props.id}`));
+    dispatch(getOneAction(`api/lessons/${props.id}`, actionType.GET_CATEGORY));
   };
 
   //set data in inputbox
@@ -32,11 +33,18 @@ function EditCategory(props) {
     e.preventDefault();
     //since I pass the whole object in my setData state, I can just pass the state
     const postData = data;
-    dispatch(updateAction(postData, `api/lessons/${props.id}`));
+    dispatch(
+      updateAction(
+        postData,
+        `/api/lessons/${data.id}`,
+        actionType.UPDATE_CATEGORIES,
+        "api/lessons"
+      )
+    );
   };
 
   return (
-    <>
+    <Fragment>
       <form onSubmit={handleSubmit}>
         <div className="">
           <button
@@ -129,7 +137,7 @@ function EditCategory(props) {
           </div>
         </div>
       </form>
-    </>
+    </Fragment>
   );
 }
 
