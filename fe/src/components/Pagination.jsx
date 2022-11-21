@@ -4,23 +4,17 @@ import { Link } from "react-router-dom";
 const Pagination = (props) => {
   const totalPageItems = Math.ceil(props.totalItems / props.itemsPerPage);
 
-  // const pageNumber = [];
-
-  // for (let i = 1; i <= Math.ceil(props.totalItems / props.itemsPerPage); i++) {
-  //   pageNumber.push(i);
-  // }
-
   return (
     <nav aria-label="Page Navigation">
       <ul className="pagination">
-        {[...Array(totalPageItems)].map((page) => (
-          <li className="page-item" key={page}>
+        {[...Array(totalPageItems)].map((key, page) => (
+          <li className="page-item" key={page + 1}>
             <Link
               to={"#"}
               className="page-link"
-              onClick={() => props.paginateTo(page)}
+              onClick={() => props.paginateTo(page + 1)}
             >
-              {page}
+              {page + 1}
             </Link>
           </li>
         ))}
