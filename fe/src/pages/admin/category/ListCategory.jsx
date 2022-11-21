@@ -19,7 +19,8 @@ export default function ListCategory() {
         deleteAction(
           `/api/lessons/${id}`,
           actionType.DELETE_CATEGORIES,
-          "/api/lessons"
+          "/api/lessons",
+          actionType.GET_CATEGORIES
         )
       );
     }

@@ -75,7 +75,12 @@ export const updateAction =
   };
 
 export const deleteAction =
-  (myURL, actionType, reRedenderURL = null, reRedenderDispatchType) =>
+  (
+    myURL,
+    actionType,
+    reRedenderURL = null,
+    reRedenderDispatchType = actionType
+  ) =>
   async (dispatch) => {
     await axios
       .delete(myURL)
@@ -83,7 +88,6 @@ export const deleteAction =
         dispatch({ type: actionType, res });
         if (reRedenderURL !== null) {
           dispatch(getAllAction(reRedenderURL, reRedenderDispatchType));
-          dispatch(getOneAction(reRedenderURL, reRedenderDispatchType));
         }
       })
       .catch((err) => {
