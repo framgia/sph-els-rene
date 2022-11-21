@@ -1,22 +1,42 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getAllAction } from "../../../redux/actions";
+import { deleteAction, getAllAction } from "../../../redux/actions/actions";
 import EditCategory from "./EditCategory";
+import * as actionType from "../../../redux/actions/actionTypes";
 
 export default function ListCategory() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    dispatch(getAllAction("api/lessons"));
+    dispatch(getAllAction("api/lessons", actionType.GET_CATEGORIES));
   }, []);
+
+  const handleDelete = (id, title) => {
+    if (window.confirm(`Are you sure you want to delete "${title}"`)) {
+      dispatch(
+        deleteAction(
+          `/api/lessons/${id}`,
+          actionType.DELETE_CATEGORIES,
+          "/api/lessons",
+          actionType.GET_CATEGORIES
+        )
+      );
+    }
+  };
+
+  if (!categories) {
+    return (
+      <div className="card d-flex justify-content-center">
+        <h1 className="mx-auto">Loading Categories . . .</h1>
+      </div>
+    );
+  }
 
   return (
     <Fragment>
-      {categories ? (
+      {categories && categories.length !== 0 ? (
         <table className="table table-striped">
           <thead>
             <tr>
@@ -40,7 +60,11 @@ export default function ListCategory() {
                     Add word
                   </button>
                   <EditCategory id={cat.id} />
-                  <button type="button" className="btn btn-outline-danger mx-1">
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger mx-1"
+                    onClick={() => handleDelete(cat.id, cat.title)}
+                  >
                     Delete
                   </button>
                 </td>

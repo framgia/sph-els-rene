@@ -27,7 +27,7 @@ function Login() {
 
     axios.get("/sanctum/csrf-cookie").then((res) => {
       axios.post(`/api/login`, postData).then((res) => {
-        if (res.data.status === 200) {
+        if (res.data) {
           localStorage.setItem("user_token", res.data.token);
           localStorage.setItem(
             "user_name",

@@ -1,12 +1,11 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addAction } from "../../../redux/actions";
+import { addAction } from "../../../redux/actions/actions";
+import * as actionType from "../../../redux/actions/actionTypes";
 
 function CreateCategory() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [data, setData] = useState({
     title: "",
@@ -26,7 +25,14 @@ function CreateCategory() {
       description: data.description,
     };
 
-    dispatch(addAction(postData, "api/lessons"));
+    dispatch(
+      addAction(
+        postData,
+        "api/lessons",
+        actionType.ADD_CATEGORIES,
+        "api/lessons"
+      )
+    );
 
     setData({
       title: "",
