@@ -141,7 +141,7 @@ function Register() {
                 </label>
                 <input
                   className="form-control mb-3"
-                  type="text"
+                  type="password"
                   name="password"
                   id="password"
                   onChange={handleInput}
@@ -153,7 +153,7 @@ function Register() {
                 </label>
                 <input
                   className="form-control mb-3"
-                  type="text"
+                  type="password"
                   name="password_confirmation"
                   id="password_confirmation"
                   onChange={handleInput}
