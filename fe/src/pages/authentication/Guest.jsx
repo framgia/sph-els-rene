@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function Guest() {
   return (
     <Fragment>
-      <div class="custom-shape-divider-top-1668157559">
+      <div className="custom-shape-divider-top-1668157559">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +13,7 @@ function Guest() {
         >
           <path
             d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-            class="shape-fill"
+            className="shape-fill"
           ></path>
         </svg>
       </div>
