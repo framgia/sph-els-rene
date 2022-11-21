@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function BufferPage() {
+function AuthMiddleware() {
   /**
    * I will implement routing middleware soon using this buffer page
    * Routes must be based on role and existing token
@@ -19,4 +20,4 @@ function BufferPage() {
   return <div>Loading . . .</div>;
 }
 
-export default BufferPage;
+export default AuthMiddleware;

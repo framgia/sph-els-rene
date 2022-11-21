@@ -28,7 +28,7 @@ export default function ListCategory() {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(3);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const categoriesPaginated = categories?.slice(firstItemIndex, lastItemIndex);
