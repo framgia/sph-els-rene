@@ -4,6 +4,7 @@ function CreateWord(props) {
   const handleGetCategory = (e) => {
     console.log(props.id);
   };
+
   return (
     <Fragment>
       <form>
@@ -50,8 +51,6 @@ function CreateWord(props) {
                       aria-describedby="emailHelp"
                       name="title"
                       data-name="title"
-                      //   onChange={handleInput}
-                      //   value={data.title}
                     />
                     <div id="titleHelp" className="form-text">
                       Please enter lesson name
@@ -69,8 +68,6 @@ function CreateWord(props) {
                       aria-describedby="descriptionHelp"
                       name="description"
                       data-name="description"
-                      //   onChange={handleInput}
-                      //   value={data.description}
                     />
                     <div id="descriptionHelp" className="form-text">
                       Description will help user to choose the right lesson
