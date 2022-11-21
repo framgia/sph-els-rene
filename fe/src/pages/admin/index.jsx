@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Header from "../Header";
+import Header from "../../components/Header";
 import CreateCategoy from "./category/CreateCategory";
 import ListCategory from "./category/ListCategory";
 

@@ -6,7 +6,7 @@ function Header() {
     <Fragment>
       <nav className="navbar navbar-expand-lg navbar-light bg-light border mb-3">
         <div className="container-fluid offset-1">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to={"/"}>
             E Learning System
           </Link>
           <button
@@ -31,8 +31,8 @@ function Header() {
               <Link className="nav-link" href="#">
                 Word
               </Link>
-              <Link className="nav-link" href="#">
-                Example
+              <Link className="nav-link" to={"/buffer"}>
+                Logout
               </Link>
             </div>
           </div>

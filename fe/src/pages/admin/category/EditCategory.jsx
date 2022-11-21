@@ -17,7 +17,6 @@ function EditCategory(props) {
     dispatch(getOneAction(`api/lessons/${props.id}`, actionType.GET_CATEGORY));
   };
 
-  //set data in inputbox
   useEffect(() => {
     if (category !== {}) {
       setData({ ...category });
@@ -31,7 +30,6 @@ function EditCategory(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //since I pass the whole object in my setData state, I can just pass the state
     const postData = data;
     dispatch(
       updateAction(
