@@ -9,6 +9,12 @@ class Word_choice extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'words_id',
+        'word',
+        'remark',
+    ];
+
     public function word()
     {
         return $this->belongsTo(Word::class);
