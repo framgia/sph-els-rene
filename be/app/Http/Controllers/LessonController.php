@@ -85,8 +85,7 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        $lesson = Lesson::find($id);
-        $lesson->delete();
+        $lesson = Lesson::find($id)->delete();
         return response([
             'lesson' => $lesson,
             'message' => 'Lesson Deleted Successfully',
