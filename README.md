@@ -46,7 +46,7 @@ npm start
 ## Documentation
 
 - ERD - https://app.diagrams.net/#G1S7miTJuAYyzkp146efPDfzQotFFSnENK
-- Postman APIs - https://web.postman.co/workspace/6c35ebcb-5426-4bb9-8e91-bb40a0579d7a
+- Postman APIs - https://www.postman.com/bold-equinox-374519/workspace/new-team-workspace/collection/24368917-e14fb272-d3ec-4928-95c9-e92711e58c1c?action=share&creator=24368917
 
 ## Notes
 
