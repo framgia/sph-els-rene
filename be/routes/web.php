@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Follower;
 use Illuminate\Support\Facades\Route;
 
 /*

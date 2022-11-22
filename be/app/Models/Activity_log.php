@@ -9,7 +9,13 @@ class Activity_log extends Model
 {
     use HasFactory;
 
-    public function loggale()
+    protected $fillable = [
+        "title",
+        "loggale_id",
+        "loggale_type",
+    ];
+
+    public function logable()
     {
         return $this->morphTo();
     }

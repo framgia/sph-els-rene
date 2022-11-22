@@ -26,7 +26,8 @@ function Profile() {
   }, []);
 
   useEffect(() => {
-    const getUser = users?.find((user) => user.id === 43);
+    const id = localStorage.getItem("user_id");
+    const getUser = users?.find((user) => user.id === parseInt(id));
     setCurrentUser({ ...getUser });
   }, [users]);
 

@@ -20,7 +20,12 @@ function index() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOneAction(`/api/users/2`, actionType.GET_USER));
+    dispatch(
+      getOneAction(
+        `/api/users/${localStorage.getItem("user_id")}`,
+        actionType.GET_USER
+      )
+    );
   }, []);
 
   useEffect(() => {
