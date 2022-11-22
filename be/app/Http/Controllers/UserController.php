@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -51,18 +53,20 @@ class UserController extends Controller
         $request->validated();
 
         $user = User::find($id);
+
+        if ($request->avatar) {
+            $user->updateAvatar($request->avatar);
+        }
+
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name ?? $user->middle_name;
         $user->last_name = $request->last_name;
-        $user->avatar = $request->avatar ?? $user->avatar;
         $user->save();
 
-
         return response([
-            'status' => 200,
             'user' => $user,
             'message' => 'User Updated Successfully',
-        ]);
+        ], 201);
     }
 
     /**

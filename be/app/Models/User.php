@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -55,5 +56,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function user_words()
     {
         return $this->hasMany(User_word::class);
+    }
+
+    public function updateAvatar($image)
+    {
+        $url = Cloudinary::upload(
+            $image->getRealPath(),
+            [
+                'folder' => 'sels/users/avatar',
+                'resource_type' => 'image'
+            ]
+        )->getSecurePath();
+        return $this->update(['avatar' => $url]);
     }
 }
