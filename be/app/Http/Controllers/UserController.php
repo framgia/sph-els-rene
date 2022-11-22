@@ -55,7 +55,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($request->avatar) {
-            $user->update_avatar($request->avatar);
+            $user->updateAvatar($request->avatar);
         }
 
         $user->first_name = $request->first_name;

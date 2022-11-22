@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(User_word::class);
     }
 
-    public function update_avatar($image)
+    public function updateAvatar($image)
     {
         $url = Cloudinary::upload(
             $image->getRealPath(),
