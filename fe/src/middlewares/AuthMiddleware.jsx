@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
 import { removeLocalStorage } from "../utils";
 
 function AuthMiddleware() {
@@ -20,7 +21,7 @@ function AuthMiddleware() {
       }
     });
   }, []);
-  return <div>Loading . . .</div>;
+  return <LoadingSpinner message={"Logging out . . ."} />;
 }
 
 export default AuthMiddleware;

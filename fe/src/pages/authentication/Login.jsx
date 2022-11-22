@@ -93,7 +93,7 @@ function Login() {
                 </label>
                 <input
                   className="form-control mb-3"
-                  type="text"
+                  type="password"
                   name="password"
                   id="password"
                   onChange={handleInput}
