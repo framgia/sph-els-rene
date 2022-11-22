@@ -50,11 +50,12 @@ class UserController extends Controller
      */
     public function update(StoreUserRequest $request, $id)
     {
-        $user = User::find($id);
         $request->validated();
 
+        $user = User::find($id);
+
         if ($request->avatar) {
-            $user->updateAvatar($request->avatar);
+            $user->update_avatar($request->avatar);
         }
 
         $user->first_name = $request->first_name;
