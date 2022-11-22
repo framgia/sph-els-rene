@@ -17,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return response([
+            'status' => "temporary",
+            'users' => $users
+        ]);
     }
 
     /**
@@ -38,7 +42,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response([
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -50,17 +57,13 @@ class UserController extends Controller
      */
     public function update(StoreUserRequest $request, $id)
     {
-        $request->validated();
-
         $user = User::find($id);
-
-        if ($request->avatar) {
-            $user->updateAvatar($request->avatar);
-        }
+        $request->validated();
 
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name ?? $user->middle_name;
         $user->last_name = $request->last_name;
+        $user->avatar = $request->avatar ?? $user->avatar;
         $user->save();
 
         return response([

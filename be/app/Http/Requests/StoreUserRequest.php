@@ -27,7 +27,7 @@ class StoreUserRequest extends FormRequest
             'first_name' => 'required|min:2|max:15',
             'middle_name' => 'nullable|min:2|max:15',
             'last_name' => 'required|min:2|max:15',
-            'avatar' => 'nullable|file:image',
+            // 'avatar' => 'nullable|file:image',
         ];
     }
 }
