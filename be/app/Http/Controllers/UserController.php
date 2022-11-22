@@ -19,7 +19,6 @@ class UserController extends Controller
     {
         $users = User::all();
         return response([
-            'status' => "temporary",
             'users' => $users
         ]);
     }

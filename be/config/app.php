@@ -195,9 +195,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
-
-        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
-
     ],
 
     /*
