@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeLocalStorage } from "../utils";
@@ -12,8 +13,12 @@ function AuthMiddleware() {
    **/
   const navigate = useNavigate();
   useEffect(() => {
-    removeLocalStorage();
-    navigate("/");
+    axios.post("/api/logout").then((res) => {
+      if (res.data) {
+        removeLocalStorage();
+        navigate("/");
+      }
+    });
   }, []);
   return <div>Loading . . .</div>;
 }
