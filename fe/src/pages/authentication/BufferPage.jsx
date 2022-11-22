@@ -1,11 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { removeLocalStorage } from "../utils";
+import axios from "axios";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-function AuthMiddleware() {
+function BufferPage() {
   /**
    * I will implement routing middleware soon using this buffer page
    * Routes must be based on role and existing token
@@ -16,12 +14,16 @@ function AuthMiddleware() {
   useEffect(() => {
     axios.post("/api/logout").then((res) => {
       if (res.data) {
-        removeLocalStorage();
+        localStorage.removeItem("user_token");
+        localStorage.removeItem("user_name");
+        localStorage.removeItem("user_email");
+        localStorage.removeItem("user_role");
+        localStorage.removeItem("user_id");
         navigate("/");
       }
     });
   }, []);
-  return <LoadingSpinner message={"Logging out . . ."} />;
+  return <LoadingSpinner message={"Logging Out"} />;
 }
 
-export default AuthMiddleware;
+export default BufferPage;

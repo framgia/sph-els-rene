@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { getAllAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
 import EditUser from "./EditUser";
@@ -16,7 +17,7 @@ function Profile() {
     avatar: "",
   });
 
-  const { users } = useSelector((state) => state.users);
+  const { users, loading } = useSelector((state) => state.users);
 
   const dispatch = useDispatch();
 
@@ -25,10 +26,13 @@ function Profile() {
   }, []);
 
   useEffect(() => {
-    const id = localStorage.getItem("user_id");
-    const getUser = users?.find((user) => user.id === parseInt(id));
+    const getUser = users?.find((user) => user.id === 43);
     setCurrentUser({ ...getUser });
   }, [users]);
+
+  if (loading || !users) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <Fragment>

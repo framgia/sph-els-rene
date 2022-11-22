@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $users = User::all();
         return response([
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -44,6 +44,10 @@ class UserController extends Controller
         $user = User::find($id);
         return response([
             'user' => $user,
+            'learned' => [
+                'words' => 40,
+                'categories' => 2,
+            ],
         ]);
     }
 
