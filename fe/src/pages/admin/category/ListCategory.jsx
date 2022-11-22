@@ -10,7 +10,6 @@ export default function ListCategory() {
   const [search, setSearch] = useState("");
 
   const dispatch = useDispatch();
-
   const { categories } = useSelector((state) => state.categories);
 
   useEffect(() => {
@@ -23,7 +22,8 @@ export default function ListCategory() {
         deleteAction(
           `/api/lessons/${id}`,
           actionType.DELETE_CATEGORIES,
-          "/api/lessons"
+          "/api/lessons",
+          actionType.GET_CATEGORIES
         )
       );
     }
