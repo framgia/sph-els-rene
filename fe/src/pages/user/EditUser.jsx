@@ -186,24 +186,6 @@ function EditUser(props) {
                       value={data.last_name}
                     />
                   </div>
-
-                  {/* <div className="mb-3">
-                    <label htmlFor="avatar" className="form-label">
-                      Avatar
-                    </label>
-                    <input
-                      type="file"
-                      className="form-control"
-                      id="avatar"
-                      aria-describedby="avatarHelp"
-                      name="avatar"
-                      data-name="avatar"
-                      onChange={handleAvatar}
-                    />
-
-                   
-                  </div> */}
-                  {/* <CloudinaryWidget /> */}
                 </div>
                 <div className="modal-footer">
                   <button

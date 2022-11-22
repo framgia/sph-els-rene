@@ -9,9 +9,6 @@ import AuthMiddleware from "./middlewares/AuthMiddleware";
 import Profile from "./pages/user/Profile";
 
 function App() {
-  const token = localStorage.getItem("user_token") ?? "";
-  const user = localStorage.getItem("user");
-
   return (
     <Fragment>
       <Router>
