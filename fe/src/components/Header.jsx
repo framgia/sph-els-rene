@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { isAdmin } from "../utils";
+import { isAdmin, isUser } from "../utils";
 
 function Header() {
   return (
@@ -31,7 +31,7 @@ function Header() {
                 Users
               </Link>
 
-              {isAdmin(localStorage.getItem("user_role")) && (
+              {isAdmin() && (
                 <Fragment>
                   <Link className="nav-link" href="#">
                     Word
@@ -39,7 +39,7 @@ function Header() {
                 </Fragment>
               )}
 
-              {localStorage.getItem("user_role") === "user" && (
+              {isUser() && (
                 <Fragment>
                   <Link className="nav-link" aria-current="page" href="#">
                     Category
