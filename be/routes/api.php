@@ -33,5 +33,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('lessons', LessonController::class);
     Route::resource('words', WordController::class);
     Route::resource('users', UserController::class);
-    Route::resource('logs', ActivityLogsController::class);
+    Route::resource('activity_logs', ActivityLogsController::class);
 });
