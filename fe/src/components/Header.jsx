@@ -1,9 +1,11 @@
+import axios from "axios";
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { isAdmin, isUser } from "../utils";
 
 function Header() {
   return (
-    <Fragment>
+    <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light border mb-3">
         <div className="container-fluid offset-1">
           <Link className="navbar-brand" to={"/"}>
@@ -25,12 +27,33 @@ function Header() {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <Link className="nav-link" aria-current="page" href="#">
-                Category
-              </Link>
               <Link className="nav-link" href="#">
-                Word
+                Users
               </Link>
+
+              {isAdmin() && (
+                <Fragment>
+                  <Link className="nav-link" href="#">
+                    Word
+                  </Link>
+                </Fragment>
+              )}
+
+              {isUser() && (
+                <Fragment>
+                  <Link className="nav-link" aria-current="page" href="#">
+                    Category
+                  </Link>
+
+                  <Link
+                    className="nav-link"
+                    to={`/user/profile/${localStorage.getItem("user_id")}`}
+                  >
+                    Profile
+                  </Link>
+                </Fragment>
+              )}
+
               <Link className="nav-link" to={"/buffer"}>
                 Logout
               </Link>
@@ -38,7 +61,7 @@ function Header() {
           </div>
         </div>
       </nav>
-    </Fragment>
+    </>
   );
 }
 

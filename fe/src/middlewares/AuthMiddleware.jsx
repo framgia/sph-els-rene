@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { removeLocalStorage } from "../utils";
 
 function AuthMiddleware() {
   /**
@@ -11,10 +12,7 @@ function AuthMiddleware() {
    **/
   const navigate = useNavigate();
   useEffect(() => {
-    localStorage.removeItem("user_token");
-    localStorage.removeItem("user_name");
-    localStorage.removeItem("user_email");
-    localStorage.removeItem("user_role");
+    removeLocalStorage();
     navigate("/");
   }, []);
   return <div>Loading . . .</div>;

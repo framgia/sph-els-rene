@@ -9,3 +9,9 @@ export const GET_WORD = "GET_WORD";
 export const ADD_WORDS = "ADD_WORDS";
 export const UPDATE_WORDS = "UPDATE_WORDS";
 export const DELETE_WORDS = "DELETE_WORDS";
+
+export const GET_USERS = "GET_USERS";
+export const GET_USER = "GET_USER";
+export const ADD_USERS = "ADD_USERS";
+export const UPDATE_USERS = "UPDATE_USERS";
+export const DELETE_USERS = "DELETE_USERS";

@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function index() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigate = useNavigate();
 
   const token = localStorage.getItem("user_token") ?? "";
