@@ -18,3 +18,5 @@ export const DELETE_USERS = "DELETE_USERS";
 
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_ACTIVITY = "GET_ACTIVITY";
+
+export const GET_FOLLOWERS = "GET_FOLLOWERS";
