@@ -7,6 +7,7 @@ import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { getOneAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
+import { getUserId } from "../../utils";
 
 function index() {
   const [userData, setUserData] = useState({
@@ -20,7 +21,7 @@ function index() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOneAction(`/api/users/2`, actionType.GET_USER));
+    dispatch(getOneAction(`/api/users/${getUserId()}`, actionType.GET_USER));
   }, []);
 
   useEffect(() => {

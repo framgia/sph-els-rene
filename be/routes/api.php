@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLogsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserController;
@@ -32,4 +33,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('lessons', LessonController::class);
     Route::resource('words', WordController::class);
     Route::resource('users', UserController::class);
+    Route::resource('activity_logs', ActivityLogsController::class);
 });

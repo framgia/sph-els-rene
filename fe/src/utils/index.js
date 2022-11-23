@@ -14,6 +14,10 @@ export const isUser = () => {
   }
 };
 
+export const getUserId = () => {
+  return localStorage.getItem("user_id");
+};
+
 export const removeLocalStorage = () => {
   localStorage.removeItem("user_token");
   localStorage.removeItem("user_name");
