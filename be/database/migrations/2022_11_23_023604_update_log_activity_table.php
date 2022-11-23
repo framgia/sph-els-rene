@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('activity_logs', function (Blueprint $table) {
+            $table->unsignedBigInteger('loggable_id')->change();
             $table->renameColumn('loggale_id', 'loggable_id');
+            $table->renameColumn('loggale_type', 'loggable_type');
         });
     }
 
@@ -26,7 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('activity_logs', function (Blueprint $table) {
+            $table->unsignedBigInteger('loggable_id')->change();
             $table->renameColumn('loggale_id', 'loggable_id');
+            $table->renameColumn('loggale_type', 'loggable_type');
         });
     }
 };
