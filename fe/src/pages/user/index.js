@@ -7,6 +7,7 @@ import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { getOneAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
+import ActivityLogs from "./ActivityLogs";
 import { getUserId } from "../../utils";
 
 function index() {
@@ -71,7 +72,9 @@ function index() {
             </div>
           </div>
           <div className="col mb-2">
-            <div className="p-3 card bg-light">SAMPLE TEXT</div>
+            <div className="p-3 card ">
+              <ActivityLogs />
+            </div>
           </div>
         </div>
       </div>

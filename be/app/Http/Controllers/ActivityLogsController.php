@@ -15,27 +15,34 @@ class ActivityLogsController extends Controller
     {
         $activities = array(
             [
-                "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668858199/sels/users/avatar/ctkgukpno0emeir63jti.jpg",
-                "id" => 2,
+                "id" => 1,
+                "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668861483/sels/users/avatar/d48kbsg1jaffknvhecfs.jpg",
+                "user_id" => 2,
                 "name" => "Rene Gunayon",
                 "category" => "Example Category",
                 "score" => 15,
+                "created_at" => "2022-11-19 18:52:19"
 
             ],
             [
-                "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668861483/sels/users/avatar/d48kbsg1jaffknvhecfs.jpg",
-                "id" => 3,
+                "id" => 2,
+                "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668858199/sels/users/avatar/ctkgukpno0emeir63jti.jpg",
+                "user_id" => 3,
                 "name" => "Louise Lacosta",
                 "category" => "Example Category",
                 "score" => 18,
+                "created_at" => "2022-11-19 18:52:19"
 
             ],
             [
+                "id" => 3,
                 "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668861483/sels/users/avatar/d48kbsg1jaffknvhecfs.jpg",
-                "id" => 2,
+                "user_id" => 2,
                 "name" => "Louise Lacosta",
                 "follower" => "Rene",
                 "follows" => "Louise",
+                "created_at" => "2022-11-15 18:52:19"
+
 
             ],
 

@@ -15,3 +15,6 @@ export const GET_USER = "GET_USER";
 export const ADD_USERS = "ADD_USERS";
 export const UPDATE_USERS = "UPDATE_USERS";
 export const DELETE_USERS = "DELETE_USERS";
+
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
+export const GET_ACTIVITY = "GET_ACTIVITY";
