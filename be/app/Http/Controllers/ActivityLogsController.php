@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follower;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ActivityLogsController extends Controller
@@ -72,7 +74,14 @@ class ActivityLogsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response([
+            "user" => $user,
+            "follow" => [
+                "following" =>  count($user->following),
+                "follower" =>  $user->follower($id),
+            ]
+        ]);
     }
 
     /**
