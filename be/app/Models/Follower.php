@@ -21,6 +21,11 @@ class Follower extends Model
 
     public function log()
     {
-        return $this->morphOne(Activity_log::class, 'loggale');
+        return $this->morphOne(Activity_log::class, 'loggable');
+    }
+
+    public function follows($id)
+    {
+        return $this;
     }
 }

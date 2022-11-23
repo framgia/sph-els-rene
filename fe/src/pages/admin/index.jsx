@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Header from "../../components/Header";
-import CreateCategoy from "./category/CreateCategory";
+import CreateCategory from "./category/CreateCategory";
 import ListCategory from "./category/ListCategory";
 
 function index() {
@@ -8,11 +8,11 @@ function index() {
     <Fragment>
       <Header />
       <div className="container">
-        <div className="border mb-3 d-flex justify-content-end">
-          <CreateCategoy />
+        <div className="mb-3 d-flex justify-content-end">
+          <CreateCategory />
         </div>
 
-        <div className="border mb-5">
+        <div className="mb-5">
           <ListCategory />
         </div>
       </div>

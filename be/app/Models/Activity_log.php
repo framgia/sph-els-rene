@@ -11,11 +11,11 @@ class Activity_log extends Model
 
     protected $fillable = [
         "title",
-        "loggale_id",
-        "loggale_type",
+        "loggable_id",
+        "loggable_type",
     ];
 
-    public function logable()
+    public function loggable()
     {
         return $this->morphTo();
     }
