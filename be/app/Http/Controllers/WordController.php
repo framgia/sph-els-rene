@@ -57,7 +57,7 @@ class WordController extends Controller
         return response([
             'word' => $words,
             'message' => 'Words and Choices Added Succesfully',
-        ]);
+        ], 201);
     }
 
     /**
