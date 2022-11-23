@@ -48,10 +48,16 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function followers()
+    public function following()
     {
         return $this->hasMany(Follower::class);
     }
+
+    public function follower($id)
+    {
+        return count(Follower::where("following_id", $id)->get());
+    }
+
 
     public function user_words()
     {
