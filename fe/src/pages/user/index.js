@@ -9,6 +9,7 @@ import { getOneAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
 import ActivityLogs from "./ActivityLogs";
 import { getUserId } from "../../utils";
+import Followers from "./Followers";
 
 function index() {
   const [userData, setUserData] = useState({
@@ -59,7 +60,12 @@ function index() {
                 {userData.name}
               </p>
             </div>
-            <div className="d-flex justify-content-center p-0 m-0">
+
+            <div className="row mt-1 mb-4 w-75 mx-auto">
+              <Followers id={user.id} />
+            </div>
+
+            <div className="mt-1 d-flex justify-content-center p-0 m-0">
               <Link className=" fs-6 text">
                 Learned {userData.learned_words} words
               </Link>
