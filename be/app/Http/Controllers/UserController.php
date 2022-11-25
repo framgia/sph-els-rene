@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all()->except(1);
+        $users = User::whereNot("role", "admin")->get();
         return response([
             'users' => $users,
         ]);
