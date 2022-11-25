@@ -2,7 +2,7 @@
 import React, { Fragment, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import {
@@ -13,10 +13,14 @@ import {
 import * as actionType from "../../redux/actions/actionTypes";
 import { getUserId } from "../../utils";
 import EditUser from "./EditUser";
+import Followers from "./Followers";
+import ProfileCurrentUser from "./ProfileCurrentUser";
+import ProfileVisitUser from "./ProfileVisitUser";
 
 function Profile() {
   const params = useParams();
   const [currentUser, setCurrentUser] = useState({
+    id: "",
     email: "",
     first_name: "",
     middle_name: "",
@@ -28,7 +32,9 @@ function Profile() {
 
   const { users, loading } = useSelector((state) => state.users);
 
-  const { following_arr } = useSelector((state) => state.followers);
+  const { following_arr, logs_following } = useSelector(
+    (state) => state.followers
+  );
 
   const dispatch = useDispatch();
 
@@ -36,9 +42,13 @@ function Profile() {
     dispatch(getAllAction("/api/users", actionType.GET_USERS));
     dispatch(
       getAllAction(
-        `/api/activity_logs/${localStorage.getItem("user_id")}`,
+        `/api/activity_logs/${getUserId()}`,
         actionType.GET_FOLLOWERS
       )
+    );
+
+    dispatch(
+      getAllAction(`/api/activity_logs/${params.id}`, actionType.GET_FOLLOWER)
     );
   }, []);
 
@@ -64,7 +74,7 @@ function Profile() {
 
     if (followBool) {
       const postData = {
-        user_id: localStorage.getItem("user_id"),
+        user_id: getUserId(),
         following_id: params.id,
       };
 
@@ -115,7 +125,26 @@ function Profile() {
               </div>
             </div>
             <div className="mt-2 d-flex justify-content-center">
-              {currentUser.id === getUserId() ? (
+              <p className="fw-bold">
+                {currentUser.first_name?.toUpperCase()}{" "}
+                {currentUser.last_name?.toUpperCase()}
+              </p>
+            </div>
+
+            {currentUser.id !== parseInt(localStorage.getItem("user_id")) && (
+              <Fragment>
+                <div className="row mt-1 mb-4 w-75 mx-auto">
+                  <Followers id={currentUser.id} />
+                </div>
+
+                <div className="mb-2 d-flex justify-content-center">
+                  <hr className="w-50" />
+                </div>
+              </Fragment>
+            )}
+
+            <div className="mt-2 d-flex justify-content-center">
+              {currentUser.id === parseInt(localStorage.getItem("user_id")) ? (
                 <EditUser user={currentUser} />
               ) : !followBool ? (
                 <div>
@@ -137,72 +166,22 @@ function Profile() {
                 </div>
               )}
             </div>
+
+            {currentUser.id !== parseInt(localStorage.getItem("user_id")) && (
+              <Fragment>
+                <div className="mt-5 d-flex justify-content-center p-0 m-0">
+                  <Link className=" fs-6 text">Learned 99 words</Link>
+                </div>
+              </Fragment>
+            )}
           </div>
           <div className="col mb-2">
-            <div className="p-3 card bg-light">
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="email"
-                  aria-describedby="emailHelp"
-                  name="email"
-                  data-name="email"
-                  value={currentUser.email || ""}
-                  disabled
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="first_name" className="form-label">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="first_name"
-                  aria-describedby="first_nameHelp"
-                  name="first_name"
-                  data-name="first_name"
-                  value={currentUser.first_name || ""}
-                  disabled
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="middle_name" className="form-label">
-                  Middle Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="middle_name"
-                  aria-describedby="middle_nameHelp"
-                  name="middle_name"
-                  data-name="middle_name"
-                  value={currentUser.middle_name || ""}
-                  disabled
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="last_name" className="form-label">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="last_name"
-                  aria-describedby="last_nameHelp"
-                  name="last_name"
-                  data-name="last_name"
-                  value={currentUser.last_name || ""}
-                  disabled
-                />
-              </div>
+            <div className="p-3 card">
+              {currentUser.id === parseInt(localStorage.getItem("user_id")) ? (
+                <ProfileCurrentUser user={currentUser} />
+              ) : (
+                <ProfileVisitUser user={currentUser} follows={logs_following} />
+              )}
             </div>
           </div>
         </div>

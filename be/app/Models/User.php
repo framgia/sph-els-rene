@@ -75,4 +75,26 @@ class User extends Authenticatable implements MustVerifyEmail
         )->getSecurePath();
         return $this->update(['avatar' => $url]);
     }
+
+    public function getUserActivityLogs($var = null)
+    {
+        $following = Follower::where("user_id", $this->id)->limit(5)->get();
+
+        $following_formatted = [];
+
+        foreach ($following as $key) {
+            $this_user = User::where("id", $key->following_id)->first();
+
+            $format = (object)[
+                "id" => $this_user->id,
+                "avatar" => $this_user->avatar,
+                "name" => $this_user->first_name . " " . $this_user->last_name,
+                "created_at" => $key->created_at
+            ];
+
+            array_push($following_formatted, $format);
+        }
+
+        return $following_formatted;
+    }
 }
