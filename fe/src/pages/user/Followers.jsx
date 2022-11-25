@@ -22,7 +22,7 @@ function Followers(props) {
 
   useEffect(() => {
     setFollowerCount({
-      following: followers?.following,
+      following: followers?.following_count,
       follower: followers?.follower,
     });
   }, [followers]);

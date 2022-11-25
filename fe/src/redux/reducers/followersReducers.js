@@ -11,7 +11,7 @@ const followersReducers = (state = initialState, action) => {
       return {
         ...state,
         followers: action.res.data.follow,
-        following_arr: action.res.data.following_arr,
+        following_arr: action.res.data.following,
         loading: false,
       };
     case types.DELETE_FOLLOWERS:
