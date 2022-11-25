@@ -7,6 +7,7 @@ import "./api/AuthSetup";
 import { Fragment } from "react";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
 import Profile from "./pages/user/Profile";
+import UserPage from "./pages/user/UserPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/buffer" element={<AuthMiddleware />} />
           <Route path="/user/profile/:id" element={<Profile />} />
+          <Route path="/users" element={<UserPage />} />
         </Routes>
       </Router>
     </Fragment>
