@@ -68,8 +68,15 @@ class FollowerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $follower = $request->user()->currentAccessToken()->tokenable_id;
+        $follow = Follower::where("user_id", $follower)->where("following_id", $id)->first();
+        Activity_log::where("loggable_id", $follow->id)->delete();
+        $follow->delete();
+        return response([
+            'unfollow' => $follow,
+            'message' => 'Unfollowed Succesfully',
+        ], 201);
     }
 }
