@@ -50,8 +50,8 @@ function index() {
                 <img
                   className="mx-auto rounded-circle"
                   style={{ width: 200, height: 200 }}
-                  src={userData.avatar}
-                  alt={userData.avatar}
+                  src={userData.avatar ?? "/images/default_image.jpg"}
+                  alt="avatar"
                 />
               </div>
             </div>
