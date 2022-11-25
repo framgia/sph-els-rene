@@ -78,9 +78,10 @@ class ActivityLogsController extends Controller
         return response([
             "user" => $user,
             "follow" => [
-                "following" =>  count($user->following),
-                "follower" =>  $user->follower($id),
-            ]
+                "following_count" =>  count($user->following),
+                "follower" =>  $user->follower($id)
+            ],
+            "following" =>  $user->following,
         ]);
     }
 

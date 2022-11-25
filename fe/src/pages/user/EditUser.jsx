@@ -131,8 +131,8 @@ function EditUser(props) {
                   >
                     <img
                       className="btn btn-outline-warning mx-auto w-100 h-100 rounded-circle border border-5"
-                      src={data.avatar || ""}
-                      alt={data.avatar || ""}
+                      src={data.avatar ?? "/images/default_image.jpg"}
+                      alt={data.avatar ?? "/images/default_image.jpg"}
                     />
                   </button>
                 </div>

@@ -22,20 +22,22 @@ function Followers(props) {
 
   useEffect(() => {
     setFollowerCount({
-      following: followers.following,
-      follower: followers.follower,
+      following: followers?.following_count,
+      follower: followers?.follower,
     });
   }, [followers]);
 
   return (
     <Fragment>
       <div className="col ">
-        <div className="text-center fs-5 fw-bold">{followerCount.follower}</div>
+        <div className="text-center fs-5 fw-bold">
+          {followerCount?.follower}
+        </div>
         <div className="text-center text-secondary">Followers</div>
       </div>
       <div className="col">
         <div className="text-center fs-5 fw-bold">
-          {followerCount.following}
+          {followerCount?.following}
         </div>
         <div className="text-center text-secondary">Following</div>
       </div>

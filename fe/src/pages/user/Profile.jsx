@@ -5,11 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { getAllAction } from "../../redux/actions/actions";
+import {
+  addAction,
+  deleteAction,
+  getAllAction,
+} from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
+import { getUserId } from "../../utils";
 import EditUser from "./EditUser";
 
 function Profile() {
+  const params = useParams();
   const [currentUser, setCurrentUser] = useState({
     email: "",
     first_name: "",
@@ -18,20 +24,75 @@ function Profile() {
     avatar: "",
   });
 
-  const params = useParams();
+  const [followBool, setFollowBool] = useState();
 
   const { users, loading } = useSelector((state) => state.users);
+
+  const { following_arr } = useSelector((state) => state.followers);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllAction("/api/users", actionType.GET_USERS));
+    dispatch(
+      getAllAction(
+        `/api/activity_logs/${localStorage.getItem("user_id")}`,
+        actionType.GET_FOLLOWERS
+      )
+    );
   }, []);
 
   useEffect(() => {
     const getUser = users?.find((user) => user.id === parseInt(params.id));
     setCurrentUser({ ...getUser });
   }, [users]);
+
+  useEffect(() => {
+    const getFollowing = following_arr?.find(
+      (following) => following.following_id === parseInt(params.id)
+    );
+
+    if (getFollowing?.id) {
+      setFollowBool(false);
+    } else {
+      setFollowBool(true);
+    }
+  }, [following_arr]);
+
+  const handleToggleFollow = (e) => {
+    setFollowBool(!followBool);
+
+    if (followBool) {
+      const postData = {
+        user_id: localStorage.getItem("user_id"),
+        following_id: params.id,
+      };
+
+      dispatch(
+        addAction(
+          postData,
+          "api/followers",
+          actionType.ADD_FOLLOWERS,
+          "api/followers"
+        )
+      );
+    } else {
+      if (
+        window.confirm(
+          `Are you sure you want to unfollow "${currentUser.first_name} ${currentUser.last_name}"`
+        )
+      ) {
+        dispatch(
+          deleteAction(
+            `api/followers/${params.id}`,
+            actionType.DELETE_FOLLOWERS,
+            "api/followers",
+            actionType.GET_FOLLOWERS
+          )
+        );
+      }
+    }
+  };
 
   if (loading || !users) {
     return <LoadingSpinner />;
@@ -48,13 +109,33 @@ function Profile() {
                 <img
                   className="mx-auto rounded-circle"
                   style={{ width: 200, height: 200 }}
-                  src={currentUser.avatar}
-                  alt={currentUser.avatar}
+                  src={currentUser.avatar ?? "/images/default_image.jpg"}
+                  alt="avatar"
                 />
               </div>
             </div>
             <div className="mt-2 d-flex justify-content-center">
-              <EditUser user={currentUser} />
+              {currentUser.id === getUserId() ? (
+                <EditUser user={currentUser} />
+              ) : !followBool ? (
+                <div>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={handleToggleFollow}
+                  >
+                    Unfollow
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={handleToggleFollow}
+                  >
+                    Follow
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           <div className="col mb-2">
