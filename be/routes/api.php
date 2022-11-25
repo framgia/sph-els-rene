@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityLogsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WordController;
@@ -34,4 +35,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('words', WordController::class);
     Route::resource('users', UserController::class);
     Route::resource('activity_logs', ActivityLogsController::class);
+    Route::resource('followers', FollowerController::class);
 });

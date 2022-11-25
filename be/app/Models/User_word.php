@@ -21,6 +21,6 @@ class User_word extends Model
 
     public function log()
     {
-        return $this->morphOne(Activity_log::class, 'loggale');
+        return $this->morphOne(Activity_log::class, 'loggable');
     }
 }
