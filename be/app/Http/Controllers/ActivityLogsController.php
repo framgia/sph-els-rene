@@ -82,6 +82,8 @@ class ActivityLogsController extends Controller
                 "follower" =>  $user->follower($id)
             ],
             "following" =>  $user->following,
+            "logs_following" => $user->getUserActivityLogs(),
+            "logs_learned" => [],
         ]);
     }
 
