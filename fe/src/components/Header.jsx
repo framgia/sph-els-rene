@@ -26,7 +26,7 @@ function Header() {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <Link className="nav-link" href="#">
+              <Link className="nav-link" to="/users">
                 Users
               </Link>
 
