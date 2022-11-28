@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { isAdmin, isUser } from "../utils";
+import { getUserId, isAdmin, isUser } from "../utils";
 
 function Header() {
   return (
@@ -40,13 +40,17 @@ function Header() {
 
               {isUser() && (
                 <Fragment>
-                  <Link className="nav-link" aria-current="page" href="#">
+                  <Link
+                    className="nav-link"
+                    aria-current="page"
+                    to="/user/category"
+                  >
                     Category
                   </Link>
 
                   <Link
                     className="nav-link"
-                    to={`/user/profile/${localStorage.getItem("user_id")}`}
+                    to={`/user/profile/${getUserId()}`}
                   >
                     Profile
                   </Link>
