@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
 use App\Models\User_word;
+use App\Services\QuizResult;
 use Illuminate\Http\Request;
 
 class UserWordController extends Controller
@@ -54,9 +56,21 @@ class UserWordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $user_id = $request->user()->currentAccessToken()->tokenable_id;
+
+        $lesson = Lesson::find($id);
+
+        $score = (new QuizResult)->quizScore($user_id, $id);
+
+        $summary = (new QuizResult)->quizSummary($user_id, $id);
+
+        return response([
+            "lesson" => $lesson,
+            "score" => $score,
+            "summary" => $summary
+        ]);
     }
 
     /**
