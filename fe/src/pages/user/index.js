@@ -57,7 +57,7 @@ function index() {
             </div>
             <div className="mt-1 d-flex justify-content-center">
               <p className="text-uppercase fw-bold fs-3 text">
-                {userData.name}
+                {userData.name || ""}
               </p>
             </div>
 

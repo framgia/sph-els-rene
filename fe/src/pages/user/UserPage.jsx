@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Pagination from "../../components/Pagination";
 import { getAllAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
 
@@ -17,6 +18,13 @@ function UserPage() {
   useEffect(() => {
     dispatch(getAllAction("/api/users", actionType.GET_USERS));
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+  const usersPaginated = users?.slice(firstItemIndex, lastItemIndex);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -47,7 +55,7 @@ function UserPage() {
             </tr>
           </thead>
           <tbody>
-            {users
+            {usersPaginated
               .filter((user) => {
                 return search.toString().toLowerCase() === ""
                   ? user
@@ -79,6 +87,13 @@ function UserPage() {
               ))}
           </tbody>
         </table>
+        <div className="mb-3 mx-auto">
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={users.length}
+            paginateTo={paginate}
+          />
+        </div>
       </div>
     </Fragment>
   );
