@@ -9,6 +9,13 @@ class User_word extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'lesson_id',
+        'word_id',
+        'remark',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
