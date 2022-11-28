@@ -16,8 +16,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
-
+        $lessons = Lesson::with("words")->get();
         return response([
             'lessons' => $lessons
         ]);
