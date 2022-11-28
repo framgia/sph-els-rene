@@ -3,6 +3,7 @@ import activitiesReducers from "./activitesReducers";
 import categoriesReducers from "./categoriesReducers";
 import followersReducers from "./followersReducers";
 import usersReducers from "./usersReducers";
+import userwordReducers from "./userwordReducer";
 import wordsReducers from "./wordsReducers";
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   users: usersReducers,
   activities: activitiesReducers,
   followers: followersReducers,
+  userwordReducer: userwordReducers,
 });
 
 export default rootReducer;

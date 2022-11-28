@@ -24,3 +24,6 @@ export const GET_FOLLOWERS = "GET_FOLLOWERS";
 export const GET_FOLLOWER = "GET_FOLLOWER";
 export const ADD_FOLLOWERS = "ADD_FOLLOWERS";
 export const DELETE_FOLLOWERS = "DELETE_FOLLOWERS";
+
+export const GET_USER_WORDS = "GET_USER_WORDS";
+export const ADD_USER_WORD = "ADD_USER_WORD";
