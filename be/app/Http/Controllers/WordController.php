@@ -22,6 +22,15 @@ class WordController extends Controller
         ]);
     }
 
+    public function getWordsAndChoices($id)
+    {
+        $words = Word::where("lesson_id", $id)->with("choices")->get();
+        return response([
+            'words' => $words
+        ]);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,6 +63,8 @@ class WordController extends Controller
             }
         }
 
+
+
         return response([
             'word' => $words,
             'message' => 'Words and Choices Added Succesfully',
@@ -68,7 +79,11 @@ class WordController extends Controller
      */
     public function show($id)
     {
-        //
+        $word = Word::find($id);
+        $word->choices;
+        return response([
+            'word' => $word,
+        ]);
     }
 
     /**

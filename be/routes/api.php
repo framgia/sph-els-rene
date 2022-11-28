@@ -33,6 +33,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::resource('lessons', LessonController::class);
     Route::resource('words', WordController::class);
+    Route::get('words_and_choices/{id}', [WordController::class, 'getWordsAndChoices']);
     Route::resource('users', UserController::class);
     Route::resource('activity_logs', ActivityLogsController::class);
     Route::resource('followers', FollowerController::class);
