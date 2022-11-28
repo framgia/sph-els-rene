@@ -35,7 +35,7 @@ class WordController extends Controller
 
         if ($validated) {
             $words = new Word();
-            $words->lessons_id = $request->lessons_id;
+            $words->lesson_id = $request->lessons_id;
             $words->title = $request->title;
             $words->hint = $request->hint;
             $words->save();

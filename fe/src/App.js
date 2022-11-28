@@ -5,9 +5,10 @@ import Register from "./pages/authentication/Register";
 import Login from "./pages/authentication/Login";
 import "./api/AuthSetup";
 import { Fragment } from "react";
-import AuthMiddleware from "./middlewares/AuthMiddleware";
 import Profile from "./pages/user/Profile";
 import UserPage from "./pages/user/UserPage";
+import UserCategory from "./pages/user/category";
+import AuthMiddleware from "./middlewares/AuthMiddleware";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/buffer" element={<AuthMiddleware />} />
           <Route path="/user/profile/:id" element={<Profile />} />
           <Route path="/users" element={<UserPage />} />
+          <Route path="/user/category" element={<UserCategory />} />
         </Routes>
       </Router>
     </Fragment>
