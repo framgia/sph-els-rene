@@ -35,7 +35,7 @@ function index() {
                   <p className="card-text">{category.description}</p>
                   <div className="d-flex justify-content-end">
                     <Link
-                      to=""
+                      to={`/user/category/${category.id}/quiz`}
                       className={`btn btn-primary ${
                         category.words.length >= 20 ? "" : "disabled"
                       }`}
