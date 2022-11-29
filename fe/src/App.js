@@ -1,5 +1,6 @@
 import "./index.css";
 import Home from "./pages";
+import AdminWords from "./pages/admin/word";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./pages/authentication/Register";
 import Login from "./pages/authentication/Login";
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin/words" element={<AdminWords />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/buffer" element={<AuthMiddleware />} />

@@ -5,7 +5,7 @@ import { deleteAction, getAllAction } from "../../../redux/actions/actions";
 import EditCategory from "./EditCategory";
 import * as actionType from "../../../redux/actions/actionTypes";
 import Pagination from "../../../components/Pagination";
-import CreateWord from "../../word/CreateWord";
+import CreateWord from "../word/CreateWord";
 
 export default function ListCategory() {
   const [search, setSearch] = useState("");

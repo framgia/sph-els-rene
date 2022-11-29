@@ -32,7 +32,7 @@ function Header() {
 
               {isAdmin() && (
                 <Fragment>
-                  <Link className="nav-link" href="#">
+                  <Link className="nav-link" to="/admin/words">
                     Word
                   </Link>
                 </Fragment>

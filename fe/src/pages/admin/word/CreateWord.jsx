@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAction, getOneAction } from "../../redux/actions/actions";
-import * as actionType from "../../redux/actions/actionTypes";
+import { addAction, getOneAction } from "../../../redux/actions/actions";
+import * as actionType from "../../../redux/actions/actionTypes";
 
 function CreateWord(props) {
   const [data, setData] = useState({
