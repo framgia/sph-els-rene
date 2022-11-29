@@ -27,3 +27,5 @@ export const DELETE_FOLLOWERS = "DELETE_FOLLOWERS";
 
 export const GET_USER_WORDS = "GET_USER_WORDS";
 export const ADD_USER_WORD = "ADD_USER_WORD";
+
+export const GET_SUMMARY = "GET_SUMMARY";
