@@ -16,9 +16,8 @@ class WordController extends Controller
      */
     public function index()
     {
-        $words = Word::all();
         return response([
-            'lessons' => $words
+            'words' =>  Word::with(["lesson", "choices"])->get()
         ]);
     }
 
