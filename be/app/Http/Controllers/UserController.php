@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use App\Services\UserLearning;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,8 @@ class UserController extends Controller
         return response([
             'user' => $user,
             'learned' => [
-                'words' => 40,
+                'words' => (new UserLearning)->words($id),
+                'wordsCount' => (new UserLearning)->wordsCount($id),
                 'categories' => 2,
             ],
         ]);
