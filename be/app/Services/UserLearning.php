@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Lesson;
 use App\Models\User_word;
 use App\Models\Word;
 
@@ -32,5 +33,40 @@ class UserLearning
     public function wordsCount($userID)
     {
         return  User_word::Where("user_id", $userID)->where("remark", 1)->count();
+    }
+
+    public function categories($userID)
+    {
+        $categories = User_word::where("user_id", $userID)->get("lesson_id");
+
+        $data = [];
+
+        $categories_id = [];
+
+        foreach ($categories as $key) {
+            array_push($categories_id, $key->lesson_id);
+        }
+
+        foreach (array_unique($categories_id) as $key => $value) {
+            $lesson = Lesson::find($value);
+            array_push($data, $lesson);
+        }
+
+
+        return $data;
+    }
+
+
+    public function categoriesCount($userID)
+    {
+        $categories = User_word::where("user_id", $userID)->get("lesson_id");
+
+        $categories_id = [];
+
+        foreach ($categories as $key) {
+            array_push($categories_id, $key->lesson_id);
+        }
+
+        return count(array_unique($categories_id));
     }
 }
