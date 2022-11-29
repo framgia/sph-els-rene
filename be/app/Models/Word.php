@@ -24,4 +24,9 @@ class Word extends Model
     {
         return $this->belongsTo(Lesson::class);
     }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = strtoupper($value);
+    }
 }

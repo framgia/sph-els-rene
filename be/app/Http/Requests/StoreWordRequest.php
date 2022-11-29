@@ -24,8 +24,7 @@ class StoreWordRequest extends FormRequest
     public function rules()
     {
         return [
-            'lessons_id' => 'required',
-            'title' => 'required|unique:words',
+            'title' => 'required',
             'option' => 'required',
 
         ];
