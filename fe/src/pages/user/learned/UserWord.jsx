@@ -59,7 +59,7 @@ function UserWord() {
 
             <div className="d-flex justify-content-center p-0 m-0">
               <Link className=" fs-6 text">
-                Learned {learned.categories} categories
+                Learned {learned.categoriesCount} categories
               </Link>
             </div>
           </div>
