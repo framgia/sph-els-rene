@@ -14,7 +14,7 @@ const wordsReducers = (state = initialState, action) => {
     case types.UPDATE_WORDS:
       return {
         ...state,
-        WORDS: action.res.data.words,
+        words: action.res.data.words,
         words_with_choices: action.res.data.words,
         loading: false,
       };
