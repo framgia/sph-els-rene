@@ -48,10 +48,12 @@ class UserController extends Controller
             'learned' => [
                 'words' => (new UserLearning)->words($id),
                 'wordsCount' => (new UserLearning)->wordsCount($id),
-                'categories' => 2,
+                'categories' => (new UserLearning)->categories($id),
+                'categoriesCount' => (new UserLearning)->categoriesCount($id),
             ],
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
