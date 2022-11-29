@@ -12,6 +12,7 @@ import AuthMiddleware from "./middlewares/AuthMiddleware";
 import TakeQuiz from "./pages/user/category/quiz/TakeQuiz";
 import QuizResult from "./pages/user/category/quiz/QuizResult";
 import UserWord from "./pages/user/learned/UserWord";
+import UserCategories from "./pages/user/learned/UserCategories";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/user/category/:id/quiz" element={<TakeQuiz />} />
           <Route path="/user/category/:id/result" element={<QuizResult />} />
           <Route path="/user/learned/words" element={<UserWord />} />
+          <Route path="/user/learned/categories" element={<UserCategories />} />
         </Routes>
       </Router>
     </Fragment>

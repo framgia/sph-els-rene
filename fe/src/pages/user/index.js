@@ -31,7 +31,7 @@ function index() {
       name: user.first_name + " " + user.last_name,
       avatar: user.avatar,
       learned_words: learned.wordsCount,
-      learned_categories: learned.categories,
+      learned_categories: learned.categoriesCount,
     });
   }, [user, learned]);
 
@@ -72,7 +72,7 @@ function index() {
             </div>
 
             <div className="d-flex justify-content-center p-0 m-0">
-              <Link className=" fs-6 text">
+              <Link to="/user/learned/categories" className=" fs-6 text">
                 Learned {userData.learned_categories} categories
               </Link>
             </div>
