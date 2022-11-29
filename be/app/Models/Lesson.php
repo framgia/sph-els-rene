@@ -23,4 +23,9 @@ class Lesson extends Model
     {
         return $this->hasMany(Word::class);
     }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = strtoupper($value);
+    }
 }

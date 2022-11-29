@@ -90,9 +90,30 @@ class WordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreWordRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+
+        if ($validated) {
+            $words = Word::find($id);
+            $words->lesson_id = $words->lesson_id;
+            $words->title = $request->title;
+            $words->hint = $request->hint;
+            $words->save();
+
+            $options = explode(",", $request->option);
+            $counter = 0;
+            foreach ($words->choices as $key) {
+                $option = Word_choice::find($key->id);
+                $option->word = $options[$counter];
+                $option->save();
+                $counter++;
+            }
+        }
+
+        return response([
+            'message' => 'Words and Choices Updated Succesfully',
+        ], 201);
     }
 
     /**

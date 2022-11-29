@@ -19,4 +19,9 @@ class Word_choice extends Model
     {
         return $this->belongsTo(Word::class);
     }
+
+    public function setWordAttribute($value)
+    {
+        $this->attributes['word'] = strtoupper($value);
+    }
 }
