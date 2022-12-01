@@ -124,6 +124,12 @@ class WordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $word = Word::find($id);
+        $word->choices()->delete();
+        $word->delete();
+        return response([
+            "word" => $word,
+            'message' => 'Words and Choices Deleted Succesfully',
+        ], 201);
     }
 }
