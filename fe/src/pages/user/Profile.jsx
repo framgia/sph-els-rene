@@ -9,6 +9,7 @@ import {
   addAction,
   deleteAction,
   getAllAction,
+  getOneAction,
 } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
 import { getUserId } from "../../utils";
@@ -30,9 +31,9 @@ function Profile() {
 
   const [followBool, setFollowBool] = useState();
 
-  const { users, loading } = useSelector((state) => state.users);
+  const { users, loading, learned } = useSelector((state) => state.users);
 
-  const { following_arr, logs_following } = useSelector(
+  const { following_arr, logs_following, logs_learned } = useSelector(
     (state) => state.followers
   );
 
@@ -50,6 +51,8 @@ function Profile() {
     dispatch(
       getAllAction(`/api/activity_logs/${params.id}`, actionType.GET_FOLLOWER)
     );
+
+    dispatch(getOneAction(`/api/users/${params.id}`, actionType.GET_USER));
   }, []);
 
   useEffect(() => {
@@ -170,7 +173,9 @@ function Profile() {
             {currentUser.id !== parseInt(localStorage.getItem("user_id")) && (
               <Fragment>
                 <div className="mt-5 d-flex justify-content-center p-0 m-0">
-                  <Link className=" fs-6 text">Learned 99 words</Link>
+                  <Link className=" fs-6 text">
+                    Learned {learned.wordsCount} words
+                  </Link>
                 </div>
               </Fragment>
             )}
@@ -180,7 +185,11 @@ function Profile() {
               {currentUser.id === parseInt(localStorage.getItem("user_id")) ? (
                 <ProfileCurrentUser user={currentUser} />
               ) : (
-                <ProfileVisitUser user={currentUser} follows={logs_following} />
+                <ProfileVisitUser
+                  user={currentUser}
+                  follows={logs_following}
+                  learned={logs_learned}
+                />
               )}
             </div>
           </div>

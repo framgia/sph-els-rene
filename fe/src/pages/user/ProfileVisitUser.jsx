@@ -37,7 +37,30 @@ function ProfileVisitUser(props) {
           </ul>
         </Tab>
         <Tab eventKey="learned" title="Learned">
-          Learned Logs . . .
+          {props.learned &&
+            props.learned.map((log) => (
+              <li className="list-group-item m-1 d-flex" key={log.id}>
+                <img
+                  className="rounded-circle mx-3 border border-3"
+                  style={{ width: 50, height: 50 }}
+                  src={log.avatar ?? "/images/default_image.jpg"}
+                  alt="avatar"
+                />
+                <div>
+                  <span>
+                    <Link className="text-decoration-none">
+                      {props.user.first_name}
+                    </Link>{" "}
+                    learend {log.score} out of 20 words in{" "}
+                    <Link className="text-decoration-none">{log.category}</Link>
+                  </span>
+                  <br />
+                  <span className="text-secondary" style={{ fontSize: 13 }}>
+                    {moment(log.created_at).fromNow()}
+                  </span>
+                </div>
+              </li>
+            ))}
         </Tab>
       </Tabs>
     </Fragment>
