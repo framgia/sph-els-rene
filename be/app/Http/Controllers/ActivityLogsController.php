@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity_log;
 use App\Models\Follower;
+use App\Models\Lesson;
 use App\Models\User;
+use App\Models\User_word;
+use App\Services\QuizResult;
 use Illuminate\Http\Request;
 
 class ActivityLogsController extends Controller
@@ -15,43 +19,65 @@ class ActivityLogsController extends Controller
      */
     public function index()
     {
-        $activities = array(
-            [
-                "id" => 1,
-                "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668861483/sels/users/avatar/d48kbsg1jaffknvhecfs.jpg",
-                "user_id" => 2,
-                "name" => "Rene Gunayon",
-                "category" => "Example Category",
-                "score" => 15,
-                "created_at" => "2022-11-19 18:52:19"
 
-            ],
-            [
-                "id" => 2,
-                "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668858199/sels/users/avatar/ctkgukpno0emeir63jti.jpg",
-                "user_id" => 3,
-                "name" => "Louise Lacosta",
-                "category" => "Example Category",
-                "score" => 18,
-                "created_at" => "2022-11-19 18:52:19"
+        $activities = Activity_log::all();
 
-            ],
-            [
-                "id" => 3,
-                "avatar" => "https://res.cloudinary.com/dyndobjql/image/upload/v1668861483/sels/users/avatar/d48kbsg1jaffknvhecfs.jpg",
-                "user_id" => 2,
-                "name" => "Louise Lacosta",
-                "follower" => "Rene",
-                "follows" => "Louise",
-                "created_at" => "2022-11-15 18:52:19"
+        $data = [];
+        $validate_user = "";
+        $validate_lesson = "";
 
+        foreach ($activities as $key) {
+            if ($key->loggable_type === "App\Models\User_word") {
+                $user_word = User_word::find($key->loggable_id);
 
-            ],
+                if ($validate_user != $user_word->user_id || $validate_lesson != $user_word->lesson_id) {
 
-        );
+                    $validate_user = (int) $user_word->user_id;
+                    $validate_lesson = (int) $user_word->lesson_id;
+
+                    $user = User::find($user_word->user_id);
+                    $lesson = Lesson::find($user_word->lesson_id);
+
+                    $format = (object)[
+                        "id" => $key->id,
+
+                        "avatar" => $user->avatar,
+                        "user_id" => $user->id,
+                        "name" => $user->first_name . " " . $user->last_name,
+                        "category" => $lesson->title,
+                        "score" => (new QuizResult)->quizScore($user_word->user_id, $user_word->lesson_id),
+                        "created_at" => $key->created_at
+                    ];
+
+                    array_push($data, $format);
+                }
+            }
+
+            if ($key->loggable_type === "App\Models\Follower") {
+
+                $follower = Follower::find($key->loggable_id);
+
+                $follower_user = User::find($follower->user_id);
+
+                $following_user = User::find($follower->following_id);
+
+                $format = (object)[
+                    "id" => $key->id,
+                    "avatar" => $follower_user->avatar,
+                    "user_id" => $follower_user->id,
+                    "name" =>   $follower_user->first_name . " " . $follower_user->last_name,
+                    "follower" => $follower_user->first_name . " " . $follower_user->last_name,
+                    "follows" => $following_user->first_name . " " . $following_user->last_name,
+                    "created_at" => "2022-11-15 18:52:19"
+                ];
+
+                array_push($data, $format);
+            }
+        }
 
         return response([
-            "activities" => $activities
+            "activities" => $data,
+            "data" => $data,
         ]);
     }
 
@@ -82,8 +108,8 @@ class ActivityLogsController extends Controller
                 "follower" =>  $user->follower($id)
             ],
             "following" =>  $user->following,
-            "logs_following" => $user->getUserActivityLogs(),
-            "logs_learned" => [],
+            "logs_following" => $user->getUserActivityLogsFollow(),
+            "logs_learned" => $user->getUserActivityLogsLearn($id),
         ]);
     }
 
