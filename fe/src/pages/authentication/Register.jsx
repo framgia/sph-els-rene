@@ -35,7 +35,7 @@ function Register() {
 
     axios.get("/sanctum/csrf-cookie").then((res) => {
       axios.post(`/api/register`, postData).then((res) => {
-        if (res.data.status === 200) {
+        if (res.data) {
           localStorage.setItem("user_token", res.data.token);
           localStorage.setItem("user_id", res.data.user.id);
           localStorage.setItem(

@@ -29,10 +29,12 @@ function Guest() {
                 Break the Language Barrier
               </h6>
               <p className="card-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Officiis, dolorum qui, aperiam commodi corporis minima pariatur
-                nulla reprehenderit laborum recusandae quasi placeat omnis quae
-                dolores, mollitia adipisci. Minima, porro officia.sd
+                SELS Project aims to break the language barrier. You can choose
+                from different categories available and keep track to you
+                progress. To spice up the experince, you can also visit other
+                user profile and check their progress, you might want to follow
+                them also. Hopefully, SELS Project will lead you to amazing
+                experience of learning new languages.
               </p>
 
               <div className="d-flex justify-content-center mt-5">
