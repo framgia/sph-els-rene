@@ -114,6 +114,8 @@ class User extends Authenticatable implements MustVerifyEmail
             $lesson = Lesson::find($key->lesson_id);
 
             if ($validate_user != $key->user_id || $validate_lesson != $key->lesson_id) {
+                $validate_user = (int) $key->user_id;
+                $validate_lesson = (int) $key->lesson_id;
                 $format = (object)[
                     "id" => $counter,
                     "avatar" => $user->avatar,

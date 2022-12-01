@@ -3,17 +3,20 @@ const initialState = {
   followers: [],
   following_arr: [],
   logs_following: [],
+  logs_learned: [],
   loading: true,
 };
 
 const followersReducers = (state = initialState, action) => {
   switch (action.type) {
     case types.GET_FOLLOWERS:
+    case types.GET_FOLLOWER:
       return {
         ...state,
         followers: action.res.data.follow,
         following_arr: action.res.data.following,
         logs_following: action.res.data.logs_following,
+        logs_learned: action.res.data.logs_learned,
         loading: false,
       };
     case types.DELETE_FOLLOWERS:

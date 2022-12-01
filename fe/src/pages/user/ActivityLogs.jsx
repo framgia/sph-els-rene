@@ -34,7 +34,7 @@ function ActivityLogs() {
               <img
                 className="rounded-circle mx-3 border border-3"
                 style={{ width: 50, height: 50 }}
-                src={log.avatar}
+                src={log.avatar ?? "/images/default_image.jpg"}
                 alt="avatar"
               />
               <div>

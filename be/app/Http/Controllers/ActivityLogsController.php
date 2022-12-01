@@ -20,7 +20,7 @@ class ActivityLogsController extends Controller
     public function index()
     {
 
-        $activities = Activity_log::all();
+        $activities = Activity_log::orderBy("created_at", "DESC")->get();
 
         $data = [];
         $validate_user = "";
@@ -68,7 +68,7 @@ class ActivityLogsController extends Controller
                     "name" =>   $follower_user->first_name . " " . $follower_user->last_name,
                     "follower" => $follower_user->first_name . " " . $follower_user->last_name,
                     "follows" => $following_user->first_name . " " . $following_user->last_name,
-                    "created_at" => "2022-11-15 18:52:19"
+                    "created_at" => $key->created_at
                 ];
 
                 array_push($data, $format);
