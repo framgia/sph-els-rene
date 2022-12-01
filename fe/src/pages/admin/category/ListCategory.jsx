@@ -82,7 +82,21 @@ export default function ListCategory() {
                     <td>{cat.title}</td>
                     <td>{cat.description}</td>
                     <td className="d-flex">
-                      <CreateWord id={cat.id} title={cat.title} />
+                      {cat.words.length !== 20 ? (
+                        <CreateWord
+                          id={cat.id}
+                          title={cat.title}
+                          categoryWords={cat.words.length}
+                        />
+                      ) : (
+                        <button
+                          type="button"
+                          className="btn btn-outline-info mx-1 disabled"
+                        >
+                          Full
+                        </button>
+                      )}
+
                       <EditCategory id={cat.id} />
                       <button
                         type="button"
