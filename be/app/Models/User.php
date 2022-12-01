@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\QuizResult;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -76,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->update(['avatar' => $url]);
     }
 
-    public function getUserActivityLogs($var = null)
+    public function getUserActivityLogsFollow($var = null)
     {
         $following = Follower::where("user_id", $this->id)->limit(5)->get();
 
@@ -96,5 +97,37 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $following_formatted;
+    }
+
+    public function getUserActivityLogsLearn($id)
+    {
+        $user_word = User_word::where("user_id", $id)->get();
+
+        $data = [];
+        $validate_user = "";
+        $validate_lesson = "";
+        $counter = 0;
+
+        foreach ($user_word as $key) {
+            $counter++;
+            $user = User::find($key->user_id);
+            $lesson = Lesson::find($key->lesson_id);
+
+            if ($validate_user != $key->user_id || $validate_lesson != $key->lesson_id) {
+                $format = (object)[
+                    "id" => $counter,
+                    "avatar" => $user->avatar,
+                    "user_id" => $user->id,
+                    "name" => $user->first_name . " " . $user->last_name,
+                    "category" => $lesson->title,
+                    "score" => (new QuizResult)->quizScore($key->user_id, $key->lesson_id),
+                    "created_at" => $key->created_at,
+                ];
+
+                array_push($data, $format);
+            }
+        }
+
+        return $data;
     }
 }
