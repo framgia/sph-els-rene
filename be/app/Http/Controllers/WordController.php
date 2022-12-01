@@ -17,7 +17,7 @@ class WordController extends Controller
     public function index()
     {
         return response([
-            'words' =>  Word::with(["lesson", "choices"])->get()
+            'words' => Word::with(["lesson", "lesson.user_words", "choices"])->get()
         ]);
     }
 
@@ -125,6 +125,7 @@ class WordController extends Controller
     public function destroy($id)
     {
         $word = Word::find($id);
+        $word->lesson->user_words;
         $word->choices()->delete();
         $word->delete();
         return response([

@@ -2,10 +2,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import Header from "../../../components/Header";
 import Pagination from "../../../components/Pagination";
-import { getAllAction } from "../../../redux/actions/actions";
+import { deleteAction, getAllAction } from "../../../redux/actions/actions";
 import * as actionType from "../../../redux/actions/actionTypes";
 import EditWord from "./EditWord";
 import LoadingSpinner from "../../../components/LoadingSpinner";
@@ -26,6 +25,19 @@ function index() {
   const wordsPaginated = words?.slice(firstItemIndex, lastItemIndex);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleDelete = (id, title) => {
+    if (window.confirm(`Are you sure you want to delete "${title}"`)) {
+      dispatch(
+        deleteAction(
+          `/api/words/${id}`,
+          actionType.DELETE_WORDS,
+          "/api/words",
+          actionType.GET_WORDS
+        )
+      );
+    }
+  };
 
   if (loading) {
     return <LoadingSpinner />;
@@ -85,7 +97,15 @@ function index() {
                       </div>
                       <div className="d-flex justify-content-around">
                         <EditWord id={w.id} />
-                        <Link className="btn btn-outline-danger">Delete</Link>
+                        {!w.lesson.user_words.length > 0 && (
+                          <button
+                            type="button"
+                            className="btn btn-outline-danger mx-1"
+                            onClick={() => handleDelete(w.id, w.title)}
+                          >
+                            Delete
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
