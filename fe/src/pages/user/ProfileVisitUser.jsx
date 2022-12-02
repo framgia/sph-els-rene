@@ -9,9 +9,9 @@ function ProfileVisitUser(props) {
     <Fragment>
       <Tabs defaultActiveKey="follows" className="mb-3">
         <Tab eventKey="follows" title="Follows">
-          <ul className="list-group list-group-flush">
-            {props.follows &&
-              props.follows.map((log) => (
+          {props.follows.length > 0 ? (
+            <ul className="list-group list-group-flush">
+              {props.follows.map((log) => (
                 <li className="list-group-item m-1 d-flex" key={log.id}>
                   <img
                     className="rounded-circle mx-3 border border-3"
@@ -34,33 +34,47 @@ function ProfileVisitUser(props) {
                   </div>
                 </li>
               ))}
-          </ul>
+            </ul>
+          ) : (
+            <div className="d-flex justify-content-center">
+              No Data Available . . .
+            </div>
+          )}
         </Tab>
         <Tab eventKey="learned" title="Learned">
-          {props.learned &&
-            props.learned.map((log) => (
-              <li className="list-group-item m-1 d-flex" key={log.id}>
-                <img
-                  className="rounded-circle mx-3 border border-3"
-                  style={{ width: 50, height: 50 }}
-                  src={log.avatar ?? "/images/default_image.jpg"}
-                  alt="avatar"
-                />
-                <div>
-                  <span>
-                    <Link className="text-decoration-none">
-                      {props.user.first_name}
-                    </Link>{" "}
-                    learend {log.score} out of 20 words in{" "}
-                    <Link className="text-decoration-none">{log.category}</Link>
-                  </span>
-                  <br />
-                  <span className="text-secondary" style={{ fontSize: 13 }}>
-                    {moment(log.created_at).fromNow()}
-                  </span>
-                </div>
-              </li>
-            ))}
+          {props.learned.length > 0 ? (
+            <ul>
+              {props.learned.map((log) => (
+                <li className="list-group-item m-1 d-flex" key={log.id}>
+                  <img
+                    className="rounded-circle mx-3 border border-3"
+                    style={{ width: 50, height: 50 }}
+                    src={log.avatar ?? "/images/default_image.jpg"}
+                    alt="avatar"
+                  />
+                  <div>
+                    <span>
+                      <Link className="text-decoration-none">
+                        {props.user.first_name}
+                      </Link>{" "}
+                      learend {log.score} out of 20 words in{" "}
+                      <Link className="text-decoration-none">
+                        {log.category}
+                      </Link>
+                    </span>
+                    <br />
+                    <span className="text-secondary" style={{ fontSize: 13 }}>
+                      {moment(log.created_at).fromNow()}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="d-flex justify-content-center">
+              No Data Available . . .
+            </div>
+          )}
         </Tab>
       </Tabs>
     </Fragment>
