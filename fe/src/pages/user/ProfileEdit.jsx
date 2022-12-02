@@ -2,14 +2,17 @@
 import React, { Fragment, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { getOneAction } from "../../redux/actions/actions";
+import { getAllAction, getOneAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
 import { getUserId } from "../../utils";
 import EditUser from "./EditUser";
-
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import moment from "moment";
 import ProfileCurrentUser from "./ProfileCurrentUser";
 
 function ProfileEdit() {
@@ -24,10 +27,23 @@ function ProfileEdit() {
 
   const { user, loading } = useSelector((state) => state.users);
 
+  const { logs_following, logs_learned } = useSelector(
+    (state) => state.followers
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getOneAction(`/api/users/${getUserId()}`, actionType.GET_USER));
+    dispatch(
+      getAllAction(
+        `/api/activity_logs/${getUserId()}`,
+        actionType.GET_FOLLOWERS
+      )
+    );
+    dispatch(
+      getAllAction(`/api/activity_logs/${getUserId()}`, actionType.GET_FOLLOWER)
+    );
   }, []);
 
   useEffect(() => {
@@ -70,6 +86,89 @@ function ProfileEdit() {
               <ProfileCurrentUser user={currentUser} />
             </div>
           </div>
+        </div>
+
+        <div>
+          <Tabs defaultActiveKey="follows" className="mb-3">
+            <Tab eventKey="follows" title="Follows">
+              {logs_following.length > 0 ? (
+                <ul className="list-group list-group-flush">
+                  {logs_following.map((log) => (
+                    <li className="list-group-item m-1 d-flex" key={log.id}>
+                      <img
+                        className="rounded-circle mx-3 border border-3"
+                        style={{ width: 50, height: 50 }}
+                        src={log.avatar ?? "/images/default_image.jpg"}
+                        alt="avatar"
+                      />
+                      <div>
+                        <span>
+                          <Link className="text-decoration-none">You</Link>{" "}
+                          followed{" "}
+                          <Link
+                            className="text-decoration-none"
+                            to={`/user/profile/${log.id}`}
+                          >
+                            {log.name}
+                          </Link>
+                        </span>
+                        <br />
+                        <span
+                          className="text-secondary"
+                          style={{ fontSize: 13 }}
+                        >
+                          {moment(log.created_at).fromNow()}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="d-flex justify-content-center">
+                  No Data Available . . .
+                </div>
+              )}
+            </Tab>
+            <Tab eventKey="learned" title="Learned">
+              {logs_learned.length > 0 ? (
+                <ul>
+                  {logs_learned.map((log) => (
+                    <li className="list-group-item m-1 d-flex" key={log.id}>
+                      <img
+                        className="rounded-circle mx-3 border border-3"
+                        style={{ width: 50, height: 50 }}
+                        src={log.avatar ?? "/images/default_image.jpg"}
+                        alt="avatar"
+                      />
+                      <div>
+                        <span>
+                          <Link className="text-decoration-none">You</Link>{" "}
+                          learend {log.score} out of 20 words in{" "}
+                          <Link
+                            className="text-decoration-none"
+                            to={`/user/category/${log.category_id}/view`}
+                          >
+                            {log.category}
+                          </Link>
+                        </span>
+                        <br />
+                        <span
+                          className="text-secondary"
+                          style={{ fontSize: 13 }}
+                        >
+                          {moment(log.created_at).fromNow()}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="d-flex justify-content-center">
+                  No Data Available . . .
+                </div>
+              )}
+            </Tab>
+          </Tabs>
         </div>
       </div>
     </Fragment>

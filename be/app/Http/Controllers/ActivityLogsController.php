@@ -45,6 +45,7 @@ class ActivityLogsController extends Controller
                         "user_id" => $user->id,
                         "name" => $user->first_name . " " . $user->last_name,
                         "category" => $lesson->title,
+                        "category_id" => $lesson->id,
                         "score" => (new QuizResult)->quizScore($user_word->user_id, $user_word->lesson_id),
                         "created_at" => $key->created_at
                     ];
@@ -65,6 +66,7 @@ class ActivityLogsController extends Controller
                     "id" => $key->id,
                     "avatar" => $follower_user->avatar,
                     "user_id" => $follower_user->id,
+                    "following_id" => $following_user->id,
                     "name" =>   $follower_user->first_name . " " . $follower_user->last_name,
                     "follower" => $follower_user->first_name . " " . $follower_user->last_name,
                     "follows" => $following_user->first_name . " " . $following_user->last_name,

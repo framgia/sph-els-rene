@@ -51,14 +51,8 @@ function UserWord() {
               </p>
             </div>
 
-            <div className="mt-1 d-flex justify-content-center p-0 m-0">
-              <Link to="/user/learned/words" className=" fs-6 text">
-                Learned {learned.wordsCount} words
-              </Link>
-            </div>
-
             <div className="d-flex justify-content-center p-0 m-0">
-              <Link className=" fs-6 text">
+              <Link to="/user/learned/categories" className=" fs-6 text">
                 Learned {learned.categoriesCount} categories
               </Link>
             </div>

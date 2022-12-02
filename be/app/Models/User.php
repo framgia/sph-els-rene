@@ -125,6 +125,7 @@ class User extends Authenticatable implements MustVerifyEmail
                     "user_id" => $user->id,
                     "name" => $user->first_name . " " . $user->last_name,
                     "category" => $lesson->title,
+                    "category_id" => $lesson->id,
                     "score" => (new QuizResult)->quizScore($key->user_id, $key->lesson_id),
                     "created_at" => $key->created_at,
                 ];

@@ -48,7 +48,7 @@ function Header() {
                     Category
                   </Link>
 
-                  <Link className="nav-link" to="/user/profile/edit">
+                  <Link className="nav-link" to="/user/profile">
                     Profile
                   </Link>
                 </Fragment>

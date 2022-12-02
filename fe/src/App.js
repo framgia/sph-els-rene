@@ -12,6 +12,7 @@ import UserCategory from "./pages/user/category";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
 import TakeQuiz from "./pages/user/category/quiz/TakeQuiz";
 import QuizResult from "./pages/user/category/quiz/QuizResult";
+import ViewCategory from "./pages/user/category/ViewCategory";
 import UserWord from "./pages/user/learned/UserWord";
 import UserCategories from "./pages/user/learned/UserCategories";
 import ProfileEdit from "./pages/user/ProfileEdit";
@@ -27,11 +28,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/buffer" element={<AuthMiddleware />} />
           <Route path="/user/profile/:id" element={<Profile />} />
-          <Route path="/user/profile/edit" element={<ProfileEdit />} />
+          <Route path="/user/profile" element={<ProfileEdit />} />
           <Route path="/users" element={<UserPage />} />
           <Route path="/user/category" element={<UserCategory />} />
           <Route path="/user/category/:id/quiz" element={<TakeQuiz />} />
           <Route path="/user/category/:id/result" element={<QuizResult />} />
+          <Route path="/user/category/:id/view" element={<ViewCategory />} />
           <Route path="/user/learned/words" element={<UserWord />} />
           <Route path="/user/learned/categories" element={<UserCategories />} />
         </Routes>
