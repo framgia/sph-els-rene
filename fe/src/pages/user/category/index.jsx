@@ -11,7 +11,9 @@ function index() {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
   useEffect(() => {
-    dispatch(getAllAction("api/lessons", actionType.GET_CATEGORIES));
+    dispatch(
+      getAllAction("api/user_available_lesson", actionType.GET_CATEGORIES)
+    );
   }, []);
 
   return (
