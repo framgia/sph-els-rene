@@ -15,7 +15,7 @@ export const isUser = () => {
 };
 
 export const getUserId = () => {
-  return localStorage.getItem("user_id");
+  return parseInt(localStorage.getItem("user_id"));
 };
 
 export const removeLocalStorage = () => {

@@ -171,7 +171,7 @@ function Profile() {
               )}
             </div>
 
-            {currentUser.id !== parseInt(localStorage.getItem("user_id")) && (
+            {currentUser.id !== getUserId() && (
               <Fragment>
                 <div className="mt-5 d-flex justify-content-center p-0 m-0">
                   <Link className=" fs-6 text">
@@ -183,7 +183,7 @@ function Profile() {
           </div>
           <div className="col mb-2">
             <div className="p-3 card">
-              {currentUser.id === parseInt(localStorage.getItem("user_id")) ? (
+              {currentUser.id === getUserId() ? (
                 <ProfileCurrentUser user={currentUser} />
               ) : (
                 <ProfileVisitUser

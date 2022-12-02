@@ -14,6 +14,7 @@ import TakeQuiz from "./pages/user/category/quiz/TakeQuiz";
 import QuizResult from "./pages/user/category/quiz/QuizResult";
 import UserWord from "./pages/user/learned/UserWord";
 import UserCategories from "./pages/user/learned/UserCategories";
+import ProfileEdit from "./pages/user/ProfileEdit";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/buffer" element={<AuthMiddleware />} />
           <Route path="/user/profile/:id" element={<Profile />} />
+          <Route path="/user/profile/edit" element={<ProfileEdit />} />
           <Route path="/users" element={<UserPage />} />
           <Route path="/user/category" element={<UserCategory />} />
           <Route path="/user/category/:id/quiz" element={<TakeQuiz />} />
