@@ -62,7 +62,7 @@ function index() {
             </div>
 
             <div className="row mt-1 mb-4 w-75 mx-auto">
-              <Followers id={user.id} />
+              <Followers />
             </div>
 
             <div className="mt-1 d-flex justify-content-center p-0 m-0">

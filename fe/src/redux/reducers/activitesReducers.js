@@ -2,6 +2,7 @@ import * as types from "../actions/actionTypes";
 const initialState = {
   activities: [],
   activity: {},
+  followers: [],
   loading: true,
 };
 
@@ -17,6 +18,12 @@ const activitiesReducers = (state = initialState, action) => {
       return {
         ...state,
         activity: action.res.data.activity,
+        loading: false,
+      };
+    case types.GET_ACTIVITY_FOLLOW:
+      return {
+        ...state,
+        followers: action.res.data.follow,
         loading: false,
       };
     default:

@@ -33,7 +33,7 @@ function Profile() {
 
   const { users, loading, learned } = useSelector((state) => state.users);
 
-  const { following_arr, logs_following, logs_learned } = useSelector(
+  const { follower_arr, logs_following, logs_learned } = useSelector(
     (state) => state.followers
   );
 
@@ -61,16 +61,16 @@ function Profile() {
   }, [users]);
 
   useEffect(() => {
-    const getFollowing = following_arr?.find(
+    const getFollower = follower_arr?.find(
       (following) => following.following_id === parseInt(params.id)
     );
 
-    if (getFollowing?.id) {
+    if (getFollower?.id) {
       setFollowBool(false);
     } else {
       setFollowBool(true);
     }
-  }, [following_arr]);
+  }, [follower_arr]);
 
   const handleToggleFollow = (e) => {
     setFollowBool(!followBool);
@@ -86,7 +86,8 @@ function Profile() {
           postData,
           "api/followers",
           actionType.ADD_FOLLOWERS,
-          "api/followers"
+          `/api/activity_logs/${params.id}`,
+          actionType.GET_ACTIVITY_FOLLOW
         )
       );
     } else {
@@ -99,8 +100,8 @@ function Profile() {
           deleteAction(
             `api/followers/${params.id}`,
             actionType.DELETE_FOLLOWERS,
-            "api/followers",
-            actionType.GET_FOLLOWERS
+            `/api/activity_logs/${params.id}`,
+            actionType.GET_ACTIVITY_FOLLOW
           )
         );
       }
@@ -137,7 +138,7 @@ function Profile() {
             {currentUser.id !== parseInt(localStorage.getItem("user_id")) && (
               <Fragment>
                 <div className="row mt-1 mb-4 w-75 mx-auto">
-                  <Followers id={currentUser.id} />
+                  <Followers />
                 </div>
 
                 <div className="mb-2 d-flex justify-content-center">
