@@ -60,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function followerCount($id)
     {
-        return count(Follower::where("following_id", $id)->get());
+        return Follower::where("following_id", $id)->count();
     }
 
     public function user_words()
