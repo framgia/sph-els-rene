@@ -12,7 +12,7 @@ import {
   getOneAction,
 } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
-import { getUserId } from "../../utils";
+import { getUserId, isUser } from "../../utils";
 import EditUser from "./EditUser";
 import Followers from "./Followers";
 import ProfileCurrentUser from "./ProfileCurrentUser";
@@ -150,24 +150,27 @@ function Profile() {
             <div className="mt-2 d-flex justify-content-center">
               {currentUser.id === parseInt(localStorage.getItem("user_id")) ? (
                 <EditUser user={currentUser} />
-              ) : !followBool ? (
-                <div>
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={handleToggleFollow}
-                  >
-                    Unfollow
-                  </button>
-                </div>
               ) : (
-                <div>
-                  <button
-                    className="btn btn-outline-primary"
-                    onClick={handleToggleFollow}
-                  >
-                    Follow
-                  </button>
-                </div>
+                isUser() &&
+                (!followBool ? (
+                  <div>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={handleToggleFollow}
+                    >
+                      Unfollow
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={handleToggleFollow}
+                    >
+                      Follow
+                    </button>
+                  </div>
+                ))
               )}
             </div>
 
