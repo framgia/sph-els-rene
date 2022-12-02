@@ -101,13 +101,15 @@ class ActivityLogsController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+
         return response([
             "user" => $user,
             "follow" => [
                 "following_count" =>  count($user->following),
-                "follower" =>  $user->follower($id)
+                "follower_count" =>  $user->followerCount($id)
             ],
             "following" =>  $user->following,
+            "follower" =>  $user->follower(),
             "logs_following" => $user->getUserActivityLogsFollow(),
             "logs_learned" => $user->getUserActivityLogsLearn($id),
         ]);

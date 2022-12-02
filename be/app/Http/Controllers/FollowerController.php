@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity_log;
 use App\Models\Follower;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FollowerController extends Controller
