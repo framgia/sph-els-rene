@@ -48,10 +48,7 @@ function Header() {
                     Category
                   </Link>
 
-                  <Link
-                    className="nav-link"
-                    to={`/user/profile/${getUserId()}`}
-                  >
+                  <Link className="nav-link" to="/user/profile/edit">
                     Profile
                   </Link>
                 </Fragment>
