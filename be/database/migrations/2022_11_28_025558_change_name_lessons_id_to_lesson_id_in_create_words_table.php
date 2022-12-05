@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('words', function (Blueprint $table) {
+        Schema::table('words', function (Blueprint $table) {
             $table->renameColumn('lessons_id', 'lesson_id');
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::create('words', function (Blueprint $table) {
+        Schema::table('words', function (Blueprint $table) {
             $table->renameColumn('lessons_id', 'lesson_id');
         });
     }
