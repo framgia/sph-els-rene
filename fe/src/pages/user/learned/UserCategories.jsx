@@ -26,6 +26,11 @@ function UserCategories() {
       <div className="container card">
         <div className="mb-3 mt-3">
           <h5 className="mx-5">Learned Categories | Lesson</h5>
+          <div className="mt-1 mx-5">
+            <Link to="/user/learned/words" className=" fs-6 text">
+              Learned {learned.wordsCount} words
+            </Link>
+          </div>
         </div>
 
         <div className="row p-3">

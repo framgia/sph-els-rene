@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getAllAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
 import moment from "moment";
+import { getUserId } from "../../utils";
 
 function ActivityLogs() {
   const { activities, loading } = useSelector((state) => state.activities);
@@ -24,9 +25,7 @@ function ActivityLogs() {
   return (
     <div>
       <h4 className="text-secondary">Activities</h4>
-
       <hr />
-
       <ul className="list-group list-group-flush">
         {activities &&
           activities.map((log) => (
@@ -41,14 +40,26 @@ function ActivityLogs() {
                 {log.category ? (
                   <Fragment>
                     <span>
-                      <Link className="text-decoration-none">
-                        {log.user_id ===
-                        parseInt(localStorage.getItem("user_id"))
-                          ? "You"
-                          : log.name}
-                      </Link>{" "}
-                      learend {log.score} out of 20 words in{" "}
-                      <Link className="text-decoration-none">
+                      {log.user_id === getUserId() ? (
+                        <Link
+                          className="text-decoration-none"
+                          to="/user/profile"
+                        >
+                          You
+                        </Link>
+                      ) : (
+                        <Link
+                          className="text-decoration-none"
+                          to={`/user/profile/${log.user_id}`}
+                        >
+                          {log.name}
+                        </Link>
+                      )}
+                      learend {log.score} out of 20 words in
+                      <Link
+                        className="text-decoration-none"
+                        to={`/user/category/${log.category_id}/view`}
+                      >
                         {log.category}
                       </Link>
                     </span>
@@ -60,15 +71,26 @@ function ActivityLogs() {
                 ) : (
                   <Fragment>
                     <span>
-                      <Link className="text-decoration-none">
-                        {" "}
-                        {log.user_id ===
-                        parseInt(localStorage.getItem("user_id"))
-                          ? "You"
-                          : log.name}
-                      </Link>{" "}
-                      Followed{" "}
-                      <Link className="text-decoration-none">
+                      {log.user_id === getUserId() ? (
+                        <Link
+                          className="text-decoration-none"
+                          to="/user/profile"
+                        >
+                          You
+                        </Link>
+                      ) : (
+                        <Link
+                          className="text-decoration-none"
+                          to={`/user/profile/${log.user_id}`}
+                        >
+                          {log.name}
+                        </Link>
+                      )}
+                      Followed
+                      <Link
+                        className="text-decoration-none"
+                        to={`/user/profile/${log.following_id}`}
+                      >
                         {log.follows}
                       </Link>
                     </span>

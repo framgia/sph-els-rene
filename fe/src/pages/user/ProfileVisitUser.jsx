@@ -3,6 +3,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { getUserId } from "../../utils";
 
 function ProfileVisitUser(props) {
   return (
@@ -25,7 +26,14 @@ function ProfileVisitUser(props) {
                         {props.user.first_name}
                       </Link>{" "}
                       followed{" "}
-                      <Link className="text-decoration-none">{log.name}</Link>
+                      <Link
+                        className="text-decoration-none"
+                        to={`/user/profile/${
+                          log.id === getUserId() ? "" : log.id
+                        }`}
+                      >
+                        {log.name}
+                      </Link>
                     </span>
                     <br />
                     <span className="text-secondary" style={{ fontSize: 13 }}>
@@ -58,7 +66,10 @@ function ProfileVisitUser(props) {
                         {props.user.first_name}
                       </Link>{" "}
                       learend {log.score} out of 20 words in{" "}
-                      <Link className="text-decoration-none">
+                      <Link
+                        className="text-decoration-none"
+                        to={`/user/category/${log.category_id}/view`}
+                      >
                         {log.category}
                       </Link>
                     </span>
