@@ -16,7 +16,7 @@ function UserPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllAction("/api/users", actionType.GET_USERS));
+    dispatch(getAllAction("api/visitable_users", actionType.GET_USERS));
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);

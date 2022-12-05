@@ -37,6 +37,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('words', WordController::class);
     Route::get('words_and_choices/{id}', [WordController::class, 'getWordsAndChoices']);
     Route::resource('users', UserController::class);
+    Route::get('visitable_users', [UserController::class, 'getVisitableUser']);
     Route::resource('activity_logs', ActivityLogsController::class);
     Route::resource('followers', FollowerController::class);
     Route::resource('user_words', UserWordController::class);

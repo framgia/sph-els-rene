@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import { updateAction } from "../../redux/actions/actions";
 import * as actionType from "../../redux/actions/actionTypes";
 
@@ -91,6 +92,7 @@ function EditUser(props) {
 
   return (
     <Fragment>
+      <ToastContainer />
       <div className="">
         <button
           type="button"

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { ToastContainer } from "react-toastify";
 import Header from "../../components/Header";
 import CreateCategory from "./category/CreateCategory";
 import ListCategory from "./category/ListCategory";
@@ -6,6 +7,7 @@ import ListCategory from "./category/ListCategory";
 function index() {
   return (
     <Fragment>
+      <ToastContainer />
       <Header />
       <div className="container">
         <div className="mb-3 d-flex justify-content-end">

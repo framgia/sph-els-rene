@@ -25,7 +25,7 @@ function ProfileEdit() {
     avatar: "",
   });
 
-  const { user, loading } = useSelector((state) => state.users);
+  const { users, loading } = useSelector((state) => state.users);
 
   const { logs_following, logs_learned } = useSelector(
     (state) => state.followers
@@ -35,6 +35,7 @@ function ProfileEdit() {
 
   useEffect(() => {
     dispatch(getOneAction(`/api/users/${getUserId()}`, actionType.GET_USER));
+    dispatch(getAllAction("/api/users", actionType.GET_USERS));
     dispatch(
       getAllAction(
         `/api/activity_logs/${getUserId()}`,
@@ -47,8 +48,9 @@ function ProfileEdit() {
   }, []);
 
   useEffect(() => {
-    setCurrentUser({ ...user });
-  }, [user]);
+    const getUser = users?.find((user) => user.id === getUserId());
+    setCurrentUser({ ...getUser });
+  }, [users]);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -103,8 +105,8 @@ function ProfileEdit() {
                       />
                       <div>
                         <span>
-                          <Link className="text-decoration-none">You</Link>{" "}
-                          followed{" "}
+                          <Link className="text-decoration-none">You</Link>
+                          followed
                           <Link
                             className="text-decoration-none"
                             to={`/user/profile/${log.id}`}

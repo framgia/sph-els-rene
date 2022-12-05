@@ -8,6 +8,7 @@ import { deleteAction, getAllAction } from "../../../redux/actions/actions";
 import * as actionType from "../../../redux/actions/actionTypes";
 import EditWord from "./EditWord";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import { ToastContainer } from "react-toastify";
 
 function index() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function index() {
 
   return (
     <Fragment>
+      <ToastContainer />
       <Header />
       {words && (
         <div className="container">
