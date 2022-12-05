@@ -50,7 +50,8 @@ class AuthController extends Controller
             return response()->json(['validation_errors' => $validator->messages()]);
         } else {
             $user = User::where('email', $request->email)->first();
-            if (!$user || Hash::check(bcrypt($request->password), $user->password)) {
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
                 return response()->json([
                     'message' => 'Invalid Credentials',
                 ]);
