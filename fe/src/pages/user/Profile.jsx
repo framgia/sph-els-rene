@@ -3,6 +3,7 @@ import React, { Fragment, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import {
@@ -114,6 +115,7 @@ function Profile() {
 
   return (
     <Fragment>
+      <ToastContainer />
       <Header />
       <div className="container card p-2">
         <div className="row gx-2">

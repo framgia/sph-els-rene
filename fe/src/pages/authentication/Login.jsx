@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { alertError, alertWarning, storeLocalStorage } from "../../utils";
 
 function Login() {
   const navigate = useNavigate();
@@ -27,17 +29,14 @@ function Login() {
     axios.get("/sanctum/csrf-cookie").then((res) => {
       axios.post(`/api/login`, postData).then((res) => {
         if (res.data) {
-          localStorage.setItem("user_id", res.data.user.id);
-          localStorage.setItem("user_token", res.data.token);
-          localStorage.setItem("user_id", res.data.user.id);
-          localStorage.setItem(
-            "user_name",
-            res.data.user.first_name + " " + res.data.user.last_name
-          );
-          localStorage.setItem("user_email", res.data.user.email);
-          localStorage.setItem("user_role", res.data.role);
-
-          return navigate("/");
+          if (res.data.validation_errors) {
+            alertError("Please Fill The Forms Properly");
+          } else if (res.data.message) {
+            alertWarning("Wrong Credentials");
+          } else {
+            storeLocalStorage(res);
+            return navigate("/");
+          }
         } else {
           console.log("something went wrong");
         }
@@ -47,6 +46,7 @@ function Login() {
 
   return (
     <Fragment>
+      <ToastContainer />
       <div className="container-lg">
         <div className="custom-shape-divider-top-1668157559">
           <svg

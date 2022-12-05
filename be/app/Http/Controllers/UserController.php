@@ -16,7 +16,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
+    {
+        $users = User::whereNot("role", "admin")
+            ->get();
+        return response([
+            'users' => $users,
+        ]);
+    }
+
+    public function getVisitableUser(Request $request)
     {
         $users = User::whereNot("role", "admin")
             ->whereNot("id", $request->user()->currentAccessToken()->tokenable_id)

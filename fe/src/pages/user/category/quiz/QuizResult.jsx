@@ -2,6 +2,7 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Header from "../../../../components/Header";
 import { getOneAction } from "../../../../redux/actions/actions";
 import * as actionType from "../../../../redux/actions/actionTypes";
@@ -20,7 +21,7 @@ function QuizResult() {
   return (
     <Fragment>
       <Header />
-
+      <ToastContainer />
       <div className="container card">
         <div className="d-flex justify-content-around mb-5 mt-5">
           <h5>{category.title}</h5>

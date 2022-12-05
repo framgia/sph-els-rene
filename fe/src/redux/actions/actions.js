@@ -1,4 +1,5 @@
 import axios from "axios";
+import { alertSuccess, alertWarning, alertError } from "../../utils";
 
 export const getAllAction = (myURL, actionType) => async (dispatch) => {
   await axios
@@ -34,6 +35,7 @@ export const addAction =
     await axios
       .post(myURL, data)
       .then((res) => {
+        alertSuccess(res.data.message);
         dispatch({ type: actionType, res });
         if (reRedenderURL !== null) {
           if (actionType === reRedenderDispatchType) {
@@ -45,6 +47,10 @@ export const addAction =
       })
       .catch((err) => {
         console.log(err);
+        Object.keys(err.response.data.errors).map((key, index) =>
+          alertError(err.response.data.errors[key][0])
+        );
+        alertError("Add Action Aborting . . .");
       });
   };
 
@@ -60,6 +66,7 @@ export const updateAction =
     await axios
       .put(myURL, data)
       .then((res) => {
+        alertWarning(res.data.message);
         dispatch({ type: actionType, res });
         if (reRedenderURL !== null) {
           if (actionType === reRedenderDispatchType) {
@@ -71,6 +78,9 @@ export const updateAction =
       })
       .catch((err) => {
         console.log(err);
+        Object.keys(err.response.data.errors).map((key, index) =>
+          alertError(err.response.data.errors[key][0])
+        );
       });
   };
 
@@ -85,6 +95,7 @@ export const deleteAction =
     await axios
       .delete(myURL)
       .then((res) => {
+        alertError(res.data.message);
         dispatch({ type: actionType, res });
         if (reRedenderURL !== null) {
           dispatch(getAllAction(reRedenderURL, reRedenderDispatchType));
@@ -92,5 +103,8 @@ export const deleteAction =
       })
       .catch((err) => {
         console.log(err);
+        Object.keys(err.response.data.errors).map((key, index) =>
+          alertError(err.response.data.errors[key][0])
+        );
       });
   };

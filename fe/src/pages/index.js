@@ -2,16 +2,16 @@ import React, { Fragment } from "react";
 import Guest from "./authentication/Guest";
 import UserDashboard from "./user/index";
 import AdminDashboard from "./admin/index";
+import { getUserToken, isUser } from "../utils";
 
 function Index() {
-  const token = localStorage.getItem("user_token") ?? "";
-  const role = localStorage.getItem("user_role") ?? "";
+  console.log(localStorage.getItem("user_role"));
 
   return (
     <Fragment>
-      {token === "" ? (
+      {getUserToken() === null ? (
         <Guest />
-      ) : role === "user" ? (
+      ) : isUser() ? (
         <UserDashboard />
       ) : (
         <AdminDashboard />

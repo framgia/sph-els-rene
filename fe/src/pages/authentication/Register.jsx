@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { alertError, storeLocalStorage } from "../../utils";
+import { ToastContainer } from "react-toastify";
 
 function Register() {
   const navigate = useNavigate();
@@ -34,27 +36,31 @@ function Register() {
     };
 
     axios.get("/sanctum/csrf-cookie").then((res) => {
-      axios.post(`/api/register`, postData).then((res) => {
-        if (res.data) {
-          localStorage.setItem("user_token", res.data.token);
-          localStorage.setItem("user_id", res.data.user.id);
-          localStorage.setItem(
-            "user_name",
-            res.data.user.first_name + " " + res.data.user.last_name
-          );
-          localStorage.setItem("user_email", res.data.user.email);
-          localStorage.setItem("user_role", "user");
-          console.log(res.data);
-          return navigate("/");
-        } else {
-          console.log("something went wrong");
-        }
-      });
+      axios
+        .post(`/api/register`, postData)
+        .then((res) => {
+          if (res.data) {
+            storeLocalStorage(res);
+            return navigate("/");
+          } else {
+            console.log("something went wrong");
+          }
+        })
+        .catch((err) => {
+          if (err.response.data.message.includes("Duplicate entry")) {
+            alertError("Email is already taken. Please use another email.");
+          } else {
+            Object.keys(err.response.data.errors).map((key, index) =>
+              alertError(err.response.data.errors[key][0])
+            );
+          }
+        });
     });
   };
 
   return (
     <Fragment>
+      <ToastContainer />
       <div className="container-lg">
         <div className="custom-shape-divider-top-1668157559">
           <svg
