@@ -5,11 +5,9 @@ import AdminDashboard from "./admin/index";
 import { getUserToken, isUser } from "../utils";
 
 function Index() {
-  console.log(localStorage.getItem("user_role"));
-
   return (
     <Fragment>
-      {getUserToken() === null ? (
+      {!getUserToken() ? (
         <Guest />
       ) : isUser() ? (
         <UserDashboard />
