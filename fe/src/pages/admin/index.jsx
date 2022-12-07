@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
 import Header from "../../components/Header";
-import CreateCategory from "./category/CreateCategory";
-import ListCategory from "./category/ListCategory";
+import CreateCategory from "./Category/Create/CreateCategory";
+import ListCategory from "./Category/List/ListCategory";
 
 function index() {
   return (

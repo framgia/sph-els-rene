@@ -1,21 +1,21 @@
 import "./index.css";
 import Home from "./pages";
-import AdminWords from "./pages/admin/word";
+import AdminWords from "./pages/admin/Word";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Register from "./pages/authentication/Register";
-import Login from "./pages/authentication/Login";
+import Register from "./pages/Authentication/Register/Register";
+import Login from "./pages/Authentication/Login/Login";
 import "./api/AuthSetup";
 import { Fragment } from "react";
-import Profile from "./pages/user/Profile";
-import UserPage from "./pages/user/UserPage";
-import UserCategory from "./pages/user/category";
+import Profile from "./pages/user/Profile/Index/ProfileIndex";
+import UserPage from "./pages/user/List/UserPage";
+import UserCategory from "./pages/user/Categories";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
-import TakeQuiz from "./pages/user/category/quiz/TakeQuiz";
-import QuizResult from "./pages/user/category/quiz/QuizResult";
-import ViewCategory from "./pages/user/category/ViewCategory";
-import UserWord from "./pages/user/learned/UserWord";
-import UserCategories from "./pages/user/learned/UserCategories";
-import ProfileEdit from "./pages/user/ProfileEdit";
+import QuizStart from "./pages/user/Categories/Quiz/QuizStart/QuizStart";
+import QuizResult from "./pages/user/Categories/Quiz/QuizResult/QuizResult";
+import ListUserCategory from "./pages/user/Categories/List/CategoryList";
+import UserWord from "./pages/user/UserLearning/UserWord";
+import UserCategories from "./pages/user/UserLearning/UserCategories";
+import ProfileEdit from "./pages/user/Profile//Edit/ProfileEdit";
 
 function App() {
   return (
@@ -31,9 +31,12 @@ function App() {
           <Route path="/user/profile" element={<ProfileEdit />} />
           <Route path="/users" element={<UserPage />} />
           <Route path="/user/category" element={<UserCategory />} />
-          <Route path="/user/category/:id/quiz" element={<TakeQuiz />} />
+          <Route path="/user/category/:id/quiz" element={<QuizStart />} />
           <Route path="/user/category/:id/result" element={<QuizResult />} />
-          <Route path="/user/category/:id/view" element={<ViewCategory />} />
+          <Route
+            path="/user/category/:id/view"
+            element={<ListUserCategory />}
+          />
           <Route path="/user/learned/words" element={<UserWord />} />
           <Route path="/user/learned/categories" element={<UserCategories />} />
         </Routes>
