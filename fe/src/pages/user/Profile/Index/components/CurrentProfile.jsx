@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-function ProfileCurrentUser(props) {
+function CurrentProfile(props) {
   return (
     <Fragment>
       <div className="mb-3">
@@ -70,4 +70,4 @@ function ProfileCurrentUser(props) {
   );
 }
 
-export default ProfileCurrentUser;
+export default CurrentProfile;

@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import Followers from "./Helper/Followers";
-import ActivityLogs from "./Helper/ActivityLogs";
-import { useUserIndex } from "./Helper/hooks/useUserIndex";
+import Header from "../../../components/Header";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import Followers from "../Activity/components/ActivityFollowers";
+import ActivityLogs from "../Activity/components/ActivityLogs";
+import { useUserIndex } from "./hooks/useUserIndex";
 
 function index() {
   const { loading, userData } = useUserIndex();

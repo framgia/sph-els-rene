@@ -3,9 +3,9 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { getUserId } from "../../../utils";
+import { getUserId } from "../../../../../utils";
 
-function ProfileVisitUser(props) {
+function GuestProfile(props) {
   return (
     <Fragment>
       <Tabs defaultActiveKey="follows" className="mb-3">
@@ -92,4 +92,4 @@ function ProfileVisitUser(props) {
   );
 }
 
-export default ProfileVisitUser;
+export default GuestProfile;

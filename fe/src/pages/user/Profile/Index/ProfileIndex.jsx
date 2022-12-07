@@ -2,16 +2,16 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Header from "../../../components/Header";
-import LoadingSpinner from "../../../components/LoadingSpinner";
-import { getUserId, isUser } from "../../../utils";
-import Followers from "../Helper/Followers";
-import EditUser from "./EditUser";
-import { useProfile } from "./hooks/useProfile";
-import ProfileCurrentUser from "./ProfileCurrentUser";
-import ProfileVisitUser from "./ProfileVisitUser";
+import Header from "../../../../components/Header";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
+import { getUserId, isUser } from "../../../../utils";
+import Followers from "../../Activity/components/ActivityFollowers";
+import EditUser from "../Edit/components/EditUser";
+import { useProfile } from "../hooks/useProfile";
+import ProfileCurrentUser from "./components/CurrentProfile";
+import GuestProfile from "./components/GuestProfile";
 
-function Profile() {
+function ProfileIndex() {
   const {
     loading,
     users,
@@ -105,7 +105,7 @@ function Profile() {
               {currentUser.id === getUserId() ? (
                 <ProfileCurrentUser user={currentUser} />
               ) : (
-                <ProfileVisitUser
+                <GuestProfile
                   user={currentUser}
                   follows={logs_following}
                   learned={logs_learned}
@@ -119,4 +119,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfileIndex;

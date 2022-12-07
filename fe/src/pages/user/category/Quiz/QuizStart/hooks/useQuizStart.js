@@ -8,7 +8,7 @@ import {
 } from "../../../../../../redux/actions/actions";
 import * as actionType from "../../../../../../redux/actions/actionTypes";
 
-export const useTakeQuiz = () => {
+export const useQuizStart = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();

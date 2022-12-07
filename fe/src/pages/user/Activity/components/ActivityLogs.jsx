@@ -2,10 +2,10 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllAction } from "../../../redux/actions/actions";
-import * as actionType from "../../../redux/actions/actionTypes";
+import { getAllAction } from "../../../../redux/actions/actions";
+import * as actionType from "../../../../redux/actions/actionTypes";
 import moment from "moment";
-import { getUserId } from "../../../utils";
+import { getUserId } from "../../../../utils";
 
 function ActivityLogs() {
   const { activities, loading } = useSelector((state) => state.activities);

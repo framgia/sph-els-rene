@@ -6,16 +6,16 @@ import Register from "./pages/Authentication/Register/Register";
 import Login from "./pages/Authentication/Login/Login";
 import "./api/AuthSetup";
 import { Fragment } from "react";
-import Profile from "./pages/user/Profile/Profile";
+import Profile from "./pages/user/Profile/Index/ProfileIndex";
 import UserPage from "./pages/user/List/UserPage";
-import UserCategory from "./pages/user/category";
+import UserCategory from "./pages/user/Category";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
-import TakeQuiz from "./pages/user/category/Quiz/TakeQuiz/TakeQuiz";
-import QuizResult from "./pages/user/category/Quiz/QuizResult/QuizResult";
-import ViewCategory from "./pages/user/category/List/ViewCategory";
-import UserWord from "./pages/user/Learned/UserWord";
-import UserCategories from "./pages/user/Learned/UserCategories";
-import ProfileEdit from "./pages/user/Profile/ProfileEdit";
+import QuizStart from "./pages/user/Category/Quiz/QuizStart/QuizStart";
+import QuizResult from "./pages/user/Category/Quiz/QuizResult/QuizResult";
+import ListUserCategory from "./pages/user/Category/List/ListUserCategory";
+import UserWord from "./pages/user/UserLearning/UserWord";
+import UserCategories from "./pages/user/UserLearning/UserCategories";
+import ProfileEdit from "./pages/user/Profile//Edit/ProfileEdit";
 
 function App() {
   return (
@@ -31,9 +31,12 @@ function App() {
           <Route path="/user/profile" element={<ProfileEdit />} />
           <Route path="/users" element={<UserPage />} />
           <Route path="/user/category" element={<UserCategory />} />
-          <Route path="/user/category/:id/quiz" element={<TakeQuiz />} />
+          <Route path="/user/category/:id/quiz" element={<QuizStart />} />
           <Route path="/user/category/:id/result" element={<QuizResult />} />
-          <Route path="/user/category/:id/view" element={<ViewCategory />} />
+          <Route
+            path="/user/category/:id/view"
+            element={<ListUserCategory />}
+          />
           <Route path="/user/learned/words" element={<UserWord />} />
           <Route path="/user/learned/categories" element={<UserCategories />} />
         </Routes>

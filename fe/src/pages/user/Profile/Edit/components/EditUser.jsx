@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
-import { useEditUser } from "./hooks/useEditUser";
+import { useEditUser } from "../../hooks/useEditUser";
 
 function EditUser(props) {
   const { data, widgetRef, handleData, handleSubmit, handleInput } =

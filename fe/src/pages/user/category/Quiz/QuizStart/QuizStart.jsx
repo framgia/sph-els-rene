@@ -2,9 +2,9 @@
 import React, { Fragment } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import Header from "../../../../../components/Header";
-import { useTakeQuiz } from "./hooks/useTakeQuiz";
+import { useQuizStart } from "./hooks/useQuizStart";
 
-function TakeQuiz() {
+function QuizStart() {
   const {
     progress,
     questions,
@@ -13,7 +13,7 @@ function TakeQuiz() {
     setOpenHint,
     handleOptionClick,
     handleSubmit,
-  } = useTakeQuiz();
+  } = useQuizStart();
 
   return (
     <Fragment>
@@ -108,4 +108,4 @@ function TakeQuiz() {
   );
 }
 
-export default TakeQuiz;
+export default QuizStart;

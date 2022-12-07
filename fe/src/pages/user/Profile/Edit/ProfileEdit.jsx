@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../../components/Header";
-import LoadingSpinner from "../../../components/LoadingSpinner";
-import EditUser from "./EditUser";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import moment from "moment";
-import ProfileCurrentUser from "./ProfileCurrentUser";
-import { useEditProfile } from "./hooks/useEditProfile";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
+import Header from "../../../../components/Header";
+import EditUser from "./components/EditUser";
+import CurrentProfile from "../Index/components/CurrentProfile";
+import { useEditProfile } from "../hooks/useEditProfile";
 
 function ProfileEdit() {
   const { loading, currentUser, logs_following, logs_learned } =
@@ -47,7 +47,7 @@ function ProfileEdit() {
           </div>
           <div className="col mb-2">
             <div className="p-3 card">
-              <ProfileCurrentUser user={currentUser} />
+              <CurrentProfile user={currentUser} />
             </div>
           </div>
         </div>
