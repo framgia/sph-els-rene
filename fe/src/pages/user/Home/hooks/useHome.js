@@ -5,7 +5,7 @@ import { getOneAction } from "../../../../redux/actions/actions";
 import * as actionType from "../../../../redux/actions/actionTypes";
 import { getUserId } from "../../../../utils";
 
-export const useUserIndex = () => {
+export const useHome = () => {
   const [userData, setUserData] = useState({
     name: "",
     avatar: "",

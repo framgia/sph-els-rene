@@ -5,10 +5,10 @@ import Header from "../../../components/Header";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import Followers from "../Activity/components/ActivityFollowers";
 import ActivityLogs from "../Activity/components/ActivityLogs";
-import { useUserIndex } from "./hooks/useUserIndex";
+import { useHome } from "./hooks/useHome";
 
-function index() {
-  const { loading, userData } = useUserIndex();
+function Home() {
+  const { loading, userData } = useHome();
 
   if (loading) {
     return <LoadingSpinner />;
@@ -63,4 +63,4 @@ function index() {
   );
 }
 
-export default index;
+export default Home;

@@ -12,7 +12,7 @@ import UserCategory from "./pages/user/Categories";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
 import QuizStart from "./pages/user/Categories/Quiz/QuizStart/QuizStart";
 import QuizResult from "./pages/user/Categories/Quiz/QuizResult/QuizResult";
-import ListUserCategory from "./pages/user/Categories/List/ListUserCategory";
+import ListUserCategory from "./pages/user/Categories/List/CategoryList";
 import UserWord from "./pages/user/UserLearning/UserWord";
 import UserCategories from "./pages/user/UserLearning/UserCategories";
 import ProfileEdit from "./pages/user/Profile//Edit/ProfileEdit";

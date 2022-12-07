@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getAllAction } from "../../../../../redux/actions/actions";
 import * as actionType from "../../../../../redux/actions/actionTypes";
 
-export const useUserListCategory = () => {
+export const useCategoryList = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const { category, categories } = useSelector((state) => state.categories);

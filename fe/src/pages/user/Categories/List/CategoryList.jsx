@@ -2,10 +2,10 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../../../components/Header";
-import { useUserListCategory } from "./hooks/useUserListCategory";
+import { useCategoryList } from "./hooks/useCategoryList";
 
-function ListUserCategory() {
-  const { category, done } = useUserListCategory();
+function CategoryList() {
+  const { category, done } = useCategoryList();
   return (
     <Fragment>
       <Header />
@@ -55,4 +55,4 @@ function ListUserCategory() {
   );
 }
 
-export default ListUserCategory;
+export default CategoryList;
