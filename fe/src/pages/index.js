@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Guest from "./authentication/Guest";
+import Guest from "./Authentication/Guest";
 import UserDashboard from "./user/index";
 import AdminDashboard from "./admin/index";
 import { getUserToken, isUser } from "../utils";

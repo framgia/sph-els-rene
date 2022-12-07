@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../../components/Header";
 import { getOneAction } from "../../../redux/actions/actions";
@@ -8,6 +8,7 @@ import * as actionType from "../../../redux/actions/actionTypes";
 import { Link } from "react-router-dom";
 import Pagination from "../../../components/Pagination";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import { usePagination } from "../../../shared/hooks/usePagination";
 
 function UserWord() {
   const dispatch = useDispatch();
@@ -18,14 +19,12 @@ function UserWord() {
     dispatch(getOneAction(`/api/users/${getUserId()}`, actionType.GET_USER));
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
-  const lastItemIndex = currentPage * itemsPerPage;
-  const firstItemIndex = lastItemIndex - itemsPerPage;
-  const wordsPaginated = learned.words?.slice(firstItemIndex, lastItemIndex);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const { itemsPerPage, itemPaginated, paginate } = usePagination(
+    5,
+    learned.words
+  );
 
-  if (!wordsPaginated) {
+  if (!itemPaginated) {
     return <LoadingSpinner />;
   }
 
@@ -72,8 +71,8 @@ function UserWord() {
                     </tr>
                   </thead>
                   <tbody>
-                    {wordsPaginated &&
-                      wordsPaginated?.map((item) => (
+                    {itemPaginated &&
+                      itemPaginated?.map((item) => (
                         <tr key={item.word_id}>
                           <td>{item.word}</td>
                           <td>{item.translation}</td>

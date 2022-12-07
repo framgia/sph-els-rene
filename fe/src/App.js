@@ -1,21 +1,21 @@
 import "./index.css";
 import Home from "./pages";
-import AdminWords from "./pages/admin/word";
+import AdminWords from "./pages/admin/Word";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Register from "./pages/authentication/Register";
-import Login from "./pages/authentication/Login";
+import Register from "./pages/Authentication/Register/Register";
+import Login from "./pages/Authentication/Login/Login";
 import "./api/AuthSetup";
 import { Fragment } from "react";
-import Profile from "./pages/user/Profile";
-import UserPage from "./pages/user/UserPage";
+import Profile from "./pages/user/Profile/Profile";
+import UserPage from "./pages/user/List/UserPage";
 import UserCategory from "./pages/user/category";
 import AuthMiddleware from "./middlewares/AuthMiddleware";
-import TakeQuiz from "./pages/user/category/quiz/TakeQuiz";
-import QuizResult from "./pages/user/category/quiz/QuizResult";
-import ViewCategory from "./pages/user/category/ViewCategory";
-import UserWord from "./pages/user/learned/UserWord";
-import UserCategories from "./pages/user/learned/UserCategories";
-import ProfileEdit from "./pages/user/ProfileEdit";
+import TakeQuiz from "./pages/user/category/Quiz/TakeQuiz/TakeQuiz";
+import QuizResult from "./pages/user/category/Quiz/QuizResult/QuizResult";
+import ViewCategory from "./pages/user/category/List/ViewCategory";
+import UserWord from "./pages/user/Learned/UserWord";
+import UserCategories from "./pages/user/Learned/UserCategories";
+import ProfileEdit from "./pages/user/Profile/ProfileEdit";
 
 function App() {
   return (

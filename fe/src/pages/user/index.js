@@ -1,39 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { getOneAction } from "../../redux/actions/actions";
-import * as actionType from "../../redux/actions/actionTypes";
-import ActivityLogs from "./ActivityLogs";
-import { getUserId } from "../../utils";
-import Followers from "./Followers";
+import Followers from "./Helper/Followers";
+import ActivityLogs from "./Helper/ActivityLogs";
+import { useUserIndex } from "./Helper/hooks/useUserIndex";
 
 function index() {
-  const [userData, setUserData] = useState({
-    name: "",
-    avatar: "",
-    learned_words: "",
-    learned_categories: "",
-  });
-
-  const { user, learned, loading } = useSelector((state) => state.users);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getOneAction(`/api/users/${getUserId()}`, actionType.GET_USER));
-  }, []);
-
-  useEffect(() => {
-    setUserData({
-      name: user.first_name + " " + user.last_name,
-      avatar: user.avatar,
-      learned_words: learned.wordsCount,
-      learned_categories: learned.categoriesCount,
-    });
-  }, [user, learned]);
+  const { loading, userData } = useUserIndex();
 
   if (loading) {
     return <LoadingSpinner />;

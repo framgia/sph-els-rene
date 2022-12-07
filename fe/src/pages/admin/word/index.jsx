@@ -1,44 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { Fragment } from "react";
 import Header from "../../../components/Header";
 import Pagination from "../../../components/Pagination";
-import { deleteAction, getAllAction } from "../../../redux/actions/actions";
-import * as actionType from "../../../redux/actions/actionTypes";
-import EditWord from "./EditWord";
+import EditWord from "./Edit/EditWord";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { ToastContainer } from "react-toastify";
+import { useListWord } from "./List/hooks/useListWord";
+import { usePagination } from "../../../shared/hooks/usePagination";
 
 function index() {
-  const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
+  const { words, loading, search, setSearch, handleDelete } = useListWord();
 
-  const { words, loading } = useSelector((state) => state.words);
-  useEffect(() => {
-    dispatch(getAllAction("api/words", actionType.GET_WORDS));
-  }, []);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(9);
-  const lastItemIndex = currentPage * itemsPerPage;
-  const firstItemIndex = lastItemIndex - itemsPerPage;
-  const wordsPaginated = words?.slice(firstItemIndex, lastItemIndex);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const handleDelete = (id, title) => {
-    if (window.confirm(`Are you sure you want to delete "${title}"`)) {
-      dispatch(
-        deleteAction(
-          `/api/words/${id}`,
-          actionType.DELETE_WORDS,
-          "/api/words",
-          actionType.GET_WORDS
-        )
-      );
-    }
-  };
+  const { itemsPerPage, itemPaginated, paginate } = usePagination(9, words);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -66,7 +39,7 @@ function index() {
               totalItems={words.length}
               paginateTo={paginate}
             />
-            {wordsPaginated
+            {itemPaginated
               .filter((word) => {
                 return search.toString().toLowerCase() === ""
                   ? word
