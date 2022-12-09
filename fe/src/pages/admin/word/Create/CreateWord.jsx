@@ -1,4 +1,13 @@
+/* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
+import ButtonModal from "../../../../shared/components/Button/ButtonModal";
+import Form from "../../../../shared/components/Form/Form";
+import FormInput from "../../../../shared/components/Form/FormInput";
+import GridColumn from "../../../../shared/components/Layout/Grid/GridColumn";
+import GridColumnSubTitle from "../../../../shared/components/Layout/Grid/GridColumnSubTitle";
+import GridColumnTitle from "../../../../shared/components/Layout/Grid/GridColumnTitle";
+import GridRow from "../../../../shared/components/Layout/Grid/GridRow";
+import Modal from "../../../../shared/components/Modal/Modal";
 import { useCreateWord } from "./hooks/useCreateWord";
 
 function CreateWord({ id }) {
@@ -13,204 +22,87 @@ function CreateWord({ id }) {
   } = useCreateWord(id);
   return (
     <Fragment>
-      <form onSubmit={handleSubmit}>
-        <div className="">
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#createWordModal"
-            onClick={handleGetCategory}
-          >
-            Add Word
-          </button>
+      <Form handler={handleSubmit}>
+        <ButtonModal
+          text={"Add Word"}
+          target={"#createWordModal"}
+          style={"btn btn-outline-primary"}
+          handler={handleGetCategory}
+        />
 
-          <div
-            className="modal fade"
-            id="createWordModal"
-            tabIndex="-1"
-            aria-labelledby="createWordModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog modal-lg">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="createWordModalLabel">
-                    Add Word To {category.title}
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <div className="">
-                    <div className="row">
-                      <div className="col-sm-12 col-md-12 col-lg-5  p1">
-                        <div className="p-2 m-2">
-                          <div className="mb-3">
-                            <h5>Word Details</h5>
-                          </div>
+        <Modal
+          title={`Add Word To ${category.title}`}
+          modalID={"createWordModal"}
+          modalSize={"modal-lg"}
+          formType={"create"}
+        >
+          <GridRow>
+            <GridColumn style={"col-sm-12 col-md-12 col-lg-5 p1"}>
+              <GridColumnTitle text={"Word Details"} />
 
-                          <div className="mb-3" hidden>
-                            <label htmlFor="lesson_id" className="form-label">
-                              lesson_id
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="lesson_id"
-                              aria-describedby="emailHelp"
-                              name="lesson_id"
-                              data-name="lesson_id"
-                              onChange={handleInput}
-                              value={data.lesson_id || ""}
-                            />
-                            <div id="lesson_idHelp" className="form-text">
-                              Please enter lesson name
-                            </div>
-                          </div>
+              <FormInput
+                label={"Lesson Id"}
+                name={"lesson_id"}
+                value={data.lesson_id || ""}
+                handler={handleInput}
+                hidden={true}
+              />
 
-                          <div className="mb-3">
-                            <label htmlFor="title" className="form-label">
-                              Title
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="title"
-                              aria-describedby="emailHelp"
-                              name="title"
-                              data-name="title"
-                              onChange={handleInput}
-                              value={data.title || ""}
-                            />
-                            <div id="titleHelp" className="form-text">
-                              Please enter word name
-                            </div>
-                          </div>
+              <FormInput
+                label={"Title"}
+                name={"title"}
+                value={data.title || ""}
+                handler={handleInput}
+                helper={"Please enter word name"}
+              />
 
-                          <div className="mb-3">
-                            <label htmlFor="hint" className="form-label">
-                              Hint
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="hint"
-                              aria-describedby="emailHelp"
-                              name="hint"
-                              data-name="hint"
-                              onChange={handleInput}
-                              value={data.hint || ""}
-                            />
-                            <div id="hintHelp" className="form-text">
-                              Enter hint for additional help.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-sm-12 col-md-12 col-lg-7  p1">
-                        <div className="p-2 m-2">
-                          <div className="mb-3">
-                            <h6>Options</h6>
-                          </div>
+              <FormInput
+                label={"Hint"}
+                name={"hint"}
+                value={data.hint || ""}
+                handler={handleInput}
+                helper={"Enter hint for additional help"}
+              />
+            </GridColumn>
 
-                          <div className="mb-3 border rounded p-2 bg-light">
-                            <label htmlFor="option1" className="form-label">
-                              Option 1
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="option1"
-                              aria-describedby="emailHelp"
-                              name="option1"
-                              data-name="option1"
-                              onChange={handleInputOptions}
-                              value={dataOptions.option1 || ""}
-                            />
-                            <div id="hintHelp" className="form-text">
-                              Please Be Noted That This Option Must Be The Right
-                              Translation
-                            </div>
-                          </div>
+            <GridColumn style={"col-sm-12 col-md-12 col-lg-7 p1"}>
+              <GridColumnSubTitle text={"Options"} />
 
-                          <div className="mb-3">
-                            <label htmlFor="option2" className="form-label">
-                              Option 2
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="option2"
-                              aria-describedby="emailHelp"
-                              name="option2"
-                              data-name="option2"
-                              onChange={handleInputOptions}
-                              value={dataOptions.option2 || ""}
-                            />
-                          </div>
+              <FormInput
+                label={"Option 1"}
+                style={"mb-3 border rounded p-2 bg-light"}
+                name={"option1"}
+                value={dataOptions.option1 || ""}
+                handler={handleInputOptions}
+                helper={
+                  " Please Be Noted That This Option Must Be The Right Translation"
+                }
+              />
 
-                          <div className="mb-3">
-                            <label htmlFor="option3" className="form-label">
-                              Option 3
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="option3"
-                              aria-describedby="emailHelp"
-                              name="option3"
-                              data-name="option3"
-                              onChange={handleInputOptions}
-                              value={dataOptions.option3 || ""}
-                            />
-                          </div>
+              <FormInput
+                label={"Option 2"}
+                name={"option2"}
+                value={dataOptions.option2 || ""}
+                handler={handleInputOptions}
+              />
 
-                          <div className="mb-3">
-                            <label htmlFor="option4" className="form-label">
-                              Option 4
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="option4"
-                              aria-describedby="emailHelp"
-                              name="option4"
-                              data-name="option4"
-                              onChange={handleInputOptions}
-                              value={dataOptions.option4 || ""}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    data-bs-dismiss="modal"
-                  >
-                    Create
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
+              <FormInput
+                label={"Option 3"}
+                name={"option3"}
+                value={dataOptions.option3 || ""}
+                handler={handleInputOptions}
+              />
+
+              <FormInput
+                label={"Option 4"}
+                name={"option4"}
+                value={dataOptions.option4 || ""}
+                handler={handleInputOptions}
+              />
+            </GridColumn>
+          </GridRow>
+        </Modal>
+      </Form>
     </Fragment>
   );
 }

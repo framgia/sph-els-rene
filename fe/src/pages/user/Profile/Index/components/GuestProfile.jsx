@@ -1,9 +1,12 @@
+/* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import { getUserId } from "../../../../../utils";
+import Avatar from "../../../../../shared/components/Image/Avatar";
+import ButtonNavLink from "../../../../../shared/components/Button/ButtonNavLink";
+import LoadingPlainText from "../../../../../shared/components/Spinner/LoadingPlainText";
 
 function GuestProfile(props) {
   return (
@@ -14,26 +17,24 @@ function GuestProfile(props) {
             <ul className="list-group list-group-flush">
               {props.follows.map((log) => (
                 <li className="list-group-item m-1 d-flex" key={log.id}>
-                  <img
-                    className="rounded-circle mx-3 border border-3"
-                    style={{ width: 50, height: 50 }}
-                    src={log.avatar ?? "/images/default_image.jpg"}
-                    alt="avatar"
+                  <Avatar
+                    img={log.avatar}
+                    style={"rounded-circle mx-3 border border-3"}
                   />
                   <div>
                     <span>
-                      <Link className="text-decoration-none">
-                        {props.user.first_name}
-                      </Link>{" "}
-                      followed{" "}
-                      <Link
-                        className="text-decoration-none"
-                        to={`/user/profile/${
+                      <ButtonNavLink
+                        style={"text-decoration-none"}
+                        text={`${props.user.first_name} `}
+                      />
+                      followed
+                      <ButtonNavLink
+                        style={"text-decoration-none"}
+                        text={` ${log.name} `}
+                        link={`/user/profile/${
                           log.id === getUserId() ? "" : log.id
                         }`}
-                      >
-                        {log.name}
-                      </Link>
+                      />
                     </span>
                     <br />
                     <span className="text-secondary" style={{ fontSize: 13 }}>
@@ -44,9 +45,7 @@ function GuestProfile(props) {
               ))}
             </ul>
           ) : (
-            <div className="d-flex justify-content-center">
-              No Data Available . . .
-            </div>
+            <LoadingPlainText text={"No available item"} />
           )}
         </Tab>
         <Tab eventKey="learned" title="Learned">
@@ -54,24 +53,23 @@ function GuestProfile(props) {
             <ul>
               {props.learned.map((log) => (
                 <li className="list-group-item m-1 d-flex" key={log.id}>
-                  <img
-                    className="rounded-circle mx-3 border border-3"
-                    style={{ width: 50, height: 50 }}
-                    src={log.avatar ?? "/images/default_image.jpg"}
-                    alt="avatar"
+                  <Avatar
+                    img={log.avatar}
+                    style={"rounded-circle mx-3 border border-3"}
                   />
+
                   <div>
                     <span>
-                      <Link className="text-decoration-none">
-                        {props.user.first_name}
-                      </Link>{" "}
-                      learend {log.score} out of 20 words in{" "}
-                      <Link
-                        className="text-decoration-none"
-                        to={`/user/category/${log.category_id}/view`}
-                      >
-                        {log.category}
-                      </Link>
+                      <ButtonNavLink
+                        style={"text-decoration-none"}
+                        text={`${props.user.first_name} `}
+                      />
+                      learend {log.score} out of 20 words in
+                      <ButtonNavLink
+                        style={"text-decoration-none"}
+                        text={` ${log.category} `}
+                        link={`/user/category/${log.category_id}/view`}
+                      />
                     </span>
                     <br />
                     <span className="text-secondary" style={{ fontSize: 13 }}>
@@ -82,9 +80,7 @@ function GuestProfile(props) {
               ))}
             </ul>
           ) : (
-            <div className="d-flex justify-content-center">
-              No Data Available . . .
-            </div>
+            <LoadingPlainText text={"No available item"} />
           )}
         </Tab>
       </Tabs>

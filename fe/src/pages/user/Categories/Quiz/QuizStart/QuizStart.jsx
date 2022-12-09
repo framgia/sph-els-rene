@@ -1,8 +1,16 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment } from "react";
 import Collapse from "react-bootstrap/Collapse";
-import Header from "../../../../../components/Header";
+import Container from "../../../../../shared/components/Layout/Container/Container";
+import GridColumn from "../../../../../shared/components/Layout/Grid/GridColumn";
+import GridRow from "../../../../../shared/components/Layout/Grid/GridRow";
+import LayoutAroundChildren from "../../../../../shared/components/Layout/Positioning/LayoutAroundChildren";
+import LayoutSpacer from "../../../../../shared/components/Layout/Positioning/LayoutSpacer";
+import LayoutCenterChildren from "../../../../../shared/components/Layout/Positioning/LayoutCenterChildren";
 import { useQuizStart } from "./hooks/useQuizStart";
+import ButtonCollpase from "../../../../../shared/components/Button/ButtonCollpase";
+import Button from "../../../../../shared/components/Button/Button";
 
 function QuizStart() {
   const {
@@ -17,93 +25,82 @@ function QuizStart() {
 
   return (
     <Fragment>
-      <Header />
-
-      <div className="container card">
+      <Container style={"card"}>
         {progress < 20 ? (
           <Fragment>
-            <div className="d-flex justify-content-around mb-5 mt-5">
+            <LayoutAroundChildren style={"mb-5 mt-5"}>
               <h5>Category Name</h5>
               <h5>{progress + 1} out of 20</h5>
-            </div>
+            </LayoutAroundChildren>
 
-            <div className="row mb-3 ">
-              <div className="col-lg-5 p-3 ">
-                <div className="">
-                  <div className=" d-flex justify-content-center mt-3 mb-3">
+            <GridRow style={"mb-3"}>
+              <GridColumn style={"col-lg-5"}>
+                <LayoutSpacer spacer={3}>
+                  <LayoutCenterChildren>
                     <h3>{questions[progress]?.title}</h3>
-                  </div>
+                  </LayoutCenterChildren>
 
-                  <div className=" d-flex justify-content-center mb-2">
-                    <button
-                      className="btn btn-info"
-                      onClick={() => setOpenHint(!openHint)}
-                      aria-controls="example-collapse-text"
-                      aria-expanded={openHint}
-                    >
-                      Open Hint
-                    </button>
-                  </div>
+                  <LayoutCenterChildren>
+                    <ButtonCollpase
+                      text={"Open Hint"}
+                      collapse={openHint}
+                      handler={() => setOpenHint(!openHint)}
+                    />
+                  </LayoutCenterChildren>
 
-                  <div className=" d-flex justify-content-center mb-3">
+                  <LayoutCenterChildren>
                     <Collapse in={openHint}>
                       <div id="example-collapse-text">
                         <h5>
-                          {questions[progress]?.hint || "No Hint available"}{" "}
+                          {questions[progress]?.hint || "No Hint available"}
                         </h5>
                       </div>
                     </Collapse>
-                  </div>
-                </div>
-              </div>
+                  </LayoutCenterChildren>
+                </LayoutSpacer>
+              </GridColumn>
 
-              <div className="col-lg-7 p-3 " id="CHOICES">
+              <GridColumn style={"col-lg-7 p-3"}>
                 {questions[progress]?.choices
                   .sort(() => Math.random() - 0.5)
                   .map((option) => (
-                    <div
-                      className=" d-flex justify-content-center w-50 mx-auto mb-3"
+                    <LayoutCenterChildren
+                      style={"w-50 mx-auto mb-3"}
                       key={option.id}
                     >
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary w-100"
-                        onClick={() =>
+                      <Button
+                        style={"btn btn-outline-primary w-100"}
+                        text={option.word}
+                        handler={() =>
                           handleOptionClick(
                             questions[progress]?.id,
                             option.remark
                           )
                         }
-                      >
-                        {option.word}
-                      </button>
-                    </div>
+                      />
+                    </LayoutCenterChildren>
                   ))}
-              </div>
-            </div>
+              </GridColumn>
+            </GridRow>
           </Fragment>
         ) : (
           <Fragment>
-            <div className="container">
-              <div className="d-flex justify-content-center mt-3 mb-3">
+            <LayoutSpacer>
+              <LayoutCenterChildren>
                 <h3>
                   Congratulations, You Finished "{getCategory.title}" Lesson
                 </h3>
-              </div>
+              </LayoutCenterChildren>
+            </LayoutSpacer>
 
-              <div className="d-flex justify-content-center mb-3">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleSubmit}
-                >
-                  Submit Answers
-                </button>
-              </div>
-            </div>
+            <LayoutSpacer>
+              <LayoutCenterChildren>
+                <Button text={"Submit Answers"} handler={handleSubmit} />
+              </LayoutCenterChildren>
+            </LayoutSpacer>
           </Fragment>
         )}
-      </div>
+      </Container>
     </Fragment>
   );
 }

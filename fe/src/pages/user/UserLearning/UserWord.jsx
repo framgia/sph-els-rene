@@ -1,14 +1,22 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../../../components/Header";
 import { getOneAction } from "../../../redux/actions/actions";
 import { getUserId } from "../../../utils";
 import * as actionType from "../../../redux/actions/actionTypes";
-import { Link } from "react-router-dom";
-import Pagination from "../../../components/Pagination";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+import Pagination from "../../../shared/components/Pagination/Pagination";
+import LoadingSpinner from "../../../shared/components/Spinner/LoadingSpinner";
 import { usePagination } from "../../../shared/hooks/usePagination";
+import Container from "../../../shared/components/Layout/Container/Container";
+import Card from "../../../shared/components/Card/Card";
+import GridRow from "../../../shared/components/Layout/Grid/GridRow";
+import GridColumn from "../../../shared/components/Layout/Grid/GridColumn";
+import LayoutCenterChildren from "../../../shared/components/Layout/Positioning/LayoutCenterChildren";
+import Avatar from "../../../shared/components/Image/Avatar";
+import ButtonNavLink from "../../../shared/components/Button/ButtonNavLink";
+import LayoutSpacer from "../../../shared/components/Layout/Positioning/LayoutSpacer";
+import Table from "../../../shared/components/Table/Table";
 
 function UserWord() {
   const dispatch = useDispatch();
@@ -30,67 +38,60 @@ function UserWord() {
 
   return (
     <Fragment>
-      <Header />
-      <div className="container card p-2">
-        <div className="row gx-2">
-          <div className="col-lg-4 col-md-4 mb-2">
-            <div className="p-3">
-              <div className="d-flex justify-content-center">
-                <img
-                  className="mx-auto rounded-circle"
-                  style={{ width: 200, height: 200 }}
-                  src={user?.avatar ?? "/images/default_image.jpg"}
-                  alt="avatar"
+      <Container>
+        <Card style={"p-2"}>
+          <GridRow style={"gx-2"}>
+            <GridColumn style={"col-lg-4 col-md-4 mb-2 p-3"}>
+              <LayoutCenterChildren>
+                <Avatar
+                  img={user?.avatar}
+                  customStyle={{ width: 200, height: 200 }}
                 />
-              </div>
-            </div>
-            <div className="mt-1 d-flex justify-content-center">
-              <p className="text-uppercase fw-bold fs-3 text">
-                {user?.first_name + " " + user?.last_name || ""}
-              </p>
-            </div>
+              </LayoutCenterChildren>
 
-            <div className="d-flex justify-content-center p-0 m-0">
-              <Link to="/user/learned/categories" className=" fs-6 text">
-                Learned {learned.categoriesCount} categories
-              </Link>
-            </div>
-          </div>
-          <div className="col mb-2">
-            <div className="p-3 card ">
-              <div className="mb-3">
-                <h4>Learned Words</h4>
-              </div>
+              <LayoutCenterChildren>
+                <p className="text-uppercase fw-bold fs-3 text">
+                  {user?.first_name + " " + user?.last_name || ""}
+                </p>
+              </LayoutCenterChildren>
 
-              <div className="mb-3">
-                <table className="table table-borderless">
-                  <thead>
-                    <tr>
-                      <th scope="col">Word</th>
-                      <th scope="col">Translation</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {itemPaginated &&
-                      itemPaginated?.map((item) => (
-                        <tr key={item.word_id}>
-                          <td>{item.word}</td>
-                          <td>{item.translation}</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+              <LayoutCenterChildren>
+                <ButtonNavLink
+                  text={`Learned ${learned.categoriesCount} categories`}
+                  style="text-decoration-none"
+                  link={"/user/learned/categories"}
+                />
+              </LayoutCenterChildren>
+            </GridColumn>
 
+            <GridColumn style={"col mb-2"}>
+              <Card>
+                <LayoutSpacer spacer={1}>
+                  <h4>Learned Words</h4>
+                </LayoutSpacer>
+
+                <Table
+                  tableHeader={["Word", "Translation"]}
+                  style="table table-borderless"
+                >
+                  {itemPaginated &&
+                    itemPaginated?.map((item) => (
+                      <tr key={item.word_id}>
+                        <td>{item.word}</td>
+                        <td>{item.translation}</td>
+                      </tr>
+                    ))}
+                </Table>
                 <Pagination
                   itemsPerPage={itemsPerPage}
                   totalItems={learned.wordsCount}
                   paginateTo={paginate}
                 />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </Card>
+            </GridColumn>
+          </GridRow>
+        </Card>
+      </Container>
     </Fragment>
   );
 }

@@ -1,14 +1,21 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import moment from "moment";
-import LoadingSpinner from "../../../../components/LoadingSpinner";
-import Header from "../../../../components/Header";
 import EditUser from "./components/EditUser";
 import CurrentProfile from "../Index/components/CurrentProfile";
 import { useEditProfile } from "../hooks/useEditProfile";
+import Container from "../../../../shared/components/Layout/Container/Container";
+import GridRow from "../../../../shared/components/Layout/Grid/GridRow";
+import GridColumn from "../../../../shared/components/Layout/Grid/GridColumn";
+import Card from "../../../../shared/components/Card/Card";
+import LayoutCenterChildren from "../../../../shared/components/Layout/Positioning/LayoutCenterChildren";
+import Avatar from "../../../../shared/components/Image/Avatar";
+import ButtonNavLink from "../../../../shared/components/Button/ButtonNavLink";
+import LoadingPlainText from "../../../../shared/components/Spinner/LoadingPlainText";
+import LoadingSpinner from "../../../../shared/components/Spinner/LoadingSpinner";
 
 function ProfileEdit() {
   const { loading, currentUser, logs_following, logs_learned } =
@@ -20,37 +27,36 @@ function ProfileEdit() {
 
   return (
     <Fragment>
-      <Header />
-      <div className="container card p-2">
-        <div className="row gx-2">
-          <div className="col-lg-4 col-md-4 mb-2">
-            <div className="p-3 card bg-light">
-              <div className="d-flex justify-content-center">
-                <img
-                  className="mx-auto rounded-circle"
-                  style={{ width: 200, height: 200 }}
-                  src={currentUser.avatar ?? "/images/default_image.jpg"}
-                  alt="avatar"
+      <Container style={"card p-2"}>
+        <GridRow style={"gx-2"}>
+          <GridColumn style={"col-lg-4 col-md-4 mb-2"}>
+            <Card style={"p-3 bg-light"}>
+              <LayoutCenterChildren>
+                <Avatar
+                  img={currentUser.avatar}
+                  customStyle={{ width: 200, height: 200 }}
                 />
-              </div>
-            </div>
-            <div className="mt-2 d-flex justify-content-center">
+              </LayoutCenterChildren>
+            </Card>
+
+            <LayoutCenterChildren>
               <p className="fw-bold">
                 {currentUser.first_name?.toUpperCase()}{" "}
                 {currentUser.last_name?.toUpperCase()}
               </p>
-            </div>
+            </LayoutCenterChildren>
 
-            <div className="mt-2 d-flex justify-content-center">
+            <LayoutCenterChildren>
               <EditUser user={currentUser} />
-            </div>
-          </div>
-          <div className="col mb-2">
-            <div className="p-3 card">
+            </LayoutCenterChildren>
+          </GridColumn>
+
+          <GridColumn style={"col mb-2"}>
+            <Card>
               <CurrentProfile user={currentUser} />
-            </div>
-          </div>
-        </div>
+            </Card>
+          </GridColumn>
+        </GridRow>
 
         <div>
           <Tabs defaultActiveKey="follows" className="mb-3">
@@ -59,22 +65,22 @@ function ProfileEdit() {
                 <ul className="list-group list-group-flush">
                   {logs_following.map((log) => (
                     <li className="list-group-item m-1 d-flex" key={log.id}>
-                      <img
-                        className="rounded-circle mx-3 border border-3"
-                        style={{ width: 50, height: 50 }}
-                        src={log.avatar ?? "/images/default_image.jpg"}
-                        alt="avatar"
+                      <Avatar
+                        img={log.avatar}
+                        style={"rounded-circle mx-3 border border-3"}
                       />
                       <div>
                         <span>
-                          <Link className="text-decoration-none">You</Link>
+                          <ButtonNavLink
+                            style={"text-decoration-none"}
+                            text={"You "}
+                          />
                           followed
-                          <Link
-                            className="text-decoration-none"
-                            to={`/user/profile/${log.id}`}
-                          >
-                            {log.name}
-                          </Link>
+                          <ButtonNavLink
+                            style={"text-decoration-none"}
+                            text={` ${log.name}`}
+                            link={`/user/profile/${log.id}`}
+                          />
                         </span>
                         <br />
                         <span
@@ -88,9 +94,7 @@ function ProfileEdit() {
                   ))}
                 </ul>
               ) : (
-                <div className="d-flex justify-content-center">
-                  No Data Available . . .
-                </div>
+                <LoadingPlainText text={"No Item Available"} />
               )}
             </Tab>
             <Tab eventKey="learned" title="Learned">
@@ -98,22 +102,23 @@ function ProfileEdit() {
                 <ul>
                   {logs_learned.map((log) => (
                     <li className="list-group-item m-1 d-flex" key={log.id}>
-                      <img
-                        className="rounded-circle mx-3 border border-3"
-                        style={{ width: 50, height: 50 }}
-                        src={log.avatar ?? "/images/default_image.jpg"}
-                        alt="avatar"
+                      <Avatar
+                        img={log.avatar}
+                        style={"rounded-circle mx-3 border border-3"}
                       />
+
                       <div>
                         <span>
-                          <Link className="text-decoration-none">You</Link>{" "}
-                          learend {log.score} out of 20 words in{" "}
-                          <Link
-                            className="text-decoration-none"
-                            to={`/user/category/${log.category_id}/view`}
-                          >
-                            {log.category}
-                          </Link>
+                          <ButtonNavLink
+                            style={"text-decoration-none"}
+                            text={"You "}
+                          />
+                          learend {log.score} out of 20 words in
+                          <ButtonNavLink
+                            style={"text-decoration-none"}
+                            text={` ${log.category}`}
+                            link={`/user/category/${log.category_id}/view`}
+                          />
                         </span>
                         <br />
                         <span
@@ -127,14 +132,12 @@ function ProfileEdit() {
                   ))}
                 </ul>
               ) : (
-                <div className="d-flex justify-content-center">
-                  No Data Available . . .
-                </div>
+                <LoadingPlainText text={"No Item Available"} />
               )}
             </Tab>
           </Tabs>
         </div>
-      </div>
+      </Container>
     </Fragment>
   );
 }

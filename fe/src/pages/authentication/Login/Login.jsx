@@ -1,5 +1,12 @@
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
+import Button from "../../../shared/components/Button/Button";
+import Form from "../../../shared/components/Form/Form";
+import FormInput from "../../../shared/components/Form/FormInput";
+import ContainerGuest from "../../../shared/components/Layout/Container/ContainerGuest";
+import GuestHeader from "../../../shared/components/Layout/Header/HeadBanner";
+import LayoutCenterChildren from "../../../shared/components/Layout/Positioning/LayoutCenterChildren";
+import LayoutSpacer from "../../../shared/components/Layout/Positioning/LayoutSpacer";
 import { useLogin } from "./hooks/useLogin";
 
 function Login() {
@@ -8,68 +15,42 @@ function Login() {
   return (
     <Fragment>
       <ToastContainer />
-      <div className="container-lg">
-        <div className="custom-shape-divider-top-1668157559">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-              className="shape-fill"
-            ></path>
-          </svg>
-        </div>
 
-        <div className="mt-5 mb-5">&nbsp;</div>
+      <GuestHeader />
 
-        <div className="d-flex justify-content-center align-items-center vh-100r mt-5">
-          <div className="mt-5 w-50 card p-3">
-            <div className="rounded mt-5 d-flex justify-content-center align-items-center">
-              <h1>Welcome to SELS Project</h1>
-            </div>
+      <LayoutSpacer>&nbsp;</LayoutSpacer>
 
-            <div className="rounded d-flex justify-content-center align-items-center">
-              <p>Lest Break Language Barrier, please Sign In your acount</p>
-            </div>
+      <ContainerGuest>
+        <LayoutCenterChildren>
+          <h1>Welcome to SELS Project</h1>
+        </LayoutCenterChildren>
 
-            <div className="mt-3 mb-3">
-              <form action="" onSubmit={handleSubmit}>
-                <label className="form-lable" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  className="form-control mb-3"
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Example@example.com"
-                  onChange={handleInput}
-                  value={data.email}
-                />
+        <LayoutCenterChildren>
+          <p>Lest Break Language Barrier, please Sign In your acount</p>
+        </LayoutCenterChildren>
 
-                <label className="form-lable" htmlFor="password">
-                  Password
-                </label>
-                <input
-                  className="form-control mb-3"
-                  type="password"
-                  name="password"
-                  id="password"
-                  onChange={handleInput}
-                  value={data.password}
-                />
+        <LayoutSpacer>
+          <Form handler={handleSubmit}>
+            <FormInput
+              label={"Email"}
+              name={"email"}
+              type={"email"}
+              value={data.email}
+              handler={handleInput}
+            />
 
-                <button type="submit" className="btn btn-primary mx-4">
-                  Log In
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+            <FormInput
+              label={"Password"}
+              name={"password"}
+              type={"password"}
+              value={data.password}
+              handler={handleInput}
+            />
+
+            <Button type={"submit"} text={"Login"} />
+          </Form>
+        </LayoutSpacer>
+      </ContainerGuest>
     </Fragment>
   );
 }
