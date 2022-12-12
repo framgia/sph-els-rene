@@ -37,7 +37,7 @@ function EditWord({ id }) {
                 name={"title"}
                 value={data.title || ""}
                 handler={handleInput}
-                helper={"Please enter word name"}
+                info={"Please enter word name"}
               />
 
               <FormInput
@@ -45,7 +45,7 @@ function EditWord({ id }) {
                 name={"hint"}
                 value={data.hint || ""}
                 handler={handleInput}
-                helper={"Enter hint for additional help"}
+                info={"Enter hint for additional help"}
               />
             </GridColumn>
 
@@ -58,7 +58,7 @@ function EditWord({ id }) {
                 name={"option1"}
                 value={data.option1 || ""}
                 handler={handleInput}
-                helper={
+                info={
                   " Please Be Noted That This Option Must Be The Right Translation"
                 }
               />

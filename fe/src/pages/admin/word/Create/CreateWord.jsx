@@ -53,7 +53,7 @@ function CreateWord({ id }) {
                 name={"title"}
                 value={data.title || ""}
                 handler={handleInput}
-                helper={"Please enter word name"}
+                info={"Please enter word name"}
               />
 
               <FormInput
@@ -61,7 +61,7 @@ function CreateWord({ id }) {
                 name={"hint"}
                 value={data.hint || ""}
                 handler={handleInput}
-                helper={"Enter hint for additional help"}
+                info={"Enter hint for additional help"}
               />
             </GridColumn>
 
@@ -74,7 +74,7 @@ function CreateWord({ id }) {
                 name={"option1"}
                 value={dataOptions.option1 || ""}
                 handler={handleInputOptions}
-                helper={
+                info={
                   " Please Be Noted That This Option Must Be The Right Translation"
                 }
               />

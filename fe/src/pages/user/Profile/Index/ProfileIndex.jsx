@@ -3,31 +3,33 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import LoadingSpinner from "../../../../shared/components/Spinner/LoadingSpinner";
-import { getUserId, isUser } from "../../../../utils";
+import LoadingSpinner from "@components/Spinner/LoadingSpinner";
+import { isUser } from "../../../../utils";
 import Followers from "../../Activity/components/ActivityFollowers";
 import EditUser from "../Edit/components/EditUser";
 import { useProfile } from "../hooks/useProfile";
 import ProfileCurrentUser from "./components/CurrentProfile";
 import GuestProfile from "./components/GuestProfile";
-import Container from "../../../../shared/components/Layout/Container/Container";
-import Card from "../../../../shared/components/Card/Card";
-import GridRow from "../../../../shared/components/Layout/Grid/GridRow";
-import GridColumn from "../../../../shared/components/Layout/Grid/GridColumn";
-import Avatar from "../../../../shared/components/Image/Avatar";
-import LayoutCenterChildren from "../../../../shared/components/Layout/Positioning/LayoutCenterChildren";
-import Button from "../../../../shared/components/Button/Button";
+import Container from "@components/Layout/Container/Container";
+import Card from "@components/Card/Card";
+import GridRow from "@components/Layout/Grid/GridRow";
+import GridColumn from "@components/Layout/Grid/GridColumn";
+import Avatar from "@components/Image/Avatar";
+import LayoutCenterChildren from "@components/Layout/Positioning/LayoutCenterChildren";
+import Button from "@components/Button/Button";
 
 function ProfileIndex() {
   const {
     loading,
     users,
     currentUser,
-    followBool,
-    handleToggleFollow,
+    isFollowed,
+    isCurrentUser,
+    isGuest,
     learned,
     logs_following,
     logs_learned,
+    handleToggleFollow,
   } = useProfile();
 
   if (loading || !users) {
@@ -39,10 +41,10 @@ function ProfileIndex() {
       <ToastContainer />
 
       <Container>
-        <Card style={"p-2"}>
-          <GridRow style={"gx-2"}>
-            <GridColumn style={"col-lg-4 col-md-4 mb-2"}>
-              <Card style={"p-3 bg-light"}>
+        <Card style="p-2">
+          <GridRow style="gx-2">
+            <GridColumn style="col-lg-4 col-md-4 mb-2">
+              <Card style="p-3 bg-light">
                 <Avatar
                   img={currentUser.avatar}
                   customStyle={{ width: 200, height: 200 }}
@@ -56,7 +58,7 @@ function ProfileIndex() {
                 </p>
               </LayoutCenterChildren>
 
-              {currentUser.id !== getUserId() && (
+              {isGuest && (
                 <Fragment>
                   <div className="row mt-1 mb-4 w-75 mx-auto">
                     <Followers />
@@ -69,27 +71,24 @@ function ProfileIndex() {
               )}
 
               <LayoutCenterChildren>
-                {currentUser.id === getUserId() ? (
+                {isCurrentUser ? (
                   <EditUser user={currentUser} />
                 ) : (
-                  isUser() &&
-                  (!followBool ? (
+                  isUser() && (
                     <Button
-                      text={"Unfollow"}
-                      style="btn btn-outline-danger"
+                      text={isFollowed ? "Follow" : "Unfollow"}
+                      style={
+                        isFollowed
+                          ? "btn btn-outline-primary"
+                          : "btn btn-outline-danger"
+                      }
                       handler={handleToggleFollow}
                     />
-                  ) : (
-                    <Button
-                      text={"Follow"}
-                      style="btn btn-outline-primary"
-                      handler={handleToggleFollow}
-                    />
-                  ))
+                  )
                 )}
               </LayoutCenterChildren>
 
-              {currentUser.id !== getUserId() && (
+              {isGuest && (
                 <Fragment>
                   <div className="mt-5 d-flex justify-content-center p-0 m-0">
                     <Link className=" fs-6 text">
@@ -100,9 +99,9 @@ function ProfileIndex() {
               )}
             </GridColumn>
 
-            <GridColumn style={"col mb-2"}>
+            <GridColumn style="col mb-2">
               <Card>
-                {currentUser.id === getUserId() ? (
+                {isCurrentUser ? (
                   <ProfileCurrentUser user={currentUser} />
                 ) : (
                   <GuestProfile

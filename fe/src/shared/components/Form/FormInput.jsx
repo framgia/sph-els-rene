@@ -1,15 +1,6 @@
 import React, { Fragment } from "react";
 
-function FormInput({
-  label,
-  style,
-  name,
-  type,
-  value,
-  helper,
-  hidden,
-  handler,
-}) {
+function FormInput({ label, style, name, type, value, info, hidden, handler }) {
   return (
     <Fragment>
       <div className={style ? style : "mb-3"} hidden={hidden ? true : false}>
@@ -24,12 +15,12 @@ function FormInput({
           id={name}
           placeholder={label ? label : "Please Input Text"}
           value={value}
-          aria-describedby={`${helper}Help`}
+          aria-describedby={`${info}Help`}
           onChange={handler}
         />
-        {helper && (
-          <div id={`${helper}Help`} className="form-text">
-            {helper}
+        {info && (
+          <div id={`${info}Help`} className="form-text">
+            {info}
           </div>
         )}
       </div>
