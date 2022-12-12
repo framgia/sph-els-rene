@@ -1,12 +1,12 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment } from "react";
-import Card from "../../../../shared/components/Card/Card";
-import Container from "../../../../shared/components/Layout/Container/Container";
-import LayoutCenterChildren from "../../../../shared/components/Layout/Positioning/LayoutCenterChildren";
-import LayoutSpacer from "../../../../shared/components/Layout/Positioning/LayoutSpacer";
+import Card from "shared/components/Card/Card";
+import Container from "shared/components/Layout/Container/Container";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
 import { useCategoryList } from "./hooks/useCategoryList";
-import ButtonNavLink from "../../../../shared/components/Button/ButtonNavLink";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
 
 function CategoryList() {
   const { category, done } = useCategoryList();

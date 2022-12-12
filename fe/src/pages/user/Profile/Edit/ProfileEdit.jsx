@@ -2,8 +2,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment } from "react";
 import { useEditProfile } from "../hooks/useEditProfile";
-import Container from "../../../../shared/components/Layout/Container/Container";
-import LoadingSpinner from "../../../../shared/components/Spinner/LoadingSpinner";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
+import Container from "shared/components/Layout/Container/Container";
 import DetailSection from "./components/DetailSection";
 import ActivitySection from "./components/ActivitySection";
 

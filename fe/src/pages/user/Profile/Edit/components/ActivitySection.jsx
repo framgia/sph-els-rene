@@ -2,9 +2,9 @@
 import moment from "moment";
 import React, { Fragment } from "react";
 import { Tab, Tabs } from "react-bootstrap";
-import ButtonNavLink from "@components/Button/ButtonNavLink";
-import Avatar from "@components/Image/Avatar";
-import LoadingPlainText from "@components/Spinner/LoadingPlainText";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import Avatar from "shared/components/Image/Avatar";
+import LoadingPlainText from "shared/components/Spinner/LoadingPlainText";
 
 function ActivitySection({ logs_following, logs_learned }) {
   return (

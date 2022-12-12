@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-import Pagination from "../../../../shared/components/Pagination/Pagination";
+import Pagination from "shared/components/Pagination/Pagination";
 import { useListCategory } from "./hooks/useListCategory";
-import { usePagination } from "../../../../shared/hooks/usePagination";
-import FormSearchInput from "../../../../shared/components/Form/FormSearchInput";
-import LoadingPlainText from "../../../../shared/components/Spinner/LoadingPlainText";
-import Table from "../../../../shared/components/Table/Table";
+import { usePagination } from "shared/hooks/usePagination";
+import FormSearchInput from "shared/components/Form/FormSearchInput";
+import LoadingPlainText from "shared/components/Spinner/LoadingPlainText";
+import Table from "shared/components/Table/Table";
 import ListCategoryTableBody from "./components/ListCategoryTableBody";
 
 export default function ListCategory() {

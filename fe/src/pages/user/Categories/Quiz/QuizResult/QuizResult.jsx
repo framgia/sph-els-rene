@@ -1,11 +1,11 @@
 /* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
-import Card from "../../../../../shared/components/Card/Card";
-import Container from "../../../../../shared/components/Layout/Container/Container";
-import LayoutAroundChildren from "../../../../../shared/components/Layout/Positioning/LayoutAroundChildren";
-import LayoutSpacer from "../../../../../shared/components/Layout/Positioning/LayoutSpacer";
-import Table from "../../../../../shared/components/Table/Table";
+import Card from "shared/components/Card/Card";
+import Container from "shared/components/Layout/Container/Container";
+import LayoutAroundChildren from "shared/components/Layout/Positioning/LayoutAroundChildren";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
+import Table from "shared/components/Table/Table";
 
 import { useQuizResult } from "./hooks/useQuizResult";
 

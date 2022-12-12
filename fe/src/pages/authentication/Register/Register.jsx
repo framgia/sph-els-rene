@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
-import Button from "../../../shared/components/Button/Button";
-import Form from "../../../shared/components/Form/Form";
-import FormInput from "../../../shared/components/Form/FormInput";
-import ContainerGuest from "../../../shared/components/Layout/Container/ContainerGuest";
-import HeadBanner from "../../../shared/components/Layout/Header/HeadBanner";
-import LayoutCenterChildren from "../../../shared/components/Layout/Positioning/LayoutCenterChildren";
-import LayoutSpacer from "../../../shared/components/Layout/Positioning/LayoutSpacer";
+import Button from "shared/components/Button/Button";
+import Form from "shared/components/Form/Form";
+import FormInput from "shared/components/Form/FormInput";
+import ContainerGuest from "shared/components/Layout/Container/ContainerGuest";
+import HeadBanner from "shared/components/Layout/Header/HeadBanner";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
 import { useRegister } from "./hooks/useRegiester";
 
 function Register() {

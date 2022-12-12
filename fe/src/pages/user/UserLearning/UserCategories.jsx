@@ -2,17 +2,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneAction } from "../../../redux/actions/actions";
-import { getUserId } from "../../../utils";
-import * as actionType from "../../../redux/actions/actionTypes";
-import LoadingSpinner from "../../../shared/components/Spinner/LoadingSpinner";
-import Container from "../../../shared/components/Layout/Container/Container";
-import Card from "../../../shared/components/Card/Card";
-import LayoutSpacer from "../../../shared/components/Layout/Positioning/LayoutSpacer";
-import ButtonNavLink from "../../../shared/components/Button/ButtonNavLink";
-import GridRow from "../../../shared/components/Layout/Grid/GridRow";
-import GridColumn from "../../../shared/components/Layout/Grid/GridColumn";
-import LayoutEndChildren from "../../../shared/components/Layout/Positioning/LayoutEndChildren";
+import { getOneAction } from "redux/actions/actions";
+import { getUserId } from "utils";
+import * as actionType from "redux/actions/actionTypes";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
+import Container from "shared/components/Layout/Container/Container";
+import Card from "shared/components/Card/Card";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import LayoutEndChildren from "shared/components/Layout/Positioning/LayoutEndChildren";
 
 function UserCategories() {
   const dispatch = useDispatch();

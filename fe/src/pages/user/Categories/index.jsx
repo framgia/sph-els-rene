@@ -4,14 +4,14 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllAction } from "../../../redux/actions/actions";
-import * as actionType from "../../../redux/actions/actionTypes";
-import Card from "../../../shared/components/Card/Card";
-import Container from "../../../shared/components/Layout/Container/Container";
-import GridColumn from "../../../shared/components/Layout/Grid/GridColumn";
-import GridRow from "../../../shared/components/Layout/Grid/GridRow";
-import LayoutSpacer from "../../../shared/components/Layout/Positioning/LayoutSpacer";
-import LayoutEndChildren from "../../../shared/components/Layout/Positioning/LayoutEndChildren";
+import { getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
+import Card from "shared/components/Card/Card";
+import Container from "shared/components/Layout/Container/Container";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
+import LayoutEndChildren from "shared/components/Layout/Positioning/LayoutEndChildren";
 
 function index() {
   const dispatch = useDispatch();

@@ -1,17 +1,17 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment } from "react";
-import Container from "./../../../shared/components/Layout/Container/Container";
-import GridColumn from "../../../shared/components/Layout/Grid/GridColumn";
-import GridRow from "../../../shared/components/Layout/Grid/GridRow";
-import LayoutCenterChildren from "../../../shared/components/Layout/Positioning/LayoutCenterChildren";
-import ButtonNavLink from "../../../shared/components/Button/ButtonNavLink";
-import Card from "../../../shared/components/Card/Card";
-import LoadingSpinner from "../../../shared/components/Spinner/LoadingSpinner";
+import Container from "shared/components/Layout/Container/Container";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import Card from "shared/components/Card/Card";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
 import Followers from "../Activity/components/ActivityFollowers";
 import ActivityLogs from "../Activity/components/ActivityLogs";
 
-import Avatar from "../../../shared/components/Image/Avatar";
+import Avatar from "shared/components/Image/Avatar";
 import { useHome } from "./hooks/useHome";
 
 function Home() {

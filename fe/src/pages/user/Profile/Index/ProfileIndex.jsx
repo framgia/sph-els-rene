@@ -3,20 +3,20 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import LoadingSpinner from "@components/Spinner/LoadingSpinner";
-import { isUser } from "../../../../utils";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
+import { isUser } from "utils";
 import Followers from "../../Activity/components/ActivityFollowers";
 import EditUser from "../Edit/components/EditUser";
 import { useProfile } from "../hooks/useProfile";
 import ProfileCurrentUser from "./components/CurrentProfile";
 import GuestProfile from "./components/GuestProfile";
-import Container from "@components/Layout/Container/Container";
-import Card from "@components/Card/Card";
-import GridRow from "@components/Layout/Grid/GridRow";
-import GridColumn from "@components/Layout/Grid/GridColumn";
-import Avatar from "@components/Image/Avatar";
-import LayoutCenterChildren from "@components/Layout/Positioning/LayoutCenterChildren";
-import Button from "@components/Button/Button";
+import Container from "shared/components/Layout/Container/Container";
+import Card from "shared/components/Card/Card";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import Avatar from "shared/components/Image/Avatar";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import Button from "shared/components/Button/Button";
 
 function ProfileIndex() {
   const {

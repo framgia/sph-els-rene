@@ -2,21 +2,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneAction } from "../../../redux/actions/actions";
-import { getUserId } from "../../../utils";
-import * as actionType from "../../../redux/actions/actionTypes";
-import Pagination from "../../../shared/components/Pagination/Pagination";
-import LoadingSpinner from "../../../shared/components/Spinner/LoadingSpinner";
-import { usePagination } from "../../../shared/hooks/usePagination";
-import Container from "../../../shared/components/Layout/Container/Container";
-import Card from "../../../shared/components/Card/Card";
-import GridRow from "../../../shared/components/Layout/Grid/GridRow";
-import GridColumn from "../../../shared/components/Layout/Grid/GridColumn";
-import LayoutCenterChildren from "../../../shared/components/Layout/Positioning/LayoutCenterChildren";
-import Avatar from "../../../shared/components/Image/Avatar";
-import ButtonNavLink from "../../../shared/components/Button/ButtonNavLink";
-import LayoutSpacer from "../../../shared/components/Layout/Positioning/LayoutSpacer";
-import Table from "../../../shared/components/Table/Table";
+import { getOneAction } from "redux/actions/actions";
+import { getUserId } from "utils";
+import * as actionType from "redux/actions/actionTypes";
+import Pagination from "shared/components/Pagination/Pagination";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
+import { usePagination } from "shared/hooks/usePagination";
+import Container from "shared/components/Layout/Container/Container";
+import Card from "shared/components/Card/Card";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import Avatar from "shared/components/Image/Avatar";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
+import Table from "shared/components/Table/Table";
 
 function UserWord() {
   const dispatch = useDispatch();

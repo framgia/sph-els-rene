@@ -1,9 +1,9 @@
 /* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
-import ButtonNavLink from "../../shared/components/Button/ButtonNavLink";
-import Card from "../../shared/components/Card/Card";
-import Headbanner from "../../shared/components/Layout/Header/HeadBanner";
-import LayoutCenterChildren from "../../shared/components/Layout/Positioning/LayoutCenterChildren";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import Card from "shared/components/Card/Card";
+import Headbanner from "shared/components/Layout/Header/HeadBanner";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 
 function Guest() {
   return (

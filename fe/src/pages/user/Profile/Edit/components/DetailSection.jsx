@@ -1,10 +1,10 @@
 /* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
-import Card from "@components/Card/Card";
-import Avatar from "@components/Image/Avatar";
-import GridColumn from "@components/Layout/Grid/GridColumn";
-import GridRow from "@components/Layout/Grid/GridRow";
-import LayoutCenterChildren from "@components/Layout/Positioning/LayoutCenterChildren";
+import Card from "shared/components/Card/Card";
+import Avatar from "shared/components/Image/Avatar";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 import CurrentProfile from "../../Index/components/CurrentProfile";
 import EditUser from "./EditUser";
 

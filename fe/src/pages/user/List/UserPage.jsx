@@ -2,16 +2,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { usePagination } from "../../../shared/hooks/usePagination";
-import LoadingSpinner from "../../../shared/components/Spinner/LoadingSpinner";
-import { getAllAction } from "../../../redux/actions/actions";
-import * as actionType from "../../../redux/actions/actionTypes";
-import Container from "../../../shared/components/Layout/Container/Container";
-import FormSearchInput from "../../../shared/components/Form/FormSearchInput";
-import Table from "../../../shared/components/Table/Table";
-import LayoutCenterChildren from "../../../shared/components/Layout/Positioning/LayoutCenterChildren";
+import { usePagination } from "shared/hooks/usePagination";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
+import { getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
+import Container from "shared/components/Layout/Container/Container";
+import FormSearchInput from "shared/components/Form/FormSearchInput";
+import Table from "shared/components/Table/Table";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 import UserPagetableBody from "./components/UserPagetableBody";
-import Pagination from "../../../shared/components/Pagination/Pagination";
+import Pagination from "shared/components/Pagination/Pagination";
 
 function UserPage() {
   const [search, setSearch] = useState("");

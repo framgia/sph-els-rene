@@ -2,15 +2,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment } from "react";
 import Collapse from "react-bootstrap/Collapse";
-import Container from "../../../../../shared/components/Layout/Container/Container";
-import GridColumn from "../../../../../shared/components/Layout/Grid/GridColumn";
-import GridRow from "../../../../../shared/components/Layout/Grid/GridRow";
-import LayoutAroundChildren from "../../../../../shared/components/Layout/Positioning/LayoutAroundChildren";
-import LayoutSpacer from "../../../../../shared/components/Layout/Positioning/LayoutSpacer";
-import LayoutCenterChildren from "../../../../../shared/components/Layout/Positioning/LayoutCenterChildren";
+import Container from "shared/components/Layout/Container/Container";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import LayoutAroundChildren from "shared/components/Layout/Positioning/LayoutAroundChildren";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 import { useQuizStart } from "./hooks/useQuizStart";
-import ButtonCollpase from "../../../../../shared/components/Button/ButtonCollpase";
-import Button from "../../../../../shared/components/Button/Button";
+import ButtonCollpase from "shared/components/Button/ButtonCollpase";
+import Button from "shared/components/Button/Button";
 
 function QuizStart() {
   const {

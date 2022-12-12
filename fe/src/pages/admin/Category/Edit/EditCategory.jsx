@@ -1,9 +1,9 @@
 /* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
-import ButtonModal from "../../../../shared/components/Button/ButtonModal";
-import Form from "../../../../shared/components/Form/Form";
-import FormInput from "../../../../shared/components/Form/FormInput";
-import Modal from "../../../../shared/components/Modal/Modal";
+import ButtonModal from "shared/components/Button/ButtonModal";
+import Form from "shared/components/Form/Form";
+import FormInput from "shared/components/Form/FormInput";
+import Modal from "shared/components/Modal/Modal";
 import { useEditCategory } from "./hooks/useEditCategory";
 
 function EditCategory({ id }) {

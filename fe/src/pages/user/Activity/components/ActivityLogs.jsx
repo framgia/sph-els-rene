@@ -2,12 +2,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllAction } from "../../../../redux/actions/actions";
-import * as actionType from "../../../../redux/actions/actionTypes";
+import { getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 import moment from "moment";
-import { getUserId } from "../../../../utils";
-import Avatar from "../../../../shared/components/Image/Avatar";
-import ButtonNavLink from "../../../../shared/components/Button/ButtonNavLink";
+import { getUserId } from "utils";
+import Avatar from "shared/components/Image/Avatar";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
 
 function ActivityLogs() {
   const { activities, loading } = useSelector((state) => state.activities);
