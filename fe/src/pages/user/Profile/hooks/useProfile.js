@@ -24,7 +24,7 @@ export const useProfile = () => {
     avatar: "",
   });
 
-  const [followBool, setFollowBool] = useState();
+  const [isFollowed, setIsFollowed] = useState();
 
   const { users, loading, learned } = useSelector((state) => state.users);
 
@@ -59,16 +59,16 @@ export const useProfile = () => {
     );
 
     if (getFollower?.id) {
-      setFollowBool(false);
+      setIsFollowed(false);
     } else {
-      setFollowBool(true);
+      setIsFollowed(true);
     }
   }, [follower_arr]);
 
   const handleToggleFollow = (e) => {
-    setFollowBool(!followBool);
+    setIsFollowed(!isFollowed);
 
-    if (followBool) {
+    if (isFollowed) {
       const postData = {
         user_id: getUserId(),
         following_id: params.id,
@@ -101,14 +101,19 @@ export const useProfile = () => {
     }
   };
 
+  const isCurrentUser = currentUser.id === getUserId();
+  const isGuest = currentUser.id !== getUserId();
+
   return {
     loading,
     users,
     currentUser,
-    followBool,
+    isFollowed,
     learned,
     logs_following,
     logs_learned,
+    isCurrentUser,
+    isGuest,
     handleToggleFollow,
   };
 };

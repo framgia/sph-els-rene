@@ -1,13 +1,17 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { usePagination } from "../../../shared/hooks/usePagination";
-import Header from "../../../components/Header";
-import LoadingSpinner from "../../../components/LoadingSpinner";
-import Pagination from "../../../components/Pagination";
-import { getAllAction } from "../../../redux/actions/actions";
-import * as actionType from "../../../redux/actions/actionTypes";
+import { usePagination } from "shared/hooks/usePagination";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
+import { getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
+import Container from "shared/components/Layout/Container/Container";
+import FormSearchInput from "shared/components/Form/FormSearchInput";
+import Table from "shared/components/Table/Table";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import UserPagetableBody from "./components/UserPagetableBody";
+import Pagination from "shared/components/Pagination/Pagination";
 
 function UserPage() {
   const [search, setSearch] = useState("");
@@ -28,69 +32,24 @@ function UserPage() {
 
   return (
     <Fragment>
-      <Header />
+      <Container style={"card"}>
+        <FormSearchInput handler={(e) => setSearch(e.target.value)} />
 
-      <div className="container card">
-        <form className="mb-1 mt-3">
-          <input
-            className="form-control me-5"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </form>
+        <Table
+          style={"table table-hover text-center"}
+          tableHeader={["", "Name", "Email", "Action"]}
+        >
+          <UserPagetableBody itemPaginated={itemPaginated} search={search} />
+        </Table>
 
-        <table className="table table-hover text-center">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {itemPaginated
-              .filter((user) => {
-                return search.toString().toLowerCase() === ""
-                  ? user
-                  : user.first_name.toString().toLowerCase().includes(search) ||
-                      user.last_name
-                        .toString()
-                        .toLowerCase()
-                        .includes(search) ||
-                      user.email.toString().toLowerCase().includes(search);
-              })
-              .map((user) => (
-                <tr key={user.id}>
-                  <td>
-                    <img
-                      className="rounded-circle border border-3 align-self-center"
-                      style={{ width: 100, height: 100 }}
-                      src={user.avatar ?? "/images/default_image.jpg"}
-                      alt="avatar"
-                    />
-                  </td>
-                  <td className="align-middle">
-                    {user.first_name + " " + user.last_name}
-                  </td>
-                  <td className="align-middle"> {user.email}</td>
-                  <td className="align-middle">
-                    <Link to={`/user/profile/${user.id}`}>View</Link>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-        <div className="mb-3 mx-auto">
+        <LayoutCenterChildren>
           <Pagination
             itemsPerPage={itemsPerPage}
             totalItems={users.length}
             paginateTo={paginate}
           />
-        </div>
-      </div>
+        </LayoutCenterChildren>
+      </Container>
     </Fragment>
   );
 }

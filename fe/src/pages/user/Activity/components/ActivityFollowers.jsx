@@ -2,9 +2,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getAllAction } from "../../../../redux/actions/actions";
-import * as actionType from "../../../../redux/actions/actionTypes";
-import { getUserId } from "../../../../utils";
+import { getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
+import { getUserId } from "utils";
 
 function Followers() {
   const params = useParams();

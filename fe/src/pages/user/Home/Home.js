@@ -1,10 +1,17 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import Header from "../../../components/Header";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+import Container from "shared/components/Layout/Container/Container";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import GridRow from "shared/components/Layout/Grid/GridRow";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import Card from "shared/components/Card/Card";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
 import Followers from "../Activity/components/ActivityFollowers";
 import ActivityLogs from "../Activity/components/ActivityLogs";
+
+import Avatar from "shared/components/Image/Avatar";
 import { useHome } from "./hooks/useHome";
 
 function Home() {
@@ -16,49 +23,50 @@ function Home() {
 
   return (
     <Fragment>
-      <Header />
-      <div className="container card p-2">
-        <div className="row gx-2">
-          <div className="col-lg-4 col-md-4 mb-2">
-            <div className="p-3">
-              <div className="d-flex justify-content-center">
-                <img
-                  className="mx-auto rounded-circle"
-                  style={{ width: 200, height: 200 }}
-                  src={userData.avatar ?? "/images/default_image.jpg"}
-                  alt="avatar"
-                />
-              </div>
-            </div>
-            <div className="mt-1 d-flex justify-content-center">
+      <Container style={"card p-2"}>
+        <GridRow style={"gx-2"}>
+          <GridColumn style={"col-lg-4 col-md-4 mb-2 p-3"}>
+            <LayoutCenterChildren>
+              <Avatar
+                img={userData.avatar}
+                customStyle={{ width: 200, height: 200 }}
+              />
+            </LayoutCenterChildren>
+
+            <LayoutCenterChildren style={"mt-1"}>
               <p className="text-uppercase fw-bold fs-3 text">
                 {userData.name || ""}
               </p>
-            </div>
+            </LayoutCenterChildren>
 
-            <div className="row mt-1 mb-4 w-75 mx-auto">
+            <GridRow style={"mt-1 mb-4 w-75 mx-auto"}>
               <Followers />
-            </div>
+            </GridRow>
 
-            <div className="mt-1 d-flex justify-content-center p-0 m-0">
-              <Link to="/user/learned/words" className=" fs-6 text">
-                Learned {userData.learned_words} words
-              </Link>
-            </div>
+            <LayoutCenterChildren style={"mt-1  p-0 m-0"}>
+              <ButtonNavLink
+                text={`Learned ${userData.learned_words} words`}
+                link={"/user/learned/words"}
+                style={"6 text"}
+              />
+            </LayoutCenterChildren>
 
-            <div className="d-flex justify-content-center p-0 m-0">
-              <Link to="/user/learned/categories" className=" fs-6 text">
-                Learned {userData.learned_categories} categories
-              </Link>
-            </div>
-          </div>
-          <div className="col mb-2">
-            <div className="p-3 card ">
+            <LayoutCenterChildren style={"mt-1  p-0 m-0"}>
+              <ButtonNavLink
+                text={`Learned ${userData.learned_categories} categories`}
+                link={"/user/learned/categories"}
+                style={"6 text"}
+              />
+            </LayoutCenterChildren>
+          </GridColumn>
+
+          <GridColumn style={"col mb-2"}>
+            <Card>
               <ActivityLogs />
-            </div>
-          </div>
-        </div>
-      </div>
+            </Card>
+          </GridColumn>
+        </GridRow>
+      </Container>
     </Fragment>
   );
 }

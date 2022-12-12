@@ -1,56 +1,60 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import Header from "../../../../components/Header";
+import Card from "shared/components/Card/Card";
+import Container from "shared/components/Layout/Container/Container";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
 import { useCategoryList } from "./hooks/useCategoryList";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
 
 function CategoryList() {
   const { category, done } = useCategoryList();
   return (
     <Fragment>
-      <Header />
+      <Container>
+        <Card style={" w-75 mx-auto p-5"}>
+          <LayoutSpacer>
+            <LayoutCenterChildren style={"mb-3"}>
+              <h1>{category.title}</h1>
+            </LayoutCenterChildren>
 
-      <div className="container card">
-        <div className="card w-75 mx-auto mb-5 mt-5 p-5">
-          <div className="d-flex justify-content-center mb-3">
-            <h1>{category.title}</h1>
-          </div>
-
-          <div className="d-flex justify-content-center mb-3">
-            <h6>{category.description}</h6>
-          </div>
+            <LayoutCenterChildren style={"mb-3"}>
+              <h6>{category.description}</h6>
+            </LayoutCenterChildren>
+          </LayoutSpacer>
 
           {done ? (
             <Fragment>
-              <div className="d-flex justify-content-center mb-3">
+              <LayoutCenterChildren style={"mb-3"}>
                 You have completed this lesson already
-              </div>
-              <div className="d-flex justify-content-center mb-3">
-                <Link
-                  to={`/user/category/${category.id}/result`}
-                  className="btn btn-outline-primary"
-                >
-                  View Result
-                </Link>
-              </div>
+              </LayoutCenterChildren>
+
+              <LayoutCenterChildren style={"mb-3"}>
+                <ButtonNavLink
+                  style={"btn btn-outline-primary"}
+                  link={`/user/category/${category.id}/result`}
+                  text={" View Result"}
+                />
+              </LayoutCenterChildren>
             </Fragment>
           ) : (
             <Fragment>
-              <div className="d-flex justify-content-center mb-3">
+              <LayoutCenterChildren style={"mb-3"}>
                 Looks Like You havent tried this lesson yet
-              </div>
-              <div className="d-flex justify-content-center mb-3">
-                <Link
-                  to={`/user/category/${category.id}/quiz`}
-                  className="btn btn-outline-primary"
-                >
-                  Start Lesson
-                </Link>
-              </div>
+              </LayoutCenterChildren>
+
+              <LayoutCenterChildren style={"mb-3"}>
+                <ButtonNavLink
+                  style={"btn btn-outline-primary"}
+                  link={`/user/category/${category.id}/quiz`}
+                  text={"Start Lesson"}
+                />
+              </LayoutCenterChildren>
             </Fragment>
           )}
-        </div>
-      </div>
+        </Card>
+      </Container>
     </Fragment>
   );
 }

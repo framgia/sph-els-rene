@@ -1,52 +1,39 @@
+/* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
-import { NavLink } from "react-router-dom";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import Card from "shared/components/Card/Card";
+import Headbanner from "shared/components/Layout/Header/HeadBanner";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 
 function Guest() {
   return (
     <Fragment>
-      <div className="custom-shape-divider-top-1668157559">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-            className="shape-fill"
-          ></path>
-        </svg>
-      </div>
+      <Headbanner />
+
       <div className="d-flex justify-content-md-center align-items-center vh-100r mt-5">
         <div className="p-5 mt-5">
-          <div className="d-flex justify-content-center">
+          <LayoutCenterChildren>
             <h1>Welcome to SELS Project</h1>
-          </div>
-          <div className="card w-50 m-auto">
-            <div className="card-body">
-              <h5 className="card-title">E Learning Sytem</h5>
-              <h6 className="card-subtitle mb-2 text-muted">
-                Break the Language Barrier
-              </h6>
-              <p className="card-text">
-                SELS Project aims to break the language barrier. You can choose
-                from different categories available and keep track to you
-                progress. To spice up the experince, you can also visit other
-                user profile and check their progress, you might want to follow
-                them also. Hopefully, SELS Project will lead you to amazing
-                experience of learning new languages.
-              </p>
+          </LayoutCenterChildren>
 
-              <div className="d-flex justify-content-center mt-5">
-                <NavLink to="/login" className="btn btn-primary mx-4">
-                  Sign In
-                </NavLink>
-                <NavLink to="/register" className="btn btn-primary mx-4">
-                  Create New Account
-                </NavLink>
-              </div>
-            </div>
-          </div>
+          <Card
+            title={"E Learning Sytem"}
+            subtitle={"Break the Language Barrier"}
+            style={"w-50 m-auto"}
+          >
+            <p>
+              SELS Project aims to break the language barrier. You can choose
+              from different categories available and keep track to you
+              progress. To spice up the experince, you can also visit other user
+              profile and check their progress, you might want to follow them
+              also. Hopefully, SELS Project will lead you to amazing experience
+              of learning new languages.
+            </p>
+            <LayoutCenterChildren>
+              <ButtonNavLink text={"Sign In"} link={"/login"} />
+              <ButtonNavLink text={"Create New Account"} link={"/register"} />
+            </LayoutCenterChildren>
+          </Card>
         </div>
       </div>
     </Fragment>

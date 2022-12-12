@@ -1,11 +1,13 @@
+/* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getAllAction } from "../../../../redux/actions/actions";
-import * as actionType from "../../../../redux/actions/actionTypes";
+import { getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 import moment from "moment";
-import { getUserId } from "../../../../utils";
+import { getUserId } from "utils";
+import Avatar from "shared/components/Image/Avatar";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
 
 function ActivityLogs() {
   const { activities, loading } = useSelector((state) => state.activities);
@@ -30,38 +32,33 @@ function ActivityLogs() {
         {activities &&
           activities.map((log) => (
             <li className="list-group-item m-1 d-flex" key={log.id}>
-              <img
-                className="rounded-circle mx-3 border border-3"
-                style={{ width: 50, height: 50 }}
-                src={log.avatar ?? "/images/default_image.jpg"}
-                alt="avatar"
+              <Avatar
+                img={log.avatar}
+                style={"rounded-circle mx-3 border border-3"}
               />
               <div>
                 {log.category ? (
                   <Fragment>
                     <span>
                       {log.user_id === getUserId() ? (
-                        <Link
-                          className="text-decoration-none"
-                          to="/user/profile"
-                        >
-                          You
-                        </Link>
+                        <ButtonNavLink
+                          link={"/user/profile"}
+                          style={"text-decoration-none"}
+                          text={" You "}
+                        />
                       ) : (
-                        <Link
-                          className="text-decoration-none"
-                          to={`/user/profile/${log.user_id}`}
-                        >
-                          {log.name}
-                        </Link>
+                        <ButtonNavLink
+                          link={`/user/profile/${log.user_id}`}
+                          style={"text-decoration-none"}
+                          text={` ${log.name} `}
+                        />
                       )}
                       learend {log.score} out of 20 words in
-                      <Link
-                        className="text-decoration-none"
-                        to={`/user/category/${log.category_id}/view`}
-                      >
-                        {log.category}
-                      </Link>
+                      <ButtonNavLink
+                        link={`/user/category/${log.category_id}/view`}
+                        style={"text-decoration-none"}
+                        text={` ${log.category} `}
+                      />
                     </span>
                     <br />
                     <span className="text-secondary" style={{ fontSize: 13 }}>
@@ -72,27 +69,24 @@ function ActivityLogs() {
                   <Fragment>
                     <span>
                       {log.user_id === getUserId() ? (
-                        <Link
-                          className="text-decoration-none"
-                          to="/user/profile"
-                        >
-                          You
-                        </Link>
+                        <ButtonNavLink
+                          link={"/user/profile"}
+                          style={"text-decoration-none"}
+                          text={" You "}
+                        />
                       ) : (
-                        <Link
-                          className="text-decoration-none"
-                          to={`/user/profile/${log.user_id}`}
-                        >
-                          {log.name}
-                        </Link>
+                        <ButtonNavLink
+                          link={`/user/profile/${log.user_id}`}
+                          style={"text-decoration-none"}
+                          text={` ${log.name} `}
+                        />
                       )}
                       Followed
-                      <Link
-                        className="text-decoration-none"
-                        to={`/user/profile/${log.following_id}`}
-                      >
-                        {log.follows}
-                      </Link>
+                      <ButtonNavLink
+                        link={`/user/profile/${log.following_id}`}
+                        style={"text-decoration-none"}
+                        text={` ${log.follows} `}
+                      />
                     </span>
                     <br />
                     <span className="text-secondary" style={{ fontSize: 13 }}>

@@ -1,6 +1,12 @@
+/* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
-import Header from "../../../../../components/Header";
+import Card from "shared/components/Card/Card";
+import Container from "shared/components/Layout/Container/Container";
+import LayoutAroundChildren from "shared/components/Layout/Positioning/LayoutAroundChildren";
+import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
+import Table from "shared/components/Table/Table";
+
 import { useQuizResult } from "./hooks/useQuizResult";
 
 function QuizResult() {
@@ -8,41 +14,36 @@ function QuizResult() {
 
   return (
     <Fragment>
-      <Header />
       <ToastContainer />
-      <div className="container card">
-        <div className="d-flex justify-content-around mb-5 mt-5">
-          <h5>{category.title}</h5>
-          <h5>{score} out of 20</h5>
-        </div>
+      <Container>
+        <LayoutSpacer>
+          <LayoutAroundChildren>
+            <h5>{category.title}</h5>
+            <h5>{score} out of 20</h5>
+          </LayoutAroundChildren>
+        </LayoutSpacer>
 
-        <div className="border w-75 mx-auto">
-          <table className="table table-borderless">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Word</th>
-                <th scope="col">Translation</th>
+        <Card style={"w-75 mx-auto"}>
+          <Table
+            style={"table table-borderless"}
+            tableHeader={["", "Word", "Translation"]}
+          >
+            {result?.map((item) => (
+              <tr key={item.word_id}>
+                <th scope="row">
+                  {item.remark === "1" ? (
+                    <span>&#9989;</span>
+                  ) : (
+                    <span>&#10060;</span>
+                  )}
+                </th>
+                <td>{item.word}</td>
+                <td>{item.translation}</td>
               </tr>
-            </thead>
-            <tbody>
-              {result.map((item) => (
-                <tr key={item.word_id}>
-                  <th scope="row">
-                    {item.remark === "1" ? (
-                      <span>&#9989;</span>
-                    ) : (
-                      <span>&#10060;</span>
-                    )}
-                  </th>
-                  <td>{item.word}</td>
-                  <td>{item.translation}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            ))}
+          </Table>
+        </Card>
+      </Container>
     </Fragment>
   );
 }

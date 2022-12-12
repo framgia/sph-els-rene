@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { getUserId, isAdmin, isUser } from "../utils";
+import { isAdmin, isUser } from "utils";
 
 function Header() {
   return (

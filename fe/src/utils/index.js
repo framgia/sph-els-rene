@@ -35,6 +35,14 @@ export const getUserToken = () => {
   return localStorage.getItem("user_token");
 };
 
+export const isUndefined = (item) => {
+  if (item === undefined) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const storeLocalStorage = (res) => {
   localStorage.setItem("user_id", res.data.user.id);
   localStorage.setItem("user_token", res.data.token);

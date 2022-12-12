@@ -5,7 +5,7 @@ export const usePagination = (itemPerPage, items) => {
   const [itemsPerPage] = useState(itemPerPage);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
-  const itemPaginated = items.slice(firstItemIndex, lastItemIndex);
+  const itemPaginated = items?.slice(firstItemIndex, lastItemIndex);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
