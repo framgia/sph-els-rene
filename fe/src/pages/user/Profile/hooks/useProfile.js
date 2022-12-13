@@ -7,9 +7,9 @@ import {
   deleteAction,
   getAllAction,
   getOneAction,
-} from "../../../../redux/actions/actions";
-import * as actionType from "../../../../redux/actions/actionTypes";
-import { getUserId } from "../../../../utils";
+} from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
+import { getUserId } from "utils";
 
 export const useProfile = () => {
   const params = useParams();

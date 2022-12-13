@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateAction } from "../../../../redux/actions/actions";
-import * as actionType from "../../../../redux/actions/actionTypes";
+import { updateAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 
 export const useEditUser = (props) => {
   const dispatch = useDispatch();

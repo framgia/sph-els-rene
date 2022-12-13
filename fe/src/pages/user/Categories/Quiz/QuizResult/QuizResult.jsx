@@ -1,4 +1,5 @@
 /* eslint-disable react/style-prop-object */
+/* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
 import Card from "shared/components/Card/Card";
@@ -23,22 +24,29 @@ function QuizResult() {
           </LayoutAroundChildren>
         </LayoutSpacer>
 
-        <Card style={"w-75 mx-auto"}>
+        <Card style="w-3/4 mx-auto">
           <Table
-            style={"table table-borderless"}
+            style="table table-borderless"
             tableHeader={["", "Word", "Translation"]}
           >
             {result?.map((item) => (
-              <tr key={item.word_id}>
-                <th scope="row">
+              <tr className="border-b" key={item.word_id}>
+                <th
+                  className="px-6 py-4 text-md font-medium text-gray-900"
+                  scope="row"
+                >
                   {item.remark === "1" ? (
                     <span>&#9989;</span>
                   ) : (
                     <span>&#10060;</span>
                   )}
                 </th>
-                <td>{item.word}</td>
-                <td>{item.translation}</td>
+                <td className="px-6 py-4 text-md font-medium text-gray-900">
+                  {item.word}
+                </td>
+                <td className="px-6 py-4 text-md font-medium text-gray-900">
+                  {item.translation}
+                </td>
               </tr>
             ))}
           </Table>

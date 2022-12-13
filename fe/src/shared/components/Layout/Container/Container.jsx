@@ -5,7 +5,7 @@ function Container({ children, style }) {
   return (
     <Fragment>
       <Header />
-      <div className={`container ${style}`}>{children}</div>
+      <div className={`container mx-auto ${style}`}>{children}</div>
     </Fragment>
   );
 }

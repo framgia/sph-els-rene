@@ -1,15 +1,15 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Fragment } from "react";
-import LoadingSpinner from "../../../shared/components/Spinner/LoadingSpinner";
+import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
 import { ToastContainer } from "react-toastify";
 import { useListWord } from "./List/hooks/useListWord";
-import { usePagination } from "../../../shared/hooks/usePagination";
-import FormSearchInput from "../../../shared/components/Form/FormSearchInput";
-import GridRow from "../../../shared/components/Layout/Grid/GridRow";
+import { usePagination } from "shared/hooks/usePagination";
+import FormSearchInput from "shared/components/Form/FormSearchInput";
+import GridRow from "shared/components/Layout/Grid/GridRow";
 import ListWord from "./List/components/ListWord";
-import Container from "../../../shared/components/Layout/Container/Container";
-import Pagination from "../../../shared/components/Pagination/Pagination";
+import Container from "shared/components/Layout/Container/Container";
+import Pagination from "shared/components/Pagination/Pagination";
 
 function index() {
   const { words, loading, search, setSearch, handleDelete } = useListWord();
@@ -34,7 +34,7 @@ function index() {
               paginateTo={paginate}
             />
 
-            <GridRow style={"p-3"}>
+            <GridRow style="grid-cols-6">
               <ListWord
                 itemPaginated={itemPaginated}
                 search={search}

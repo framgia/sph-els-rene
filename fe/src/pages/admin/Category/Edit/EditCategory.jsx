@@ -1,6 +1,9 @@
 /* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
-import ButtonModal from "shared/components/Button/ButtonModal";
+import {
+  OUTLINE_YELLOW,
+  SOLID_BLUE,
+} from "shared/components/Button/buttonType";
 import Form from "shared/components/Form/Form";
 import FormInput from "shared/components/Form/FormInput";
 import Modal from "shared/components/Modal/Modal";
@@ -13,32 +16,29 @@ function EditCategory({ id }) {
   return (
     <Fragment>
       <Form handler={handleSubmit}>
-        <ButtonModal
-          text={"Edit"}
-          style={"btn btn-outline-warning"}
-          target={"#EditCategoryModal"}
-          handler={handleGetCategory}
-        />
-
         <Modal
-          title={"Add New Category"}
-          modalID={"EditCategoryModal"}
-          formType={"update"}
+          title="Add New Category"
+          modalID="EditCategoryModal"
+          buttonText="Edit"
+          buttonStyle={OUTLINE_YELLOW}
+          formType={SOLID_BLUE}
+          submitText="Update Category"
+          handler={handleGetCategory}
         >
           <FormInput
-            label={"Title"}
-            name={"title"}
+            label="Title"
+            name="title"
             value={data.title || ""}
             handler={handleInput}
-            info={"Please enter lesson name"}
+            info="Please enter lesson name"
           />
 
           <FormInput
-            label={"Description"}
-            name={"description"}
+            label="Description"
+            name="description"
             value={data.description || ""}
             handler={handleInput}
-            info={"Description will help user to choose the right lesson"}
+            info="Description will help user to choose the right lesson"
           />
         </Modal>
       </Form>

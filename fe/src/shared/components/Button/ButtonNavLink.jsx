@@ -1,9 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import useButton from "./hooks/useButton";
 
-function ButtonNavLink({ link, style, text }) {
+function ButtonNavLink({ link, style, mx, text }) {
   return (
-    <NavLink to={link} className={style ? style : "btn btn-primary mx-4"}>
+    <NavLink to={link} className={`${useButton(style)} mx-${mx}`}>
       {text}
     </NavLink>
   );

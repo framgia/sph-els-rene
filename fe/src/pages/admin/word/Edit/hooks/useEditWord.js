@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getOneAction,
-  updateAction,
-} from "../../../../../redux/actions/actions";
-import * as actionType from "../../../../../redux/actions/actionTypes";
+import { getOneAction, updateAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 
 export const useEditWord = (lessonID) => {
   const dispatch = useDispatch();

@@ -1,11 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteAction,
-  getAllAction,
-} from "../../../../../redux/actions/actions";
-import * as actionType from "../../../../../redux/actions/actionTypes";
+import { deleteAction, getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 
 export const useListWord = () => {
   const dispatch = useDispatch();

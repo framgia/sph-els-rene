@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllAction, getOneAction } from "../../../../redux/actions/actions";
-import * as actionType from "../../../../redux/actions/actionTypes";
-import { getUserId } from "../../../../utils";
+import { getAllAction, getOneAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
+import { getUserId } from "utils";
 
 export const useEditProfile = () => {
   const dispatch = useDispatch();
@@ -16,6 +16,19 @@ export const useEditProfile = () => {
     last_name: "",
     avatar: "",
   });
+
+  const [isOpenTab1, setOpenTab1] = useState(true);
+  const [isOpenTab2, setOpenTab2] = useState(false);
+
+  const handleTab1 = () => {
+    setOpenTab1(true);
+    setOpenTab2(false);
+  };
+
+  const handleTab2 = () => {
+    setOpenTab1(false);
+    setOpenTab2(true);
+  };
 
   const { users, loading } = useSelector((state) => state.users);
 
@@ -42,5 +55,14 @@ export const useEditProfile = () => {
     setCurrentUser({ ...getUser });
   }, [users]);
 
-  return { loading, currentUser, logs_following, logs_learned };
+  return {
+    loading,
+    currentUser,
+    logs_following,
+    logs_learned,
+    isOpenTab1,
+    isOpenTab2,
+    handleTab1,
+    handleTab2,
+  };
 };

@@ -1,35 +1,71 @@
 /* eslint-disable react/style-prop-object */
-import React, { Fragment } from "react";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import React, { Fragment, useState } from "react";
 import moment from "moment";
-import { getUserId } from "../../../../../utils";
-import Avatar from "../../../../../shared/components/Image/Avatar";
-import ButtonNavLink from "../../../../../shared/components/Button/ButtonNavLink";
-import LoadingPlainText from "../../../../../shared/components/Spinner/LoadingPlainText";
+import { getUserId } from "utils";
+import Avatar from "shared/components/Image/Avatar";
+import ButtonNavLink from "shared/components/Button/ButtonNavLink";
+import LoadingPlainText from "shared/components/Spinner/LoadingPlainText";
+import { PLAIN_TEXT } from "shared/components/Button/buttonType";
 
 function GuestProfile(props) {
+  const [isOpenTab1, setOpenTab1] = useState(true);
+  const [isOpenTab2, setOpenTab2] = useState(false);
+
+  const handleTab1 = () => {
+    setOpenTab1(true);
+    setOpenTab2(false);
+  };
+
+  const handleTab2 = () => {
+    setOpenTab1(false);
+    setOpenTab2(true);
+  };
+
   return (
     <Fragment>
-      <Tabs defaultActiveKey="follows" className="mb-3">
-        <Tab eventKey="follows" title="Follows">
+      <div>
+        <ul className="hidden text-sm font-medium text-center text-gray-500 rounded-lg divide-x divide-gray-200 shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+          <li className="w-full">
+            <button
+              className="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+              onClick={handleTab1}
+            >
+              Follows
+            </button>
+          </li>
+          <li className="w-full">
+            <button
+              className="inline-block p-4 w-full bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+              onClick={handleTab2}
+            >
+              Learned
+            </button>
+          </li>
+        </ul>
+
+        <div className={`${isOpenTab1 ? "block" : "hidden"}`}>
           {props.follows.length > 0 ? (
-            <ul className="list-group list-group-flush">
+            <ul className="bg-white rounded-lg border border-gray-200 w-full text-gray-900">
               {props.follows.map((log) => (
-                <li className="list-group-item m-1 d-flex" key={log.id}>
+                <li
+                  className="px-6 py-2 border-b border-gray-200 w-full rounded-t-lg "
+                  key={log.id}
+                >
                   <Avatar
                     img={log.avatar}
-                    style={"rounded-circle mx-3 border border-3"}
+                    style={
+                      "rounded-full border-2 border-gray-200 float-left mx-5"
+                    }
                   />
                   <div>
                     <span>
                       <ButtonNavLink
-                        style={"text-decoration-none"}
+                        style={PLAIN_TEXT}
                         text={`${props.user.first_name} `}
                       />
                       followed
                       <ButtonNavLink
-                        style={"text-decoration-none"}
+                        style={PLAIN_TEXT}
                         text={` ${log.name} `}
                         link={`/user/profile/${
                           log.id === getUserId() ? "" : log.id
@@ -45,28 +81,34 @@ function GuestProfile(props) {
               ))}
             </ul>
           ) : (
-            <LoadingPlainText text={"No available item"} />
+            <LoadingPlainText text="No available item" />
           )}
-        </Tab>
-        <Tab eventKey="learned" title="Learned">
+        </div>
+
+        <div className={`${isOpenTab2 ? "block" : "hidden"}`}>
           {props.learned.length > 0 ? (
-            <ul>
+            <ul className="bg-white rounded-lg border border-gray-200 w-full text-gray-900">
               {props.learned.map((log) => (
-                <li className="list-group-item m-1 d-flex" key={log.id}>
+                <li
+                  className="px-6 py-2 border-b border-gray-200 w-full rounded-t-lg "
+                  key={log.id}
+                >
                   <Avatar
                     img={log.avatar}
-                    style={"rounded-circle mx-3 border border-3"}
+                    style={
+                      "rounded-full border-2 border-gray-200 float-left mx-5"
+                    }
                   />
 
                   <div>
                     <span>
                       <ButtonNavLink
-                        style={"text-decoration-none"}
+                        style={PLAIN_TEXT}
                         text={`${props.user.first_name} `}
                       />
                       learend {log.score} out of 20 words in
                       <ButtonNavLink
-                        style={"text-decoration-none"}
+                        style={PLAIN_TEXT}
                         text={` ${log.category} `}
                         link={`/user/category/${log.category_id}/view`}
                       />
@@ -80,10 +122,10 @@ function GuestProfile(props) {
               ))}
             </ul>
           ) : (
-            <LoadingPlainText text={"No available item"} />
+            <LoadingPlainText text="No available item" />
           )}
-        </Tab>
-      </Tabs>
+        </div>
+      </div>
     </Fragment>
   );
 }

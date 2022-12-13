@@ -35,17 +35,13 @@ function Followers() {
 
   return (
     <Fragment>
-      <div className="col ">
-        <div className="text-center fs-5 fw-bold">
-          {followerCount?.follower}
-        </div>
-        <div className="text-center text-secondary">Followers</div>
+      <div className="col-span-auto ">
+        <div className="text-center font-bold">{followerCount?.follower}</div>
+        <div className="text-center text-slate-500">Followers</div>
       </div>
-      <div className="col">
-        <div className="text-center fs-5 fw-bold">
-          {followerCount?.following}
-        </div>
-        <div className="text-center text-secondary">Following</div>
+      <div className="col-span-auto">
+        <div className="text-center font-bold">{followerCount?.following}</div>
+        <div className="text-center text-slate-500">Following</div>
       </div>
     </Fragment>
   );

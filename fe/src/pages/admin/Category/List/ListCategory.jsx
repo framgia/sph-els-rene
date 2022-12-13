@@ -15,7 +15,7 @@ export default function ListCategory() {
   );
 
   if (!categories) {
-    return <LoadingPlainText text={"Loading Categories . . ."} />;
+    return <LoadingPlainText text="Loading Categories . . ." />;
   }
 
   return (
@@ -39,7 +39,7 @@ export default function ListCategory() {
           />
         </Fragment>
       ) : (
-        <LoadingPlainText text={"No Categories Available"} />
+        <LoadingPlainText text="No Categories Available" />
       )}
     </Fragment>
   );

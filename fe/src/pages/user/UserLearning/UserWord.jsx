@@ -17,6 +17,7 @@ import Avatar from "shared/components/Image/Avatar";
 import ButtonNavLink from "shared/components/Button/ButtonNavLink";
 import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
 import Table from "shared/components/Table/Table";
+import { PLAIN_TEXT } from "shared/components/Button/buttonType";
 
 function UserWord() {
   const dispatch = useDispatch();
@@ -39,9 +40,9 @@ function UserWord() {
   return (
     <Fragment>
       <Container>
-        <Card style={"p-2"}>
-          <GridRow style={"gx-2"}>
-            <GridColumn style={"col-lg-4 col-md-4 mb-2 p-3"}>
+        <Card style="p-2">
+          <GridRow style="grid-cols-12">
+            <GridColumn style="lg:col-span-4 md:col-span-4 col-span-12">
               <LayoutCenterChildren>
                 <Avatar
                   img={user?.avatar}
@@ -50,7 +51,7 @@ function UserWord() {
               </LayoutCenterChildren>
 
               <LayoutCenterChildren>
-                <p className="text-uppercase fw-bold fs-3 text">
+                <p className="uppercase font-bold mb-5">
                   {user?.first_name + " " + user?.last_name || ""}
                 </p>
               </LayoutCenterChildren>
@@ -58,27 +59,28 @@ function UserWord() {
               <LayoutCenterChildren>
                 <ButtonNavLink
                   text={`Learned ${learned.categoriesCount} categories`}
-                  style="text-decoration-none"
-                  link={"/user/learned/categories"}
+                  style={PLAIN_TEXT}
+                  link="/user/learned/categories"
                 />
               </LayoutCenterChildren>
             </GridColumn>
 
-            <GridColumn style={"col mb-2"}>
+            <GridColumn style="lg:col-span-8 md:col-span-8 col-span-12">
               <Card>
                 <LayoutSpacer spacer={1}>
                   <h4>Learned Words</h4>
                 </LayoutSpacer>
 
-                <Table
-                  tableHeader={["Word", "Translation"]}
-                  style="table table-borderless"
-                >
+                <Table tableHeader={["Word", "Translation"]}>
                   {itemPaginated &&
                     itemPaginated?.map((item) => (
                       <tr key={item.word_id}>
-                        <td>{item.word}</td>
-                        <td>{item.translation}</td>
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          {item.word}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          {item.translation}
+                        </td>
                       </tr>
                     ))}
                 </Table>

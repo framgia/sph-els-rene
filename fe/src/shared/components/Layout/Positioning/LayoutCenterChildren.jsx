@@ -1,9 +1,7 @@
 import React from "react";
 
 function LayoutCenterChildren({ children, style }) {
-  return (
-    <div className={`d-flex justify-content-center ${style}`}>{children}</div>
-  );
+  return <div className={`flex justify-center ${style}`}>{children}</div>;
 }
 
 export default LayoutCenterChildren;

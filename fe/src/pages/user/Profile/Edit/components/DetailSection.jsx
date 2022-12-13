@@ -11,9 +11,9 @@ import EditUser from "./EditUser";
 function DetailSection({ currentUser }) {
   return (
     <Fragment>
-      <GridRow style={"gx-2"}>
-        <GridColumn style={"col-lg-4 col-md-4 mb-2"}>
-          <Card style={"p-3 bg-light"}>
+      <GridRow style="grid-cols-12">
+        <GridColumn style="lg:col-span-4 md:col-span-4 col-span-12">
+          <Card style="p-3 bg-light">
             <LayoutCenterChildren>
               <Avatar
                 img={currentUser.avatar}
@@ -23,7 +23,7 @@ function DetailSection({ currentUser }) {
           </Card>
 
           <LayoutCenterChildren>
-            <p className="fw-bold">
+            <p className="font-bold">
               {currentUser.first_name?.toUpperCase()}{" "}
               {currentUser.last_name?.toUpperCase()}
             </p>
@@ -34,7 +34,7 @@ function DetailSection({ currentUser }) {
           </LayoutCenterChildren>
         </GridColumn>
 
-        <GridColumn style={"col mb-2"}>
+        <GridColumn style="lg:col-span-8 md:col-span-8 col-span-12">
           <Card>
             <CurrentProfile user={currentUser} />
           </Card>

@@ -13,6 +13,7 @@ import ButtonNavLink from "shared/components/Button/ButtonNavLink";
 import GridRow from "shared/components/Layout/Grid/GridRow";
 import GridColumn from "shared/components/Layout/Grid/GridColumn";
 import LayoutEndChildren from "shared/components/Layout/Positioning/LayoutEndChildren";
+import { PLAIN_TEXT } from "shared/components/Button/buttonType";
 
 function UserCategories() {
   const dispatch = useDispatch();
@@ -35,15 +36,18 @@ function UserCategories() {
             <div className="mt-1 mx-5">
               <ButtonNavLink
                 text={` Learned ${learned.wordsCount} words`}
-                style={"text-decoration-none"}
-                link={"/user/learned/words"}
+                style={PLAIN_TEXT}
+                link="/user/learned/words"
               />
             </div>
           </LayoutSpacer>
 
-          <GridRow style={"p-3"}>
+          <GridRow style="grid-cols-2">
             {learned.categories?.map((category) => (
-              <GridColumn style={"col-sm-12 col-lg-6 p-3"} key={category.id}>
+              <GridColumn
+                style="lg:col-span-1 md:col-span-1 col-span-2"
+                key={category.id}
+              >
                 <Card title={category.title} subtitle="Completed">
                   {category.description}
 

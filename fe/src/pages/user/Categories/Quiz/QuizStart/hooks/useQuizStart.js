@@ -2,22 +2,24 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  addAction,
-  getAllAction,
-} from "../../../../../../redux/actions/actions";
-import * as actionType from "../../../../../../redux/actions/actionTypes";
+import { addAction, getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 
 export const useQuizStart = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
-  const [openHint, setOpenHint] = useState(false);
   const { categories } = useSelector((state) => state.categories);
   const { words_with_choices } = useSelector((state) => state.words);
   const [progress, setProgress] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [answerHolder, setAnswerHolder] = useState([]);
+
+  const [isOpenHint, setOpenHint] = useState(false);
+
+  const handleHint = () => {
+    setOpenHint(!isOpenHint);
+  };
 
   useEffect(() => {
     dispatch(getAllAction("api/lessons", actionType.GET_CATEGORIES));
@@ -56,7 +58,7 @@ export const useQuizStart = () => {
   return {
     progress,
     questions,
-    openHint,
+    isOpenHint,
     getCategory,
     setOpenHint,
     handleOptionClick,

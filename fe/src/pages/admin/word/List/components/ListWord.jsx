@@ -1,7 +1,10 @@
 /* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
-import Card from "../../../../../shared/components/Card/Card";
-import GridColumn from "../../../../../shared/components/Layout/Grid/GridColumn";
+import Button from "shared/components/Button/Button";
+import { OUTLINE_RED } from "shared/components/Button/buttonType";
+import Card from "shared/components/Card/Card";
+import GridColumn from "shared/components/Layout/Grid/GridColumn";
+import GridRow from "shared/components/Layout/Grid/GridRow";
 import EditWord from "../../Edit/EditWord";
 
 function ListWord({ itemPaginated, search, handleDelete }) {
@@ -15,31 +18,26 @@ function ListWord({ itemPaginated, search, handleDelete }) {
                 word.lesson.title.toString().toLowerCase().includes(search);
         })
         .map((w) => (
-          <GridColumn style={"col-sm-12 col-md-6 col-lg-4 p-3"} key={w.id}>
+          <GridColumn style="lg:col-span-2 md:col-span-3 col-span-6" key={w.id}>
             <Card title={w.title} subtitle={w.lesson.title}>
               <div className="mt-5">
                 <h6>Options: </h6>
-                <div className="row mb-5">
+                <GridRow style="grid-cols-2">
                   {w.choices.map((option) => (
-                    <div
-                      className="col-6 d-flex justify-content-center mb-2 mt-2"
-                      key={option.id}
-                    >
-                      {option.word}
-                    </div>
+                    <GridColumn style="col-span-1" key={option.id}>
+                      <div className="flex justify-center">{option.word}</div>
+                    </GridColumn>
                   ))}
-                </div>
+                </GridRow>
               </div>
-              <div className="d-flex justify-content-around">
+              <div className="flex justify-around mt-5">
                 <EditWord id={w.id} />
                 {!w.lesson.user_words.length > 0 && (
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger mx-1"
-                    onClick={() => handleDelete(w.id, w.title)}
-                  >
-                    Delete
-                  </button>
+                  <Button
+                    text="Delete"
+                    style={OUTLINE_RED}
+                    handler={() => handleDelete(w.id, w.title)}
+                  />
                 )}
               </div>
             </Card>

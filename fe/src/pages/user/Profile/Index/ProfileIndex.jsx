@@ -17,6 +17,7 @@ import GridColumn from "shared/components/Layout/Grid/GridColumn";
 import Avatar from "shared/components/Image/Avatar";
 import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 import Button from "shared/components/Button/Button";
+import { OUTLINE_BLUE, OUTLINE_RED } from "shared/components/Button/buttonType";
 
 function ProfileIndex() {
   const {
@@ -42,8 +43,8 @@ function ProfileIndex() {
 
       <Container>
         <Card style="p-2">
-          <GridRow style="gx-2">
-            <GridColumn style="col-lg-4 col-md-4 mb-2">
+          <GridRow style="grid-cols-12">
+            <GridColumn style="lg:col-span-4 md:col-span-4 col-span-12">
               <Card style="p-3 bg-light">
                 <Avatar
                   img={currentUser.avatar}
@@ -52,7 +53,7 @@ function ProfileIndex() {
               </Card>
 
               <LayoutCenterChildren>
-                <p className="fw-bold">
+                <p className="font-bold">
                   {currentUser.first_name?.toUpperCase()}{" "}
                   {currentUser.last_name?.toUpperCase()}
                 </p>
@@ -60,9 +61,9 @@ function ProfileIndex() {
 
               {isGuest && (
                 <Fragment>
-                  <div className="row mt-1 mb-4 w-75 mx-auto">
+                  <GridRow style="grid-cols-2">
                     <Followers />
-                  </div>
+                  </GridRow>
 
                   <div className="mb-2 d-flex justify-content-center">
                     <hr className="w-50" />
@@ -77,11 +78,7 @@ function ProfileIndex() {
                   isUser() && (
                     <Button
                       text={isFollowed ? "Follow" : "Unfollow"}
-                      style={
-                        isFollowed
-                          ? "btn btn-outline-primary"
-                          : "btn btn-outline-danger"
-                      }
+                      style={isFollowed ? OUTLINE_BLUE : OUTLINE_RED}
                       handler={handleToggleFollow}
                     />
                   )
@@ -90,16 +87,16 @@ function ProfileIndex() {
 
               {isGuest && (
                 <Fragment>
-                  <div className="mt-5 d-flex justify-content-center p-0 m-0">
+                  <LayoutCenterChildren style="mt-5">
                     <Link className=" fs-6 text">
                       Learned {learned.wordsCount} words
                     </Link>
-                  </div>
+                  </LayoutCenterChildren>
                 </Fragment>
               )}
             </GridColumn>
 
-            <GridColumn style="col mb-2">
+            <GridColumn style="lg:col-span-8 md:col-span-8 col-span-12">
               <Card>
                 {isCurrentUser ? (
                   <ProfileCurrentUser user={currentUser} />
