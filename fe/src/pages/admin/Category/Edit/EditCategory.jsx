@@ -30,7 +30,7 @@ function EditCategory({ id }) {
             name="title"
             value={data.title || ""}
             handler={handleInput}
-            helper="Please enter lesson name"
+            info="Please enter lesson name"
           />
 
           <FormInput
@@ -38,7 +38,7 @@ function EditCategory({ id }) {
             name="description"
             value={data.description || ""}
             handler={handleInput}
-            helper="Description will help user to choose the right lesson"
+            info="Description will help user to choose the right lesson"
           />
         </Modal>
       </Form>

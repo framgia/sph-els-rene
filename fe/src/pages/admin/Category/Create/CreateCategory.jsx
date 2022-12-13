@@ -31,7 +31,7 @@ function CreateCategory() {
             name="description"
             value={data.description}
             handler={handleInput}
-            helper="Description will help user to choose the right lesson"
+            info="Description will help user to choose the right lesson"
           />
         </Modal>
       </Form>

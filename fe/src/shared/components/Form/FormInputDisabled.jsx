@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-function FormInputDisabled({ label, style, name, type, value, helper }) {
+function FormInputDisabled({ label, style, name, type, value, info }) {
   return (
     <Fragment>
       <div className={style ? style : "mb-3"}>
@@ -18,12 +18,12 @@ function FormInputDisabled({ label, style, name, type, value, helper }) {
           id={name}
           placeholder={label ? label : "Please Input Text"}
           defaultValue={value}
-          aria-describedby={`${helper}Help`}
+          aria-describedby={`${info}Help`}
           disabled
         />
-        {helper && (
-          <div id={`${helper}Help`} className="text-gray-600 text-xs mb-2">
-            {helper}
+        {info && (
+          <div id={`${info}Help`} className="text-gray-600 text-xs mb-2">
+            {info}
           </div>
         )}
       </div>
