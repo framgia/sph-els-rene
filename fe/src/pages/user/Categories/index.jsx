@@ -24,28 +24,39 @@ function index() {
 
   return (
     <Fragment>
-      <Container style={"p-3"}>
+      <Container style="p-3">
         <LayoutSpacer spacer={3}>
-          <h5 className="mx-5">Categories | Lesson</h5>
+          <h5 className="font-medium leading-tight text-xl mt-0 mb-2 text-black-600 mx-5">
+            Categories | Lesson
+          </h5>
         </LayoutSpacer>
 
-        <GridRow style={"p-3"}>
+        <GridRow style="grid-cols-2">
           {categories.map((category) => (
-            <GridColumn style={"col-sm-12 col-lg-6 p-3"} key={category.id}>
+            <GridColumn
+              style="lg:col-span-1 md:col-span-1 col-span-2"
+              key={category.id}
+            >
               <Card
                 title={category.title}
                 subtitle={`${category.words.length} words`}
               >
                 {category.description}
                 <LayoutEndChildren>
-                  <Link
-                    to={`/user/category/${category.id}/quiz`}
-                    className={`btn btn-primary ${
-                      category.words.length >= 20 ? "" : "disabled"
-                    }`}
-                  >
-                    Start Lesson
-                  </Link>
+                  {category.words.length >= 20 ? (
+                    <Link
+                      to={`/user/category/${category.id}/quiz`}
+                      className={`inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-5 `}
+                    >
+                      Start Lesson
+                    </Link>
+                  ) : (
+                    <Link
+                      className={`inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-5 opacity-50 cursor-not-allowed`}
+                    >
+                      Work In Progress
+                    </Link>
+                  )}
                 </LayoutEndChildren>
               </Card>
             </GridColumn>

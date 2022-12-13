@@ -1,11 +1,12 @@
+/* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
 import Button from "shared/components/Button/Button";
+import Card from "shared/components/Card/Card";
 import Form from "shared/components/Form/Form";
 import FormInput from "shared/components/Form/FormInput";
 import ContainerGuest from "shared/components/Layout/Container/ContainerGuest";
 import GuestHeader from "shared/components/Layout/Header/HeadBanner";
-import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 import LayoutSpacer from "shared/components/Layout/Positioning/LayoutSpacer";
 import { useLogin } from "./hooks/useLogin";
 
@@ -18,38 +19,34 @@ function Login() {
 
       <GuestHeader />
 
-      <LayoutSpacer>&nbsp;</LayoutSpacer>
-
       <ContainerGuest>
-        <LayoutCenterChildren>
-          <h1>Welcome to SELS Project</h1>
-        </LayoutCenterChildren>
+        <Card
+          title="Welcome to SELS Project"
+          subtitle="Lest Break Language Barrier, please Sign In your acount"
+          style="w-1/2 "
+        >
+          <LayoutSpacer>
+            <Form handler={handleSubmit}>
+              <FormInput
+                label="Email"
+                name="email"
+                type="email"
+                value={data.email}
+                handler={handleInput}
+              />
 
-        <LayoutCenterChildren>
-          <p>Lest Break Language Barrier, please Sign In your acount</p>
-        </LayoutCenterChildren>
+              <FormInput
+                label="Password"
+                name="password"
+                type="password"
+                value={data.password}
+                handler={handleInput}
+              />
 
-        <LayoutSpacer>
-          <Form handler={handleSubmit}>
-            <FormInput
-              label={"Email"}
-              name={"email"}
-              type={"email"}
-              value={data.email}
-              handler={handleInput}
-            />
-
-            <FormInput
-              label={"Password"}
-              name={"password"}
-              type={"password"}
-              value={data.password}
-              handler={handleInput}
-            />
-
-            <Button type={"submit"} text={"Login"} />
-          </Form>
-        </LayoutSpacer>
+              <Button type="submit" text="Login" />
+            </Form>
+          </LayoutSpacer>
+        </Card>
       </ContainerGuest>
     </Fragment>
   );

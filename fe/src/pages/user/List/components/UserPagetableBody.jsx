@@ -1,7 +1,7 @@
 /* eslint-disable react/style-prop-object */
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import Avatar from "../../../../shared/components/Image/Avatar";
+import Avatar from "shared/components/Image/Avatar";
 
 function UserPagetableBody({ itemPaginated, search }) {
   return (
@@ -16,10 +16,10 @@ function UserPagetableBody({ itemPaginated, search }) {
         })
         .map((user) => (
           <tr key={user.id}>
-            <td>
+            <td className="align-middle">
               <Avatar
                 img={user.avatar}
-                style={"rounded-circle border border-3 align-self-center"}
+                style="rounded-full border-2 border-gray-200 "
                 customStyle={{ width: 100, height: 100 }}
               />
             </td>
@@ -28,7 +28,12 @@ function UserPagetableBody({ itemPaginated, search }) {
             </td>
             <td className="align-middle"> {user.email}</td>
             <td className="align-middle">
-              <Link to={`/user/profile/${user.id}`}>View</Link>
+              <Link
+                to={`/user/profile/${user.id}`}
+                className="text-blue-500 hover:text-blue-700 underline"
+              >
+                View
+              </Link>
             </td>
           </tr>
         ))}

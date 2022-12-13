@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOneAction } from "../../../../redux/actions/actions";
-import * as actionType from "../../../../redux/actions/actionTypes";
-import { getUserId } from "../../../../utils";
+import { getOneAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
+import { getUserId } from "utils";
 
 export const useHome = () => {
   const [userData, setUserData] = useState({

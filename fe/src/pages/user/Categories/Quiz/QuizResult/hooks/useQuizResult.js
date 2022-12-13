@@ -2,8 +2,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getOneAction } from "../../../../../../redux/actions/actions";
-import * as actionType from "../../../../../../redux/actions/actionTypes";
+import { getOneAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 
 export const useQuizResult = () => {
   const dispatch = useDispatch();

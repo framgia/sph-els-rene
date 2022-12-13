@@ -4,11 +4,14 @@ function FormInputDisabled({ label, style, name, type, value, helper }) {
   return (
     <Fragment>
       <div className={style ? style : "mb-3"}>
-        <label className="form-lable" htmlFor={name}>
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor={name}
+        >
           {label ? label : ""}
         </label>
         <input
-          className="form-control"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
           type={type ? type : "text"}
           name={name}
           data-name={name}
@@ -19,7 +22,7 @@ function FormInputDisabled({ label, style, name, type, value, helper }) {
           disabled
         />
         {helper && (
-          <div id={`${helper}Help`} className="form-text">
+          <div id={`${helper}Help`} className="text-gray-600 text-xs mb-2">
             {helper}
           </div>
         )}

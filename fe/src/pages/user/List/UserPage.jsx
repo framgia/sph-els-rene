@@ -12,6 +12,7 @@ import Table from "shared/components/Table/Table";
 import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
 import UserPagetableBody from "./components/UserPagetableBody";
 import Pagination from "shared/components/Pagination/Pagination";
+import Card from "shared/components/Card/Card";
 
 function UserPage() {
   const [search, setSearch] = useState("");
@@ -32,23 +33,22 @@ function UserPage() {
 
   return (
     <Fragment>
-      <Container style={"card"}>
-        <FormSearchInput handler={(e) => setSearch(e.target.value)} />
+      <Container>
+        <Card>
+          <FormSearchInput handler={(e) => setSearch(e.target.value)} />
 
-        <Table
-          style={"table table-hover text-center"}
-          tableHeader={["", "Name", "Email", "Action"]}
-        >
-          <UserPagetableBody itemPaginated={itemPaginated} search={search} />
-        </Table>
+          <Table tableHeader={["", "Name", "Email", "Action"]}>
+            <UserPagetableBody itemPaginated={itemPaginated} search={search} />
+          </Table>
 
-        <LayoutCenterChildren>
-          <Pagination
-            itemsPerPage={itemsPerPage}
-            totalItems={users.length}
-            paginateTo={paginate}
-          />
-        </LayoutCenterChildren>
+          <LayoutCenterChildren>
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={users.length}
+              paginateTo={paginate}
+            />
+          </LayoutCenterChildren>
+        </Card>
       </Container>
     </Fragment>
   );

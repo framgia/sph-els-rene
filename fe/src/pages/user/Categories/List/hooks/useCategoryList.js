@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getAllAction } from "../../../../../redux/actions/actions";
-import * as actionType from "../../../../../redux/actions/actionTypes";
+import { getAllAction } from "redux/actions/actions";
+import * as actionType from "redux/actions/actionTypes";
 
 export const useCategoryList = () => {
   const dispatch = useDispatch();

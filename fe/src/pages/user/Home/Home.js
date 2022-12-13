@@ -13,6 +13,7 @@ import ActivityLogs from "../Activity/components/ActivityLogs";
 
 import Avatar from "shared/components/Image/Avatar";
 import { useHome } from "./hooks/useHome";
+import { PLAIN_TEXT } from "shared/components/Button/buttonType";
 
 function Home() {
   const { loading, userData } = useHome();
@@ -23,9 +24,9 @@ function Home() {
 
   return (
     <Fragment>
-      <Container style={"card p-2"}>
-        <GridRow style={"gx-2"}>
-          <GridColumn style={"col-lg-4 col-md-4 mb-2 p-3"}>
+      <Container style="border-2 border-gray-200 rounded-lg mt-5">
+        <GridRow style="grid-cols-12">
+          <GridColumn style="lg:col-span-4 md:col-span-4 col-span-12">
             <LayoutCenterChildren>
               <Avatar
                 img={userData.avatar}
@@ -33,34 +34,32 @@ function Home() {
               />
             </LayoutCenterChildren>
 
-            <LayoutCenterChildren style={"mt-1"}>
-              <p className="text-uppercase fw-bold fs-3 text">
-                {userData.name || ""}
-              </p>
+            <LayoutCenterChildren style="mt-1">
+              <p className="uppercase font-bold">{userData.name || ""}</p>
             </LayoutCenterChildren>
 
-            <GridRow style={"mt-1 mb-4 w-75 mx-auto"}>
+            <GridRow style="mt-1 mb-4 w-75 mx-auto grid-cols-2">
               <Followers />
             </GridRow>
 
-            <LayoutCenterChildren style={"mt-1  p-0 m-0"}>
+            <LayoutCenterChildren style="mt-1">
               <ButtonNavLink
                 text={`Learned ${userData.learned_words} words`}
-                link={"/user/learned/words"}
-                style={"6 text"}
+                link="/user/learned/words"
+                style={PLAIN_TEXT}
               />
             </LayoutCenterChildren>
 
-            <LayoutCenterChildren style={"mt-1  p-0 m-0"}>
+            <LayoutCenterChildren style="mt-1  p-0 m-0">
               <ButtonNavLink
                 text={`Learned ${userData.learned_categories} categories`}
-                link={"/user/learned/categories"}
-                style={"6 text"}
+                link="/user/learned/categories"
+                style={PLAIN_TEXT}
               />
             </LayoutCenterChildren>
           </GridColumn>
 
-          <GridColumn style={"col mb-2"}>
+          <GridColumn style="lg:col-span-8 md:col-span-8 col-span-12">
             <Card>
               <ActivityLogs />
             </Card>

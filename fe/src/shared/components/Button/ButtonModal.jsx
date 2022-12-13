@@ -4,7 +4,7 @@ function ButtonModal({ text, style, target, handler }) {
   return (
     <button
       type="button"
-      className={style ? style : "btn btn-primary"}
+      className={`${style} mx-2`}
       data-bs-toggle="modal"
       data-bs-target={target}
       onClick={handler}
