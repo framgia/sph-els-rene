@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,22 +12,17 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterUserRequest $request)
     {
-        $fields = $request->validate([
-            'first_name' => 'required | string',
-            'last_name' => 'required | string',
-            'email' => 'required | string',
-            'password' => 'required | string | confirmed',
-        ]);
+        $validate = $request->validated();
 
         $user = User::create([
-            'first_name' => $fields['first_name'],
-            'middle_name' => $fields['middle_name'] ?? "",
-            'last_name' => $fields['last_name'],
+            'first_name' => $validate['first_name'],
+            'middle_name' => $validate['middle_name'] ?? "",
+            'last_name' => $validate['last_name'],
             'role' => 'user',
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password']),
+            'email' => $validate['email'],
+            'password' => bcrypt($validate['password']),
         ]);
 
         $token = $user->createToken('permission')->plainTextToken;
