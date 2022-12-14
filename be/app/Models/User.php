@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Services\QuizResult;
+use App\Http\Resources\ActivityLogsUserLearnedLessonResource;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -109,28 +109,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $data = [];
         $validate_user = "";
         $validate_lesson = "";
-        $counter = 0;
-
         foreach ($user_word as $key) {
-            $counter++;
-            $user = User::find($key->user_id);
-            $lesson = Lesson::find($key->lesson_id);
-
             if ($validate_user != $key->user_id || $validate_lesson != $key->lesson_id) {
                 $validate_user = (int) $key->user_id;
                 $validate_lesson = (int) $key->lesson_id;
-                $format = (object)[
-                    "id" => $counter,
-                    "avatar" => $user->avatar,
-                    "user_id" => $user->id,
-                    "name" => $user->first_name . " " . $user->last_name,
-                    "category" => $lesson->title,
-                    "category_id" => $lesson->id,
-                    "score" => (new QuizResult)->quizScore($key->user_id, $key->lesson_id),
-                    "created_at" => $key->created_at,
-                ];
-
-                array_push($data, $format);
+                array_push($data, ActivityLogsUserLearnedLessonResource::make($key));
             }
         }
 
