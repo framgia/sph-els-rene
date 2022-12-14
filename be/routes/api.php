@@ -21,24 +21,51 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 // Authentication
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-// Protected Routed
+// Protected Routes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::resource('lessons', LessonController::class);
-    Route::get('user_available_lesson', [LessonController::class, 'getAvailableUserLesson']);
-    Route::resource('words', WordController::class);
-    Route::get('words_and_choices/{id}', [WordController::class, 'getWordsAndChoices']);
-    Route::resource('users', UserController::class);
-    Route::get('visitable_users', [UserController::class, 'getVisitableUser']);
-    Route::resource('activity_logs', ActivityLogsController::class);
-    Route::resource('followers', FollowerController::class);
-    Route::resource('user_words', UserWordController::class);
+
+    Route::group(['prefix' => 'lessons', 'as' => 'lessons.'], function () {
+        Route::get('/', [LessonController::class, 'index']);
+        Route::get('user_available_lesson', [LessonController::class, 'getAvailableUserLesson']);
+        Route::get('/{id}', [LessonController::class, 'show']);
+        Route::post('/', [LessonController::class, 'store']);
+        Route::put('/{id}', [LessonController::class, 'update']);
+        Route::delete('/{id}', [LessonController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'words', 'as' => 'words.'], function () {
+        Route::get('/', [WordController::class, 'index']);
+        Route::get('words_and_choices/{id}', [WordController::class, 'getWordsAndChoices']);
+        Route::get('/{id}', [WordController::class, 'show']);
+        Route::post('/', [WordController::class, 'store']);
+        Route::put('/{id}', [WordController::class, 'update']);
+        Route::delete('/{id}', [WordController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::get('visitable_users', [UserController::class, 'getVisitableUser']);
+        Route::get('/{id}', [UserController::class, 'show']);
+        Route::put('/{id}', [UserController::class, 'update']);
+    });
+
+    Route::group(['prefix' => 'activity_logs', 'as' => 'activity_logs.'], function () {
+        Route::get('/', [ActivityLogsController::class, 'index']);
+        Route::get('/{id}', [ActivityLogsController::class, 'show']);
+    });
+
+    Route::group(['prefix' => 'followers', 'as' => 'followers.'], function () {
+        Route::post('/', [FollowerController::class, 'store']);
+        Route::delete('/{id}', [FollowerController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'user_words', 'as' => 'user_words.'], function () {
+        Route::get('/{id}', [UserWordController::class, 'show']);
+        Route::post('/', [UserWordController::class, 'store']);
+    });
 });

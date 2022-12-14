@@ -22,7 +22,7 @@ function UserPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllAction("api/visitable_users", actionType.GET_USERS));
+    dispatch(getAllAction("api/users/visitable_users", actionType.GET_USERS));
   }, []);
 
   const { itemsPerPage, itemPaginated, paginate } = usePagination(3, users);
