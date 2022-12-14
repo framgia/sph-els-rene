@@ -25,7 +25,7 @@ export const useQuizStart = () => {
     dispatch(getAllAction("api/lessons", actionType.GET_CATEGORIES));
     dispatch(
       getAllAction(
-        `api/words_and_choices/${params.id}`,
+        `api/words/words_and_choices/${params.id}`,
         actionType.GET_WORDS_AND_CHOICES
       )
     );
