@@ -7,7 +7,6 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserWordController;
 use App\Http\Controllers\WordController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

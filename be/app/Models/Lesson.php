@@ -28,4 +28,13 @@ class Lesson extends Model
     {
         $this->attributes['title'] = strtoupper($value);
     }
+
+    public function updateLesson($request, $id)
+    {
+        $lesson = Lesson::find($id);
+        $lesson->title = $request->title;
+        $lesson->description = $request->description;
+        $lesson->save();
+        return $lesson;
+    }
 }
