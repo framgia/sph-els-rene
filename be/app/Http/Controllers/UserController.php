@@ -9,31 +9,33 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     public function index()
     {
-        $users = User::whereNot("role", "admin")
-            ->get();
         return response([
-            'users' => $users,
+            'users' =>  $this->user->whereNot("role", "admin")->get(),
         ]);
     }
 
     public function getVisitableUser(Request $request)
     {
-        $users = User::whereNot("role", "admin")
-            ->whereNot("id", $request->user()->currentAccessToken()->tokenable_id)
-            ->get();
         return response([
-            'users' => $users,
+            'users' => $this->user->whereNot("role", "admin")
+                ->whereNot("id", $request->user()->currentAccessToken()->tokenable_id)
+                ->get(),
         ]);
     }
 
     public function show($id)
     {
-        $user = User::find($id);
         return response([
-            'user' => $user,
+            'user' => User::find($id),
             'learned' => [
                 'words' => (new UserLearning)->words($id),
                 'wordsCount' => (new UserLearning)->wordsCount($id),
@@ -45,17 +47,9 @@ class UserController extends Controller
 
     public function update(StoreUserRequest $request, $id)
     {
-        $user = User::find($id);
         $request->validated();
-
-        $user->first_name = $request->first_name;
-        $user->middle_name = $request->middle_name ?? $user->middle_name;
-        $user->last_name = $request->last_name;
-        $user->avatar = $request->avatar ?? $user->avatar;
-        $user->save();
-
         return response([
-            'user' => $user,
+            'user' => $this->user->updateUser($request, $id),
             'message' => 'User Updated Successfully',
         ], 201);
     }

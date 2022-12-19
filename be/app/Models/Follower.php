@@ -23,4 +23,23 @@ class Follower extends Model
     {
         return $this->morphOne(Activity_log::class, 'loggable');
     }
+
+    public function storeFollower($request)
+    {
+        $follow = Follower::create($request->all());
+        $follow->log()->create([
+            "loggable_id" => $follow->id,
+            "title" => "Follow"
+        ]);
+        return $follow;
+    }
+
+    public function deleteFollower($request, $id)
+    {
+        $follower = $request->user()->currentAccessToken()->tokenable_id;
+        $follow = Follower::where("user_id", $follower)->where("following_id", $id)->first();
+        Activity_log::where("loggable_id", $follow->id)->delete();
+        $follow->delete();
+        return $follow;
+    }
 }

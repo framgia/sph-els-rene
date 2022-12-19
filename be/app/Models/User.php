@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use App\Http\Resources\ActivityLogsUserLearnedLessonResource;
+use App\Services\UserLearning;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -118,5 +122,99 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $data;
+    }
+
+    public function getAvialableLesson($id)
+    {
+        $done_categories = (new UserLearning)->categories($id);
+        $done_categories_id = [];
+        foreach ($done_categories as $key) {
+            array_push($done_categories_id, $key->id);
+        }
+        $lessons = Lesson::whereNotIn('id', $done_categories_id)->with("words")->get();
+        return $lessons;
+    }
+
+    public function storeLearnedWords($request)
+    {
+        $user_id = $request->user()->currentAccessToken()->tokenable_id;
+        $lesson_id = $request->lesson_id;
+        $answers = json_decode($request->answers);
+
+        foreach ($answers as $answer) {
+            $user_word =  User_word::create([
+                "user_id" => $user_id,
+                "lesson_id" => $lesson_id,
+                "word_id" => $answer->word_id,
+                "remark" => $answer->remark,
+            ]);
+
+            $user_word->log()->create([
+                "loggable_id" => $user_word->id,
+                "title" => "Quiz Answer"
+            ]);
+        };
+    }
+
+    public function loginUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['validation_errors' => $validator->messages()]);
+        } else {
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'message' => 'Invalid Credentials',
+                ]);
+            } else {
+                $token = $user->createToken('permission')->plainTextToken;
+                return response([
+                    'user' => $user,
+                    'role' => $user->role,
+                    'verified_email' => $user->email_verified_at,
+                    'token' => $token,
+                    'Message' => 'Login Succesfully',
+                ]);
+            }
+        }
+    }
+
+    public function storeUser($request)
+    {
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name ?? "",
+            'last_name' => $request->last_name,
+            'role' => 'user',
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        $token = $user->createToken('permission')->plainTextToken;
+
+        return response([
+            'user' => $user,
+            'verified_email' => $user->email_verified_at,
+            'token' => $token,
+            'Message' => 'Registered Succesfully',
+        ], 201);
+    }
+
+    public function updateUser($request, $id)
+    {
+        $user = User::find($id);
+        $user->first_name = $request->first_name;
+        $user->middle_name = $request->middle_name ?? $user->middle_name;
+        $user->last_name = $request->last_name;
+        $user->avatar = $request->avatar ?? $user->avatar;
+        $user->save();
+
+        return $user;
     }
 }
