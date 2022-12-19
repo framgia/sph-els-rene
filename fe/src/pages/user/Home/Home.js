@@ -10,7 +10,6 @@ import Card from "shared/components/Card/Card";
 import LoadingSpinner from "shared/components/Spinner/LoadingSpinner";
 import Followers from "../Activity/components/ActivityFollowers";
 import ActivityLogs from "../Activity/components/ActivityLogs";
-
 import Avatar from "shared/components/Image/Avatar";
 import { useHome } from "./hooks/useHome";
 import { PLAIN_TEXT } from "shared/components/Button/buttonType";

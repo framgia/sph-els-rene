@@ -14,7 +14,10 @@ export const useCategoryList = () => {
   useEffect(() => {
     dispatch(getAllAction(`api/lessons/${params.id}`, actionType.GET_CATEGORY));
     dispatch(
-      getAllAction("api/user_available_lesson", actionType.GET_CATEGORIES)
+      getAllAction(
+        "api/lessons/user_available_lesson",
+        actionType.GET_CATEGORIES
+      )
     );
   }, []);
 

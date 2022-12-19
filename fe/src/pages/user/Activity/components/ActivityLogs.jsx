@@ -1,22 +1,23 @@
 /* eslint-disable react/style-prop-object */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllAction } from "redux/actions/actions";
-import * as actionType from "redux/actions/actionTypes";
+import React, { Fragment } from "react";
 import moment from "moment";
 import { getUserId } from "utils";
 import Avatar from "shared/components/Image/Avatar";
 import ButtonNavLink from "shared/components/Button/ButtonNavLink";
 import LoadingPlainText from "shared/components/Spinner/LoadingPlainText";
 import { PLAIN_TEXT } from "shared/components/Button/buttonType";
+import { usePagination } from "shared/hooks/usePagination";
+import Pagination from "shared/components/Pagination/Pagination";
+import LayoutCenterChildren from "shared/components/Layout/Positioning/LayoutCenterChildren";
+import { Link } from "react-router-dom";
+import { useActivityLogs } from "../hooks/useActivityLogs";
 
 function ActivityLogs() {
-  const { activities, loading } = useSelector((state) => state.activities);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllAction("/api/activity_logs", actionType.GET_ACTIVITIES));
-  }, []);
+  const { activities, loading, isActivtyPage } = useActivityLogs();
+  const { itemsPerPage, itemPaginated, paginate } = usePagination(
+    10,
+    activities
+  );
 
   if (loading) {
     return <LoadingPlainText text={"Loading Activities . . ."} />;
@@ -25,13 +26,12 @@ function ActivityLogs() {
   return (
     <div>
       <h4 className="font-medium leading-tight text-2xl mt-0 mb-2 text-slate-500">
-        Activities
+        <Link to="/users/all_activity_logs">Activities</Link>
       </h4>
-
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-5">
         <ul className="bg-white rounded-lg border border-gray-200 w-full text-gray-900">
           {activities &&
-            activities.map((log) => (
+            itemPaginated.map((log) => (
               <li
                 className="px-6 py-2 border-b border-gray-200 w-full rounded-t-lg "
                 key={log.id}
@@ -105,6 +105,15 @@ function ActivityLogs() {
             ))}
         </ul>
       </div>
+      {isActivtyPage && (
+        <LayoutCenterChildren>
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={activities.length}
+            paginateTo={paginate}
+          />
+        </LayoutCenterChildren>
+      )}
     </div>
   );
 }

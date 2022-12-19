@@ -25,7 +25,7 @@ function UserPage() {
     dispatch(getAllAction("api/users/visitable_users", actionType.GET_USERS));
   }, []);
 
-  const { itemsPerPage, itemPaginated, paginate } = usePagination(3, users);
+  const { itemsPerPage, itemPaginated, paginate } = usePagination(10, users);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -36,6 +36,14 @@ function UserPage() {
       <Container>
         <Card>
           <FormSearchInput handler={(e) => setSearch(e.target.value)} />
+
+          <LayoutCenterChildren>
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={users.length}
+              paginateTo={paginate}
+            />
+          </LayoutCenterChildren>
 
           <Table tableHeader={["", "Name", "Email", "Action"]}>
             <UserPagetableBody itemPaginated={itemPaginated} search={search} />
