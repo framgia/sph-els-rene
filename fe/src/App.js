@@ -16,6 +16,7 @@ import ListUserCategory from "./pages/user/Categories/List/CategoryList";
 import UserWord from "./pages/user/UserLearning/UserWord";
 import UserCategories from "./pages/user/UserLearning/UserCategories";
 import ProfileEdit from "./pages/user/Profile//Edit/ProfileEdit";
+import ActivityLogsPage from "./pages/user/Activity/ActivityLogsPage";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
           <Route path="/user/profile/:id" element={<Profile />} />
           <Route path="/user/profile" element={<ProfileEdit />} />
           <Route path="/users" element={<UserPage />} />
+          <Route
+            path="/users/all_activity_logs"
+            element={<ActivityLogsPage />}
+          />
           <Route path="/user/category" element={<UserCategory />} />
           <Route path="/user/category/:id/quiz" element={<QuizStart />} />
           <Route path="/user/category/:id/result" element={<QuizResult />} />

@@ -1,37 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getAllAction } from "redux/actions/actions";
-import * as actionType from "redux/actions/actionTypes";
-import { getUserId } from "utils";
+import React, { Fragment } from "react";
+import { useActivityFollowers } from "../hooks/useActivityFollowers";
 
 function Followers() {
-  const params = useParams();
-
-  const [followerCount, setFollowerCount] = useState({
-    following: "",
-    followers: "",
-  });
-
-  const { followers } = useSelector((state) => state.activities);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const id = params.id ?? getUserId();
-
-    dispatch(
-      getAllAction(`/api/activity_logs/${id}`, actionType.GET_ACTIVITY_FOLLOW)
-    );
-  }, []);
-
-  useEffect(() => {
-    setFollowerCount({
-      following: followers?.following_count,
-      follower: followers?.follower_count,
-    });
-  }, [followers]);
+  const { followerCount } = useActivityFollowers();
 
   return (
     <Fragment>
