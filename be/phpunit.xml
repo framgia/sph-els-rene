@@ -19,6 +19,10 @@
             <directory suffix="Test.php">./tests/Controllers/UserWordController.test.php</directory>
             <directory suffix="Test.php">./tests/Controllers/WordController.test.php</directory>
         </testsuite>
+         <testsuite name="Models">
+            <directory suffix="Test.php">./tests/Models/Authentication.test.php</directory>
+            <directory suffix="Test.php">./tests/Models/Follow.test.php</directory>
+        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
