@@ -11,18 +11,27 @@
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
+        <testsuite name="Controllers">
+            <directory suffix="Test.php">./tests/Controllers/ActivityLogsController.test.php</directory>
+            <directory suffix="Test.php">./tests/Controllers/AuthenticationController.test.php</directory>
+            <directory suffix="Test.php">./tests/Controllers/LessonController.test.php</directory>
+            <directory suffix="Test.php">./tests/Controllers/UserController.test.php</directory>
+            <directory suffix="Test.php">./tests/Controllers/UserWordController.test.php</directory>
+            <directory suffix="Test.php">./tests/Controllers/WordController.test.php</directory>
+        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./app</directory>
         </include>
+
     </coverage>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <env name="DB_DATABASE" value=":memory:"/> -->
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="DB_DATABASE" value="sels_project_unit_test"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
