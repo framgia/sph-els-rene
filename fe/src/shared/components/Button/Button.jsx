@@ -7,6 +7,7 @@ function Button({ type, style, text, handler }) {
       type={type ? type : "button"}
       className={`${useButtonSolid(style)} mx-2`}
       onClick={handler}
+      data-testid="button"
     >
       {text}
     </button>

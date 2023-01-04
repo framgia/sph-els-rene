@@ -3,6 +3,7 @@ import React from "react";
 function Card({ title, subtitle, children, style }) {
   return (
     <div
+      data-testid="card-test-id"
       className={`p-6 bg-white border-2 border-gray-200 rounded-lg shadow-lg mt-5 mb-5 ${style}`}
     >
       <h5 className="font-medium leading-tight text-3xl mt-0 mb-2 ">{title}</h5>
