@@ -2,7 +2,10 @@ import React from "react";
 
 function LoadingPlainText({ text }) {
   return (
-    <div className="card d-flex justify-content-center">
+    <div
+      className="card d-flex justify-content-center"
+      data-testid="spinner-test-id"
+    >
       <h1 className="mx-auto">{text ? text : "Loading Item . . ."}</h1>
     </div>
   );
